@@ -1,0 +1,13 @@
+import React from "react";
+
+const Searchbar = () => {
+    return (
+        <div id="searchbar-div">
+            <form>
+                <input id="searchbar-input" type="text" placeholder="Search for songs" />
+            </form>
+        </div>
+    );
+}
+
+export default Searchbar; 
