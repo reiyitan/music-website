@@ -1,0 +1,62 @@
+* {
+    font-family: system-ui;
+    box-sizing: border-box;
+    background-color: #2E3440;
+    color: #ECEFF4;
+}
+
+#sidebar {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    bottom: 0px;
+    overflow-y: scroll;
+    padding: 0px;
+    width: 200px;
+    max-width: 200px;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #3B4252;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #434C5E;
+}
+
+#add-playlist-button {
+    top: 0px;
+    background: #3B4252;
+    border: none;
+    width: 100%;
+    left: 0px;
+    right: 0px;
+    height: 40px;
+}
+
+#add-playlist-button:hover {
+    background: #333947;
+}
+
+.sidebar-playlist-button {
+    display: block;
+    top: 0px;
+    background: #3B4252;
+    border: none;
+    width: 200px;
+    max-width: 100%;
+    left: 0px;
+    right: 0px;
+    height: 40px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.sidebar-playlist-button:hover {
+    background: #333947;
+}
