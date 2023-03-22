@@ -28,7 +28,7 @@
     background: #434C5E;
 }
 
-#add-playlist-button {
+.add-playlist-button {
     position: absolute;
     top: 40px;
     background: #3B4252;
@@ -37,7 +37,7 @@
     height: 40px;
 }
 
-#add-playlist-button:hover {
+.add-playlist-button:hover {
     background: #333947;
 }
 
