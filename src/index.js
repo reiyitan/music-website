@@ -13,7 +13,10 @@ const App = () => {
         <div>
             <Sidebar setHeader={setHeader} setDisplaySongs={setDisplaySongs} />
             {header.map((text) => (
-                <Header title={text} />
+                <Header 
+                    key={text}
+                    title={text} 
+                />
             ))}
             <div id="main-panel">
                 <div id="song-display">
