@@ -26,7 +26,10 @@ const Sidebar = ({setMainPanel}) => {
      * @param playlistName - The name of the new playlist.
      */
     const handleSubmit = (playlistName) => {
-        if (playlists.find((playlist) => playlist.playlistName === playlistName) !== undefined) {
+        if (playlistName === "") {
+            console.log("no empty playlist name allowed");
+        }
+        else if (playlists.find((playlist) => playlist.playlistName === playlistName) !== undefined) {
             //add code saying you cannot have duplicate names
             console.log("no duplicates allowed");
         }
@@ -43,12 +46,14 @@ const Sidebar = ({setMainPanel}) => {
 
     return (
         <div id="sidebar">
-            <Searchbar />
-            <PlaylistNameForm 
-                playlistNameFormStyle={playlistNameFormStyle} 
-                onFormSubmit={handleSubmit}
-            />
-            <button onClick={showNameForm} className={addPlaylistButtonStyle}>+ Add a playlist</button>
+            <div>
+                <Searchbar />
+                <PlaylistNameForm 
+                    playlistNameFormStyle={playlistNameFormStyle} 
+                    onFormSubmit={handleSubmit}
+                />
+                <button onClick={showNameForm} className={addPlaylistButtonStyle}>+ Add a playlist</button>
+            </div>
             <div id="sidebar-playlists">
                 {playlists.slice().reverse().map((playlist) => (
                     <SidebarPlaylist 
