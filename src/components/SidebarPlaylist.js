@@ -7,20 +7,20 @@ import { loadSongs } from "../functions/loadsongs";
  * @param playlistName - The name of the playlist.
  * @param playlists - The list of playlists in the Sidebar. 
  * @param setPlaylists - Used to update state of Sidebar playlists when deleting a playlist.
- * @param setMainPanel - Used to update state of main panel to display a playlist.
+ * @param setHeader - Used to update the state of the header. 
  * @param currPlaylistDisplaying - Used to check what playlist is currently being displayed on the main panel.
  * @param setCurrPlaylistDisplaying - Used to update the state of Sidebar.
  * 
  * @returns A playlist to be displayed in the sidebar.
  */
-const SidebarPlaylist = ({playlistName, playlists, setPlaylists,  
-    setHeader, currPlaylistDisplaying, setCurrPlaylistDisplaying, setDisplaySongs}) => {
+const SidebarPlaylist = ({playlistName, playlists, setPlaylists, setHeader, 
+    currPlaylistDisplaying, setCurrPlaylistDisplaying, setDisplaySongs}) => {
     const handleDelete = () => {
         const newList = playlists.filter((playlist) => playlist.playlistName !== playlistName);
         setPlaylists(newList);
         if (playlistName === currPlaylistDisplaying) {
             setCurrPlaylistDisplaying(""); 
-            setHeader(["Home Page"]);
+            setHeader([""]);
             setDisplaySongs([]);
         }
     }

@@ -7,7 +7,7 @@ import Sidebar from "./components/Sidebar";
 import Song from "./components/Song";
 
 const App = () => {
-    const [header, setHeader] = useState(["Home Page"]);
+    const [header, setHeader] = useState([""]);
     const [displaySongs, setDisplaySongs] = useState([]);
     return (
         <div>
@@ -15,18 +15,20 @@ const App = () => {
             {header.map((text) => (
                 <Header title={text} />
             ))}
-            <div className="main-panel">
-                {displaySongs.map((song) => (
-                    <Song
-                        key={`${song.title}${song.artist}${song.album}${song.length}`}
-                        title={song.title}
-                        artist={song.artist}
-                        album={song.album}
-                        length={song.length}
-                        displaySongs={displaySongs}
-                        setDisplaySongs={setDisplaySongs}
-                    />
-                ))}
+            <div id="main-panel">
+                <div id="song-display">
+                    {displaySongs.map((song) => (
+                        <Song
+                            key={`${song.title}${song.artist}${song.album}${song.length}`}
+                            title={song.title}
+                            artist={song.artist}
+                            album={song.album}
+                            length={song.length}
+                            displaySongs={displaySongs}
+                            setDisplaySongs={setDisplaySongs}
+                        />
+                    ))}
+                </div>
             </div>
         </div>
     );

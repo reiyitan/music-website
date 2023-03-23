@@ -20,19 +20,19 @@
 }
 
 ::-webkit-scrollbar-track {
-    background: #3B4252;
+    background: #2E3440;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #434C5E;
+    background: #5E81AC;
 }
 
 .add-playlist-button {
     position: absolute;
     top: 40px;
-    background: #3B4252;
+    background: #5E81AC;
     border: none;
-    width: 100%;
+    width: calc(100% - 10px);
     height: 40px;
 }
 
@@ -94,8 +94,8 @@
 }
 
 #searchbar-div {
-    width: 200px;
-    max-width: 200px;
+    width: 190px;
+    max-width: 190px;
 
 }
 #searchbar-input {
@@ -111,13 +111,22 @@
     color: #9A9CA1;
 }
 
-.main-panel {
+#main-panel {
     position: absolute;
     left: 200px;
     top: 40px;
     right: 0px;
-    bottom: 60px;
+    bottom: 0px;
     height: calc(100% - 40px);
+    max-height: calc(100% - 40px);
+}
+
+#song-display {
+    position: absolute;
+    width: 100%;
+    top: 0px;
+    bottom: 60px;
+    overflow-y: scroll;
 }
 
 .header {
@@ -160,6 +169,12 @@
     max-height: 40px;
     background: #3B4252;
     border: none;
+}
+
+.song-row-playbutton span {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .song-row-playbutton:hover {
