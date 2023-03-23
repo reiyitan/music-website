@@ -10,10 +10,11 @@ import PlaylistNameForm from "./PlaylistNameForm";
  * @param setMainPanel - Function to update the state of the main panel. 
  * @returns The Sidebar component.
  */
-const Sidebar = ({setMainPanel}) => {
+const Sidebar = ({setHeader, setDisplaySongs}) => {
     const [playlists, setPlaylists] = useState([]); 
     const [addPlaylistButtonStyle, setAddPlaylistButtonStyle] = useState("add-playlist-button");
     const [playlistNameFormStyle, setPlaylistNameFormStyle] = useState("hidden");
+    const [currPlaylistDisplaying, setCurrPlaylistDisplaying] = useState("");
     const showNameForm = () => {
         setAddPlaylistButtonStyle("hidden");
         setPlaylistNameFormStyle("playlist-name-form");
@@ -30,14 +31,15 @@ const Sidebar = ({setMainPanel}) => {
             console.log("no empty playlist name allowed");
         }
         else if (playlists.find((playlist) => playlist.playlistName === playlistName) !== undefined) {
-            //add code saying you cannot have duplicate names
+            //TODO add code saying you cannot have duplicate names
             console.log("no duplicates allowed");
         }
         else { 
             const newPlaylist = {
-            playlistName: playlistName,
-            songs: []
+                playlistName: playlistName,
+                songs: []
             };
+            //TODO add this playlist to the backend
             setPlaylists([...playlists, newPlaylist]);
         }
         setAddPlaylistButtonStyle("add-playlist-button");
@@ -60,9 +62,11 @@ const Sidebar = ({setMainPanel}) => {
                         key={playlist.playlistName} 
                         playlistName={playlist.playlistName}
                         playlists={playlists}
-                        songs={playlist.songs}
                         setPlaylists={setPlaylists}
-                        setMainPanel={setMainPanel}
+                        setHeader={setHeader}
+                        currPlaylistDisplaying={currPlaylistDisplaying}
+                        setCurrPlaylistDisplaying={setCurrPlaylistDisplaying}
+                        setDisplaySongs={setDisplaySongs}
                     />
                 ))}
             </div>

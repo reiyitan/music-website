@@ -1,5 +1,4 @@
 import React from "react"; 
-import MainPanelPlaylist from "./MainPanelPlaylist"; 
 import { loadSongs } from "../functions/loadsongs";
 
 /**
@@ -8,21 +7,27 @@ import { loadSongs } from "../functions/loadsongs";
  * @param playlistName - The name of the playlist.
  * @param playlists - The list of playlists in the Sidebar. 
  * @param setPlaylists - Used to update state of Sidebar playlists when deleting a playlist.
- * @param songs - A list of songs in the playlist.
  * @param setMainPanel - Used to update state of main panel to display a playlist.
+ * @param currPlaylistDisplaying - Used to check what playlist is currently being displayed on the main panel.
+ * @param setCurrPlaylistDisplaying - Used to update the state of Sidebar.
+ * 
+ * @returns A playlist to be displayed in the sidebar.
  */
-const SidebarPlaylist = ({playlistName, playlists, setPlaylists, songs, setMainPanel}) => {
+const SidebarPlaylist = ({playlistName, playlists, setPlaylists,  
+    setHeader, currPlaylistDisplaying, setCurrPlaylistDisplaying, setDisplaySongs}) => {
     const handleDelete = () => {
         const newList = playlists.filter((playlist) => playlist.playlistName !== playlistName);
         setPlaylists(newList);
+        if (playlistName === currPlaylistDisplaying) {
+            setCurrPlaylistDisplaying(""); 
+            setHeader(["Home Page"]);
+            setDisplaySongs([]);
+        }
     }
     const displayPlaylist = () => {
-        setMainPanel(
-            <MainPanelPlaylist 
-                playlistName={playlistName}
-                songs={loadSongs("user", playlistName)}
-            />
-        );
+        setCurrPlaylistDisplaying(playlistName);
+        setHeader([playlistName]);
+        setDisplaySongs(loadSongs("user", playlistName));
     }   
     return (
         <div>

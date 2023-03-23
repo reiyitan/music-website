@@ -93,6 +93,11 @@
     outline: none;
 }
 
+#searchbar-div {
+    width: 200px;
+    max-width: 200px;
+
+}
 #searchbar-input {
     width: 100%;
     max-width: 100%;
@@ -109,21 +114,22 @@
 .main-panel {
     position: absolute;
     left: 200px;
-    top: 0px;
+    top: 40px;
     right: 0px;
     bottom: 60px;
-    height: 100%;
+    height: calc(100% - 40px);
 }
 
-.playlist-header {
+.header {
     display: flex;
     align-items: center;
     position: absolute;
     background-color: #5E81AC;
-    left: 0px;
+    left: 200px;
+    top: 0px;
     padding-left: 10px;
-    width: 100%;
-    max-width: 100%;
+    width: calc(100% - 200px);
+    max-width: calc(100% - 200px);
     height: 40px;
     font-size: 25px;
 }
@@ -141,25 +147,58 @@
 
 .song-row {
     display: flex;
+    flex-direction: row;
+}
+
+.song-row-playbutton {
+    display: flex;
     align-items: center;
-    width: 100%;
-    max-width: 100%;
+    width: 95%;
+    max-width: 95%;
     min-height: 40px;
     height: 40px;
     max-height: 40px;
+    background: #3B4252;
+    border: none;
+}
+
+.song-row-playbutton:hover {
+    background: #333947;
+}
+
+.song-row-playbutton:hover span {
+    background: #333947;
+}
+
+.song-row-deletebutton {
+    width: 5%;
+    max-width: 5%;
+    min-width: 5%;
+    background: #3B4252;
+    border: none;
+}
+
+.song-row-deletebutton:hover {
+    background: #333947;
 }
 
 .song-span-title {
+    display: flex;
     padding-left: 5px;
     width: 35%;
+    background: #3B4252;
 }
 
 .song-span-artist {
+    display: flex;
     width: 25%;
+    background: #3B4252;
 }
 
 .song-span-album {
+    display: flex;
     width: 25%;
+    background: #3B4252;
 }
 
 .song-span-length {
@@ -167,4 +206,5 @@
     flex-direction: row-reverse;
     width: 15%;
     padding-right: 5px;
+    background: #3B4252;
 }
