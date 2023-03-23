@@ -21,8 +21,8 @@ const Song = ({title, artist, album, length, displaySongs, setDisplaySongs}) => 
      */
     const deleteSong = () => {
         const newSongList = displaySongs.filter((song) => (
-            song.title !== title && song.artist !== artist
-                && song.album !== album && song.length !== length
+            !(song.title === title && song.artist === artist
+                && song.album === album && song.length === length)
         ));
         setDisplaySongs(newSongList);
     }
