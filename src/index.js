@@ -1,12 +1,16 @@
 import React from "react"; 
 import { createRoot } from "react-dom/client"; 
 import "./styles/style.css"; 
+import { useState } from "react";
 import Sidebar from "./components/Sidebar"; 
 
+
 const App = () => {
+    const [mainPanel, setMainPanel] = useState(<></>);
     return (
         <div>
-            <Sidebar />
+            <Sidebar setMainPanel={setMainPanel} />
+            {mainPanel}
         </div>
     );
 }
