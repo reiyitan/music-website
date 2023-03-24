@@ -4,11 +4,14 @@ import "./styles/style.css";
 import { useState } from "react";
 import Header from "./components/Header"; 
 import Sidebar from "./components/Sidebar"; 
+import BottomBar from "./components/BottomBar";
 import Song from "./components/Song";
 
 const App = () => {
     const [header, setHeader] = useState([""]);
     const [displaySongs, setDisplaySongs] = useState([]);
+    const [currentlyPlaying, setCurrentlyPlaying] = useState([""]);
+
     return (
         <div>
             <Sidebar setHeader={setHeader} setDisplaySongs={setDisplaySongs} />
@@ -33,6 +36,10 @@ const App = () => {
                     ))}
                 </div>
             </div>
+            <BottomBar
+                currentlyPlaying={currentlyPlaying}
+                setCurrentlyPlaying={setCurrentlyPlaying}
+            />
         </div>
     );
 }

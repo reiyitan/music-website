@@ -20,7 +20,7 @@
 }
 
 ::-webkit-scrollbar-track {
-    background: #2E3440;
+    background: #5E81AC;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -32,12 +32,12 @@
     top: 40px;
     background: #5E81AC;
     border: none;
-    width: calc(100% - 10px);
+    width: 200px;
     height: 40px;
 }
 
 .add-playlist-button:hover {
-    background: #333947;
+    background: #49607A;
 }
 
 .sidebar-playlist-button {
@@ -94,8 +94,8 @@
 }
 
 #searchbar-div {
-    width: 190px;
-    max-width: 190px;
+    width: 200px;
+    max-width: 200px;
 
 }
 #searchbar-input {
@@ -222,4 +222,13 @@
     width: 15%;
     padding-right: 5px;
     background: #3B4252;
+}
+
+#bottom-bar {
+    position: absolute;
+    bottom: 0px;
+    height: 60px;
+    width: 100%;
+    left: 0px;
+    background-color: #8FBCBB;
 }
