@@ -15,12 +15,6 @@
     border: none;
 }
 
-.song-row-playbutton span {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
-
 .song-row-playbutton:hover {
     background: #333947;
 }
@@ -41,29 +35,38 @@
     background: #333947;
 }
 
+
+.song-row-playbutton span {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
 .song-span-title {
-    display: flex;
     padding-left: 5px;
     width: 35%;
+    max-width: 35%;
     background: #3B4252;
+    text-align: left;
 }
 
 .song-span-artist {
-    display: flex;
     width: 25%;
     background: #3B4252;
+    text-align: left;
 }
 
 .song-span-album {
-    display: flex;
     width: 25%;
     background: #3B4252;
+    text-align: left;
 }
 
 .song-span-length {
-    display: flex;
     flex-direction: row-reverse;
     width: 15%;
     padding-right: 5px;
     background: #3B4252;
+    text-align: right;
 }
