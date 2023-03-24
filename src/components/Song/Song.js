@@ -1,4 +1,5 @@
 import React from "react";
+import "./style.css";
 
 /**
  * A component for displaying song information in the main panel. 

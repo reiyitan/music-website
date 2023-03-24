@@ -5,7 +5,7 @@ import { useState } from "react";
 import Header from "./components/Header"; 
 import Sidebar from "./components/Sidebar"; 
 import BottomBar from "./components/BottomBar";
-import Song from "./components/Song";
+import SongDisplay from "./components/SongDisplay";
 
 const App = () => {
     const [header, setHeader] = useState([""]);
@@ -14,28 +14,15 @@ const App = () => {
 
     return (
         <>
-            <Sidebar setHeader={setHeader} setDisplaySongs={setDisplaySongs} />
-            {header.map((text) => (
-                <Header 
-                    key={text}
-                    title={text} 
-                />
-            ))}
-            <div id="main-panel">
-                <div id="song-display">
-                    {displaySongs.map((song) => (
-                        <Song
-                            key={`${song.title}${song.artist}${song.album}${song.length}`}
-                            title={song.title}
-                            artist={song.artist}
-                            album={song.album}
-                            length={song.length}
-                            displaySongs={displaySongs}
-                            setDisplaySongs={setDisplaySongs}
-                        />
-                    ))}
-                </div>
-            </div>
+            <Sidebar 
+                setHeader={setHeader} 
+                setDisplaySongs={setDisplaySongs} 
+            />
+            <Header title={header} />
+            <SongDisplay 
+                displaySongs={displaySongs}
+                setDisplaySongs={setDisplaySongs}
+            />
             <BottomBar
                 currentlyPlaying={currentlyPlaying}
                 setCurrentlyPlaying={setCurrentlyPlaying}

@@ -1,0 +1,17 @@
+#main-panel {
+    position: absolute;
+    left: 200px;
+    top: 40px;
+    right: 0px;
+    bottom: 0px;
+    height: calc(100% - 40px);
+    max-height: calc(100% - 40px);
+}
+
+#song-display {
+    position: absolute;
+    width: 100%;
+    top: 0px;
+    bottom: 60px;
+    overflow-y: scroll;
+}

@@ -1,5 +1,6 @@
 import React from "react"; 
 import { loadPlaylistSongs } from "../functions";
+import "./style.css";
 
 /**
  * Component for creating a playlist in the Sidebar. 

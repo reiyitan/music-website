@@ -1,0 +1,32 @@
+.sidebar-playlist-button {
+    top: 0px;
+    background: #3B4252;
+    border: none;
+    width: 75%;
+    max-width: 75%;
+    left: 0px;
+    right: 0px;
+    height: 40px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.sidebar-playlist-button:hover {
+    background: #333947;
+}
+
+.sidebar-delete-button {
+    top: 0px;
+    background: #3B4252;
+    border: none;
+    width: 25%;
+    max-width: 25%;
+    left: 0px;
+    right: 0px;
+    height: 40px;
+}
+
+.sidebar-delete-button:hover {
+    background: #333947;
+}

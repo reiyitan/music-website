@@ -3,6 +3,7 @@ import { useState } from "react";
 import Searchbar from "../Searchbar";
 import SidebarPlaylist from "../SidebarPlaylist"; 
 import PlaylistNameForm from "../PlaylistNameForm";
+import "./style.css";
 
 /**
  * Component for the sidebar containing the Searchbar, add playlist button, and playlists.

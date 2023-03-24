@@ -1,5 +1,6 @@
 import React from "react"; 
 import { useState } from "react";
+import "./style.css";
 
 /**
  * Component for naming a playlist. This component is by default hidden, and 
