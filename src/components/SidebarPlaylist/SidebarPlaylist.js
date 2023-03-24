@@ -1,5 +1,5 @@
 import React from "react"; 
-import { loadSongs } from "../functions/loadsongs";
+import { loadSongs } from "../../functions/loadsongs";
 
 /**
  * Component for creating a playlist in the Sidebar. 
@@ -30,10 +30,10 @@ const SidebarPlaylist = ({playlistName, playlists, setPlaylists, setHeader,
         setDisplaySongs(loadSongs("user", playlistName));
     }   
     return (
-        <div>
+        <>
             <button className="sidebar-playlist-button" onClick={displayPlaylist}>{playlistName}</button>
             <button className="sidebar-delete-button" onClick={handleDelete}>-</button>
-        </div>
+        </>
     );
 }
 

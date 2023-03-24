@@ -1,8 +1,8 @@
 import React from "react"; 
 import { useState } from "react"; 
-import Searchbar from "./Searchbar";
-import SidebarPlaylist from "./SidebarPlaylist"; 
-import PlaylistNameForm from "./PlaylistNameForm";
+import Searchbar from "../Searchbar";
+import SidebarPlaylist from "../SidebarPlaylist"; 
+import PlaylistNameForm from "../PlaylistNameForm";
 
 /**
  * Component for the sidebar containing the Searchbar, add playlist button, and playlists.
@@ -48,14 +48,12 @@ const Sidebar = ({setHeader, setDisplaySongs}) => {
 
     return (
         <div id="sidebar">
-            <div>
-                <Searchbar />
-                <PlaylistNameForm 
-                    playlistNameFormStyle={playlistNameFormStyle} 
-                    onFormSubmit={handleSubmit}
-                />
-                <button onClick={showNameForm} className={addPlaylistButtonStyle}>+ Add a playlist</button>
-            </div>
+            <Searchbar />
+            <PlaylistNameForm 
+                playlistNameFormStyle={playlistNameFormStyle} 
+                onFormSubmit={handleSubmit}
+            />
+            <button onClick={showNameForm} className={addPlaylistButtonStyle}>+ Add a playlist</button>
             <div id="sidebar-playlists">
                 {playlists.slice().reverse().map((playlist) => (
                     <SidebarPlaylist 

@@ -13,7 +13,7 @@ const App = () => {
     const [currentlyPlaying, setCurrentlyPlaying] = useState([""]);
 
     return (
-        <div>
+        <>
             <Sidebar setHeader={setHeader} setDisplaySongs={setDisplaySongs} />
             {header.map((text) => (
                 <Header 
@@ -40,7 +40,7 @@ const App = () => {
                 currentlyPlaying={currentlyPlaying}
                 setCurrentlyPlaying={setCurrentlyPlaying}
             />
-        </div>
+        </>
     );
 }
 
