@@ -1,5 +1,5 @@
 import React from "react"; 
-import { loadSongs } from "../../functions/loadsongs";
+import { loadPlaylistSongs } from "../functions";
 
 /**
  * Component for creating a playlist in the Sidebar. 
@@ -27,7 +27,7 @@ const SidebarPlaylist = ({playlistName, playlists, setPlaylists, setHeader,
     const displayPlaylist = () => {
         setCurrPlaylistDisplaying(playlistName);
         setHeader([playlistName]);
-        setDisplaySongs(loadSongs("user", playlistName));
+        setDisplaySongs(loadPlaylistSongs("user", playlistName));
     }   
     return (
         <>
