@@ -11,7 +11,7 @@ import "./style.css";
  * 
  * @returns The playlist name form component.
  */
-const PlaylistNameForm = ({ playlistNameFormStyle, onFormSubmit }) => {
+const PlaylistNameForm = ({ playlistNameInputStyle, onFormSubmit }) => {
     const [value, setValue] = useState("");
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -23,16 +23,18 @@ const PlaylistNameForm = ({ playlistNameFormStyle, onFormSubmit }) => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input
-                type="text" 
-                className={playlistNameFormStyle}
-                name="playlistName" 
-                value={value} 
-                placeholder="Enter a playlist name:"
-                onChange={handleChange}
-             />
-        </form>
+        <div className="playlist-name-form-div">
+            <form onSubmit={handleSubmit}>
+                <input
+                    type="text" 
+                    className={playlistNameInputStyle}
+                    name="playlistName" 
+                    value={value} 
+                    placeholder="Enter a playlist name:"
+                    onChange={handleChange}
+                />
+            </form>
+        </div>
     );
 }
 

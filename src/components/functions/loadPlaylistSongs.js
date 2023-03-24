@@ -12,10 +12,10 @@ export default function loadPlaylistSongs(user, playlistName) {
     if (playlistName === "a") {
         return (
             [
-                {"title":"fergsrt", "artist":"arsdfsdfsdfsdf", "album":"alsdfsdfsdfsdfsdfm1", "length":"1:23"},
-                {"title":"sonyhgtyghtdhgdgdfgdfg1", "artist":"arergergergergergist2", "album":"asdfsdfsdfsdfsd", "length":"1:23"},
-                {"title":"soergtydyubfhyjfb yuj1", "artist":"adfgdfgt3", "album":"aldfgdfgud", "length":"1:23"},
-                {"title":"sdfgdfgdfgdfgng1", "artist":"artgdfgdfbtybtybt4", "album":"aldfgdfgfdum14", "length":"1:23"},
+                {"title":"fergsrt", "artist":"arsdfsdfsdfsdf", "album":"alsdfsdfsdfsdfsdfm1", "length":"1sdfsdfds:23"},
+                {"title":"sonyhgtyghtdhfdjkfsjkdfnjknsdjkfnksjdnsdfnksdnjsdnjknsdknjknjkdnjksdnjknjksdnfjksjdnkfgdgdfgdfg1", "artist":"arergergergergergist2", "album":"asdfsdfsdfsdfsd", "length":"1:23"},
+                {"title":"soergtydyubfhyjfb yuj1", "artist":"adfgdfgt3", "album":"aldfgdfgud", "length":"1:2sdfsd3"},
+                {"title":"sdfgdfgdfgdfgng1", "artist":"artgdfgdfbtybtybt4", "album":"aldfgdfgfdum14", "length":"1:2sdfsdf3"},
             ]
         )
     }

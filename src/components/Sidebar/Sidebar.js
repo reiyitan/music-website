@@ -14,11 +14,11 @@ import "./style.css";
 const Sidebar = ({setHeader, setDisplaySongs}) => {
     const [playlists, setPlaylists] = useState([]); 
     const [addPlaylistButtonStyle, setAddPlaylistButtonStyle] = useState("add-playlist-button");
-    const [playlistNameFormStyle, setPlaylistNameFormStyle] = useState("hidden");
+    const [playlistNameInputStyle, setPlaylistNameInputStyle] = useState("hidden");
     const [currPlaylistDisplaying, setCurrPlaylistDisplaying] = useState("");
     const showNameForm = () => {
         setAddPlaylistButtonStyle("hidden");
-        setPlaylistNameFormStyle("playlist-name-form");
+        setPlaylistNameInputStyle("playlist-name-input");
     }
 
     /**
@@ -44,14 +44,14 @@ const Sidebar = ({setHeader, setDisplaySongs}) => {
             setPlaylists([...playlists, newPlaylist]);
         }
         setAddPlaylistButtonStyle("add-playlist-button");
-        setPlaylistNameFormStyle("hidden");
+        setPlaylistNameInputStyle("hidden");
     }
 
     return (
         <div id="sidebar">
             <Searchbar />
             <PlaylistNameForm 
-                playlistNameFormStyle={playlistNameFormStyle} 
+                playlistNameInputStyle={playlistNameInputStyle} 
                 onFormSubmit={handleSubmit}
             />
             <button onClick={showNameForm} className={addPlaylistButtonStyle}>+ Add a playlist</button>
