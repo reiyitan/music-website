@@ -8,24 +8,28 @@ import BottomBar from "./components/BottomBar";
 import SongDisplay from "./components/SongDisplay";
 
 const App = () => {
-    const [header, setHeader] = useState([""]);
+    const [header, setHeader] = useState("");
     const [displaySongs, setDisplaySongs] = useState([]);
-    const [currentlyPlaying, setCurrentlyPlaying] = useState([""]);
+    const [currentSong, setCurrentSong] = useState("");
 
     return (
         <>
             <Sidebar 
                 setHeader={setHeader} 
                 setDisplaySongs={setDisplaySongs} 
+                currentSong={currentSong}
+                setCurrentSong={setCurrentSong}
             />
             <Header title={header} />
             <SongDisplay 
                 displaySongs={displaySongs}
                 setDisplaySongs={setDisplaySongs}
+                currentSong={currentSong}
+                setCurrentSong={setCurrentSong}
             />
             <BottomBar
-                currentlyPlaying={currentlyPlaying}
-                setCurrentlyPlaying={setCurrentlyPlaying}
+                currentSong={currentSong}
+                setCurrentSong={setCurrentSong}
             />
         </>
     );

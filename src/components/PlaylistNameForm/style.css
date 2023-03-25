@@ -4,20 +4,20 @@
 
 .playlist-name-form-div {
     height: 40px;
-    background-color: #5E81AC;
+    background: #434C5E;
 }
 
 .add-playlist-button {
     position: absolute;
     top: 40px;
-    background: #5E81AC;
+    background: #434C5E;
     border: none;
     width: 200px;
     height: 40px;
 }
 
 .add-playlist-button:hover {
-    background: #49607A;
+    background: #3a414d;
 }
 
 .playlist-name-input {

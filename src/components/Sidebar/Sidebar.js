@@ -11,7 +11,7 @@ import "./style.css";
  * @param setMainPanel - Function to update the state of the main panel. 
  * @returns The Sidebar component.
  */
-const Sidebar = ({setHeader, setDisplaySongs}) => {
+const Sidebar = ({setHeader, setDisplaySongs, currentSong, setCurrentSong}) => {
     const [playlists, setPlaylists] = useState([]); 
     const [addPlaylistButtonStyle, setAddPlaylistButtonStyle] = useState("add-playlist-button");
     const [playlistNameInputStyle, setPlaylistNameInputStyle] = useState("hidden");
@@ -66,6 +66,8 @@ const Sidebar = ({setHeader, setDisplaySongs}) => {
                         currPlaylistDisplaying={currPlaylistDisplaying}
                         setCurrPlaylistDisplaying={setCurrPlaylistDisplaying}
                         setDisplaySongs={setDisplaySongs}
+                        currentSong={currentSong}
+                        setCurrentSong={setCurrentSong}
                     />
                 ))}
             </div>

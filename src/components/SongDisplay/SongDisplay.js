@@ -8,7 +8,7 @@ import "./style.css";
  * @param displaySongs - The list of songs to be displayed.
  * @param setDisplaySongs - Used to update state when a song is removed or added to the playlist through the SongDisplay.
  */
-const SongDisplay = ({displaySongs, setDisplaySongs}) => {
+const SongDisplay = ({displaySongs, setDisplaySongs, currentSong, setCurrentSong}) => {
     return (
         <div id="main-panel">
             <div id="song-display">
@@ -21,6 +21,8 @@ const SongDisplay = ({displaySongs, setDisplaySongs}) => {
                         length={song.length}
                         displaySongs={displaySongs}
                         setDisplaySongs={setDisplaySongs}
+                        currentSong={currentSong}
+                        setCurrentSong={setCurrentSong}
                     />
                 ))}
             </div>

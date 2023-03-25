@@ -1,4 +1,4 @@
-.sidebar-playlist-button {
+.playlist-button-notplaying {
     top: 0px;
     background: #3B4252;
     border: none;
@@ -12,11 +12,29 @@
     text-overflow: ellipsis;
 }
 
-.sidebar-playlist-button:hover {
+.playlist-button-notplaying:hover {
     background: #333947;
 }
 
-.sidebar-delete-button {
+.playlist-button-playing {
+    top: 0px;
+    background: #8FBCBB;
+    border: none;
+    width: 75%;
+    max-width: 75%;
+    left: 0px;
+    right: 0px;
+    height: 40px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.playlist-button-playing:hover {
+    background: #6d8a8a;
+}
+
+.delete-button {
     top: 0px;
     background: #3B4252;
     border: none;
@@ -27,6 +45,6 @@
     height: 40px;
 }
 
-.sidebar-delete-button:hover {
-    background: #333947;
+.delete-button:hover {
+    background: #BF616A;
 }

@@ -13,7 +13,8 @@ import "./style.css";
  * 
  * @returns A component that represents one row of the playlist displayed on the main panel.
  */
-const Song = ({title, artist, album, length, displaySongs, setDisplaySongs}) => {
+const Song = ({title, artist, album, length, displaySongs, setDisplaySongs, 
+    currentSong, setCurrentSong}) => {
 
     /**
      * Deletes the current song from a playlist.
@@ -28,9 +29,38 @@ const Song = ({title, artist, album, length, displaySongs, setDisplaySongs}) => 
         setDisplaySongs(newSongList);
     }
 
+    /**
+     * Plays the current song. 
+     * @todo actually play the song
+     */
+    const playSong = () => {
+        setCurrentSong({
+            "title": title,
+            "artist": artist,
+            "album": album,
+            "length": length
+        });
+    }
+
+    /**
+     * Determines if the current song being played is the same as the 
+     * song represented by this component. 
+     * 
+     * @returns True if the songs are the same, false otherwise.
+     */
+    const isPlaying = () => {
+        return (
+            currentSong.title === title
+                && currentSong.artist === artist
+                && currentSong.album === album
+                && currentSong.length === length
+        );
+    }
+
     return (
         <div className="song-row">
-            <button className="song-row-playbutton">
+            <button className={(isPlaying()) ? "song-row-playbutton-playing" : "song-row-playbutton-notplaying"}
+                onClick={playSong}>
                 <span className="song-span-title">{title}</span>
                 <span className="song-span-artist">{artist}</span>
                 <span className="song-span-album">{album}</span>
