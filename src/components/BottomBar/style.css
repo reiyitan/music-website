@@ -4,5 +4,59 @@
     height: 60px;
     width: 100%;
     left: 0px;
-    background-color: #8FBCBB;
+    background-color: #5E81AC;
+}
+
+#bottom-bar span {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    background-color: #5E81AC;
+    width: 300px;
+    max-width: 300px;
+}
+
+.bottom-bar-title {
+    position: absolute;
+    left: 5px;
+    top: 10px;
+}
+
+.bottom-bar-artist {
+    position: absolute;
+    left: 5px;
+    bottom: 10px;
+    font-size: 14px;
+}
+
+.pp-button {
+    position: absolute;
+    display: block;
+    border: none;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.play-button {
+    background-image: url("../../icons/playbutton-icon.png");
+}
+
+.play-button:hover {
+    background-image: url("../../icons/playbutton-icon-hover.png");
+}
+
+.pause-button {
+    background-image: url("../../icons/pausebutton-icon.png");
+}
+
+.pause-button:hover {
+    background-image: url("../../icons/pausebutton-icon-hover.png");
 }
