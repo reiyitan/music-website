@@ -84,11 +84,11 @@
 }
 
 .song-row-playbutton-playing:hover {
-    background: #6d8a8a;
+    background: #74a6a6;
 }
 
 .song-row-playbutton-playing:hover span {
-    background: #6d8a8a;
+    background: #74a6a6;
 }
 
 .song-row-playbutton-playing span {
