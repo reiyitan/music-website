@@ -10,9 +10,17 @@ import { useState } from "react";
  */
 const BottomBar = ({currentSong, setCurrentSong}) => {
     const [buttonState, setButtonState] = useState("play-button pp-button");
+
+    /**
+     * Sets the pp-button to display the pause icon and plays the chosen .mp3. 
+     */
     const handlePlay = () => {
         setButtonState("pause-button pp-button");
     }
+
+    /**
+     * Sets the pp-button to display the play icon and plays the chosen .mp3.
+     */
     const handlePause = () => {
         setButtonState("play-button pp-button");
     }
