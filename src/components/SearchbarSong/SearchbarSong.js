@@ -11,7 +11,7 @@ const SearchbarSong = ({title, artist, album, length, currentSong, setCurrentSon
      * to add it to a playlist. 
      */
     const addSong = () => {
-
+        
     }
 
     /**

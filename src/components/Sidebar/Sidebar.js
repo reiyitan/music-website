@@ -1,8 +1,8 @@
 import React from "react"; 
 import { useState } from "react"; 
-import Searchbar from "../Searchbar";
 import SidebarPlaylist from "../SidebarPlaylist"; 
 import PlaylistNameForm from "../PlaylistNameForm";
+import { loadPlaylists } from "../functions";
 import "./style.css";
 
 /**
@@ -16,7 +16,7 @@ import "./style.css";
  * @returns The Sidebar component.
  */
 const Sidebar = ({setHeader, setDisplaySongs, displayType, setDisplayType}) => {
-    const [playlists, setPlaylists] = useState([]); 
+    const [playlists, setPlaylists] = useState(loadPlaylists("user goes here")); 
     const [addPlaylistButtonStyle, setAddPlaylistButtonStyle] = useState("add-playlist-button");
     const [playlistNameInputStyle, setPlaylistNameInputStyle] = useState("hidden");
     const [currPlaylistDisplaying, setCurrPlaylistDisplaying] = useState("");
@@ -40,12 +40,8 @@ const Sidebar = ({setHeader, setDisplaySongs, displayType, setDisplayType}) => {
             console.log("no duplicates allowed");
         }
         else { 
-            const newPlaylist = {
-                playlistName: playlistName,
-                songs: []
-            };
-            //TODO add this playlist to the backend
-            setPlaylists([...playlists, newPlaylist]);
+            //TODO add this playlist to the backend as an empty playlist
+            setPlaylists([...playlists, playlistName]);
         }
         setAddPlaylistButtonStyle("add-playlist-button");
         setPlaylistNameInputStyle("hidden");
@@ -59,10 +55,10 @@ const Sidebar = ({setHeader, setDisplaySongs, displayType, setDisplayType}) => {
             />
             <button onClick={showNameForm} className={addPlaylistButtonStyle}>+ Add a playlist</button>
             <div id="sidebar-playlists">
-                {playlists.slice().reverse().map((playlist) => (
+                {playlists.slice().reverse().map((playlistName) => (
                     <SidebarPlaylist 
-                        key={playlist.playlistName} 
-                        playlistName={playlist.playlistName}
+                        key={playlistName} 
+                        playlistName={playlistName}
                         playlists={playlists}
                         setPlaylists={setPlaylists}
                         setHeader={setHeader}

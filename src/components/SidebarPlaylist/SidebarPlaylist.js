@@ -17,8 +17,8 @@ import "./style.css";
  * 
  * @returns A playlist to be displayed in the sidebar.
  */
-const SidebarPlaylist = ({playlistName, playlists, setPlaylists, setHeader, currPlaylistDisplaying, 
-    setCurrPlaylistDisplaying, displayType, setDisplayType, setDisplaySongs}) => {
+const SidebarPlaylist = ({playlistName, playlists, setPlaylists, setHeader, 
+    currPlaylistDisplaying, setCurrPlaylistDisplaying, displayType, setDisplayType, setDisplaySongs}) => {
     const handleDelete = () => {
         const newList = playlists.filter((playlist) => playlist.playlistName !== playlistName);
         setPlaylists(newList);
