@@ -1,7 +1,7 @@
 import React from "react";
 import "./style.css";
 
-const Searchbar = () => {
+const Searchbar = ({setDisplaySongs}) => {
     return (
         <div id="searchbar-div">
             <form>

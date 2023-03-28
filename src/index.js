@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import "./styles/style.css"; 
 import { useState } from "react";
 import Header from "./components/Header"; 
+import Searchbar from "./components/Searchbar";
 import Sidebar from "./components/Sidebar"; 
 import BottomBar from "./components/BottomBar";
 import SongDisplay from "./components/SongDisplay";
@@ -14,6 +15,7 @@ const App = () => {
 
     return (
         <>
+            <Searchbar setDisplaySongs={setDisplaySongs} />
             <Sidebar 
                 setHeader={setHeader} 
                 setDisplaySongs={setDisplaySongs} 

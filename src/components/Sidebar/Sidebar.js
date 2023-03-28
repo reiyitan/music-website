@@ -8,7 +8,11 @@ import "./style.css";
 /**
  * Component for the sidebar containing the Searchbar, add playlist button, and playlists.
  * 
- * @param setMainPanel - Function to update the state of the main panel. 
+ * @param setHeader - Allows the sidebar to change the text of the header component.
+ * @param setDisplaySongs - Allows the sidebar to change the songs being displayed.
+ * @param currentSong - The current song that is playing. Passed to SideBar playlist components. 
+ * @param setCurrentSong - Updates the state of currentSong. Passed to Sidebar playlist components.
+ * 
  * @returns The Sidebar component.
  */
 const Sidebar = ({setHeader, setDisplaySongs, currentSong, setCurrentSong}) => {
@@ -49,7 +53,6 @@ const Sidebar = ({setHeader, setDisplaySongs, currentSong, setCurrentSong}) => {
 
     return (
         <div id="sidebar">
-            <Searchbar />
             <PlaylistNameForm 
                 playlistNameInputStyle={playlistNameInputStyle} 
                 onFormSubmit={handleSubmit}
