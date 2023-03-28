@@ -4,7 +4,7 @@
     flex-direction: row;
 }
 
-.song-row-addbutton {
+.add-button-notadding {
     width: 5%;
     max-width: 5%;
     min-width: 5%;
@@ -12,8 +12,24 @@
     border: none;
 }
 
-.song-row-addbutton:hover {
+.add-button-notadding:hover {
     background: #A3BE8C;
+}
+
+.add-button-adding {
+    width: 5%;
+    max-width: 5%;
+    min-width: 5%;
+    background: #A3BE8C;
+    border: none;
+}
+
+.add-button-adding:hover {
+    background: #97af81;
+}
+
+.hidden {
+    display: none;
 }
 
 /* These elements change when a song is playing */
@@ -121,4 +137,30 @@
     width: 15%;
     padding-right: 5px;
     text-align: right;
+}
+
+/* CSS for the list of playlists that display when a user clicks the add song button */
+.playlist-list {
+    position: absolute;
+    right: 0px;
+    border-style: solid;
+    border-color: #434C5E;
+    border-width: 2px;
+    display: flex;
+    flex-direction: column;
+}
+
+.playlist-select-button {
+    background: #3B4252;
+    width: 200px;
+    max-width: 200px;
+    text-align: left;
+    border: none;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.playlist-select-button:hover {
+    background: #333947;
 }
