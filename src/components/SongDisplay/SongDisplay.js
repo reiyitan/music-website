@@ -1,5 +1,5 @@
 import React from "react";
-import Song from "../Song";
+import PlaylistSong from "../PlaylistSong";
 import "./style.css";
 
 /**
@@ -7,13 +7,15 @@ import "./style.css";
  * 
  * @param displaySongs - The list of songs to be displayed.
  * @param setDisplaySongs - Used to update state when a song is removed or added to the playlist through the SongDisplay.
+ * 
+ * @returns The section of the webpage dedicated to displaying songs.
  */
 const SongDisplay = ({displaySongs, setDisplaySongs, currentSong, setCurrentSong}) => {
     return (
         <div id="main-panel">
             <div id="song-display">
                 {displaySongs.map((song) => (
-                    <Song
+                    <PlaylistSong
                         key={`${song.title}${song.artist}${song.album}${song.length}`}
                         title={song.title}
                         artist={song.artist}
