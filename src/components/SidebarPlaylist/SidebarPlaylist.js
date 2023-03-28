@@ -20,7 +20,7 @@ import "./style.css";
 const SidebarPlaylist = ({playlistName, playlists, setPlaylists, setHeader, 
     currPlaylistDisplaying, setCurrPlaylistDisplaying, displayType, setDisplayType, setDisplaySongs}) => {
     const handleDelete = () => {
-        const newList = playlists.filter((playlist) => playlist.playlistName !== playlistName);
+        const newList = playlists.filter((playlist) => playlist !== playlistName);
         setPlaylists(newList);
         if (playlistName === currPlaylistDisplaying && displayType === "playlist") {
             setCurrPlaylistDisplaying(""); 
