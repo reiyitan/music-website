@@ -25,6 +25,15 @@ const Playlist = ({playlistTitle, songTitle, songArtist, songAlbum, songLength})
 
 /**
  * A component that represents a single song when a user uses the searchbar. 
+ * 
+ * @param title - The title of the Searchbar Song. 
+ * @param artist - The artist of the Searchbar song. 
+ * @param album - The album of the Searchbar song. 
+ * @param length - The length of the Searchbar song. 
+ * @param currentSong - The current song being played by the web app.
+ * @param setCurrentSong - Used to set the current song being played by the web app. 
+ * 
+ * @return One of the search results to be displayed. 
  */
 const SearchbarSong = ({title, artist, album, length, currentSong, setCurrentSong}) => {
     const [addingSong, setAddingSong] = useState(false);

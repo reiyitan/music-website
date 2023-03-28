@@ -142,18 +142,24 @@
 /* CSS for the list of playlists that display when a user clicks the add song button */
 .playlist-list {
     position: absolute;
+    line-height: 1px;
+    max-height: 120px;
+    width: 200px;
+    max-width: 200px;
     right: 0px;
     border-style: solid;
     border-color: #434C5E;
     border-width: 2px;
-    display: flex;
-    flex-direction: column;
+    overflow-y: scroll;
 }
 
 .playlist-select-button {
     background: #3B4252;
-    width: 200px;
-    max-width: 200px;
+    width: 186px;
+    max-width: 186px;
+    border: none;
+    padding: 0px;
+    margin: 0px;
     text-align: left;
     border: none;
     overflow: hidden;
