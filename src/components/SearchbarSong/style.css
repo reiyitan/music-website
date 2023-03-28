@@ -1,0 +1,124 @@
+/* These elements do not change when a song is playing */
+.song-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.song-row-addbutton {
+    width: 5%;
+    max-width: 5%;
+    min-width: 5%;
+    background: #3B4252;
+    border: none;
+}
+
+.song-row-addbutton:hover {
+    background: #A3BE8C;
+}
+
+/* These elements change when a song is playing */
+/* CSS for not playing */
+.song-row-playbutton-notplaying {
+    display: flex;
+    align-items: center;
+    width: 95%;
+    max-width: 95%;
+    min-height: 40px;
+    height: 40px;
+    max-height: 40px;
+    background: #3B4252;
+    border: none;
+}
+
+.song-row-playbutton-notplaying:hover {
+    background: #333947;
+}
+
+.song-row-playbutton-notplaying:hover span {
+    background: #333947;
+}
+
+.song-row-playbutton-notplaying span {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    background: #3B4252;
+}
+
+.song-span-title {
+    padding-left: 5px;
+    width: 35%;
+    max-width: 35%;
+    text-align: left;
+}
+
+.song-span-artist {
+    width: 25%;
+    text-align: left;
+}
+
+.song-span-album {
+    width: 25%;
+    text-align: left;
+}
+
+.song-span-length {
+    flex-direction: row-reverse;
+    width: 15%;
+    padding-right: 5px;
+    text-align: right;
+}
+
+/* CSS for playing */
+.song-row-playbutton-playing {
+    display: flex;
+    align-items: center;
+    width: 95%;
+    max-width: 95%;
+    min-height: 40px;
+    height: 40px;
+    max-height: 40px;
+    background: #8FBCBB;
+    border: none;
+}
+
+.song-row-playbutton-playing:hover {
+    background: #74a6a6;
+}
+
+.song-row-playbutton-playing:hover span {
+    background: #74a6a6;
+}
+
+.song-row-playbutton-playing span {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    background: #8FBCBB;
+}
+
+.song-span-title-playing {
+    padding-left: 5px;
+    width: 35%;
+    max-width: 35%;
+    text-align: left;
+}
+
+.song-span-artist-playing {
+    width: 25%;
+    text-align: left;
+}
+
+.song-span-album-playing {
+    width: 25%;
+    text-align: left;
+}
+
+.song-span-length-playing {
+    flex-direction: row-reverse;
+    width: 15%;
+    padding-right: 5px;
+    text-align: right;
+}

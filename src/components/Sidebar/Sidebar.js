@@ -12,10 +12,11 @@ import "./style.css";
  * @param setDisplaySongs - Allows the sidebar to change the songs being displayed.
  * @param currentSong - The current song that is playing. Passed to SideBar playlist components. 
  * @param setCurrentSong - Updates the state of currentSong. Passed to Sidebar playlist components.
+ * @param setDisplayType - Used to specify whether a playlist or search result should be displayed.
  * 
  * @returns The Sidebar component.
  */
-const Sidebar = ({setHeader, setDisplaySongs, currentSong, setCurrentSong}) => {
+const Sidebar = ({setHeader, setDisplaySongs, currentSong, setCurrentSong, setDisplayType}) => {
     const [playlists, setPlaylists] = useState([]); 
     const [addPlaylistButtonStyle, setAddPlaylistButtonStyle] = useState("add-playlist-button");
     const [playlistNameInputStyle, setPlaylistNameInputStyle] = useState("hidden");
@@ -68,9 +69,8 @@ const Sidebar = ({setHeader, setDisplaySongs, currentSong, setCurrentSong}) => {
                         setHeader={setHeader}
                         currPlaylistDisplaying={currPlaylistDisplaying}
                         setCurrPlaylistDisplaying={setCurrPlaylistDisplaying}
+                        setDisplayType={setDisplayType}
                         setDisplaySongs={setDisplaySongs}
-                        currentSong={currentSong}
-                        setCurrentSong={setCurrentSong}
                     />
                 ))}
             </div>

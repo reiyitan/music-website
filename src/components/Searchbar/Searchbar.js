@@ -7,10 +7,11 @@ import "./style.css";
  * 
  * @param setDisplaySongs - Updates the songs displaying on the webpage.
  * @param setHeader - Updates the header.
+ * @param setDisplayType - Sets the displayType to "search". 
  * 
  * @returns The searchbar component. 
  */
-const Searchbar = ({setDisplaySongs, setHeader}) => {
+const Searchbar = ({setDisplaySongs, setHeader, setDisplayType}) => {
     const handleSearch = (e) => {
         e.preventDefault();
         const query = e.target.query.value;
@@ -22,6 +23,7 @@ const Searchbar = ({setDisplaySongs, setHeader}) => {
             const album = song.album.toLowerCase(); 
             return title.includes(query) || artist.includes(query) || album.includes(query);
         });
+        setDisplayType("search");
         setDisplaySongs(result);
     }
     return (

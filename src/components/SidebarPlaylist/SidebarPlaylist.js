@@ -11,11 +11,13 @@ import "./style.css";
  * @param setHeader - Used to update the state of the header. 
  * @param currPlaylistDisplaying - Used to check what playlist is currently being displayed on the main panel.
  * @param setCurrPlaylistDisplaying - Used to update the state of Sidebar.
+ * @param setDisplayType - Used to set current display type to "playlist".
+ * @param setDisplaySongs - Used to display the contents of the playlist.
  * 
  * @returns A playlist to be displayed in the sidebar.
  */
 const SidebarPlaylist = ({playlistName, playlists, setPlaylists, setHeader, 
-    currPlaylistDisplaying, setCurrPlaylistDisplaying, setDisplaySongs}) => {
+    currPlaylistDisplaying, setCurrPlaylistDisplaying, setDisplayType, setDisplaySongs}) => {
     const handleDelete = () => {
         const newList = playlists.filter((playlist) => playlist.playlistName !== playlistName);
         setPlaylists(newList);
@@ -28,6 +30,7 @@ const SidebarPlaylist = ({playlistName, playlists, setPlaylists, setHeader,
     const displayPlaylist = () => {
         setCurrPlaylistDisplaying(playlistName);
         setHeader([playlistName]);
+        setDisplayType("playlist");
         setDisplaySongs(loadPlaylistSongs("user", playlistName));
     }   
     return (
