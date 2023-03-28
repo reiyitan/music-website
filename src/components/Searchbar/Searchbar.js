@@ -15,6 +15,7 @@ const Searchbar = ({setDisplaySongs, setHeader, setDisplayType}) => {
     const handleSearch = (e) => {
         e.preventDefault();
         const query = e.target.query.value;
+        if (query === "") return;
         setHeader(`Search results for "${query}"`)
         const allSongs = loadAllSongs();
         const result = allSongs.filter((song) => {
