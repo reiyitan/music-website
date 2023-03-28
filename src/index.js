@@ -26,6 +26,7 @@ const App = () => {
                 setDisplaySongs={setDisplaySongs} 
                 currentSong={currentSong}
                 setCurrentSong={setCurrentSong}
+                displayType={displayType}
                 setDisplayType={setDisplayType}
             />
             <Header title={header} />
