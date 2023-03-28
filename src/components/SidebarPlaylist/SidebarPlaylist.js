@@ -37,11 +37,9 @@ const SidebarPlaylist = ({playlistName, playlists, setPlaylists, setHeader, curr
     return (
         <>
             <button 
-                className={(playlistName===currPlaylistDisplaying) ? "playlist-button-playing" : "playlist-button-notplaying"}
+                className={(playlistName===currPlaylistDisplaying) ? "playlist-button-showing" : "playlist-button-notshowing"}
                 onClick={displayPlaylist}
-            >
-                {playlistName}
-            </button>
+            >{playlistName}</button>
             <button className="delete-button" onClick={handleDelete}>-</button>
         </>
     );

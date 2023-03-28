@@ -1,4 +1,4 @@
-.playlist-button-notplaying {
+.playlist-button-notshowing {
     top: 0px;
     background: #3B4252;
     border: none;
@@ -12,11 +12,11 @@
     text-overflow: ellipsis;
 }
 
-.playlist-button-notplaying:hover {
+.playlist-button-notshowing:hover {
     background: #333947;
 }
 
-.playlist-button-playing {
+.playlist-button-showing {
     top: 0px;
     background: #8FBCBB;
     border: none;
@@ -30,7 +30,7 @@
     text-overflow: ellipsis;
 }
 
-.playlist-button-playing:hover {
+.playlist-button-showing:hover {
     background: #74a6a6;
 }
 
