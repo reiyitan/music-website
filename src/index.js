@@ -15,7 +15,10 @@ const App = () => {
 
     return (
         <>
-            <Searchbar setDisplaySongs={setDisplaySongs} />
+            <Searchbar 
+                setDisplaySongs={setDisplaySongs}
+                setHeader={setHeader}
+            />
             <Sidebar 
                 setHeader={setHeader} 
                 setDisplaySongs={setDisplaySongs} 
