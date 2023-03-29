@@ -59,7 +59,7 @@ const PlaylistSong = ({title, artist, album, length, displaySongs, setDisplaySon
 
     return (
         <div className="song-row">
-            <button className={(isPlaying()) ? "song-row-playbutton-playing" : "song-row-playbutton-notplaying"}
+            <button className={(isPlaying()) ? "song-row-playbutton playing" : "song-row-playbutton notplaying"}
                 onClick={playSong}>
                 <span className="song-span-title">{title}</span>
                 <span className="song-span-artist">{artist}</span>
