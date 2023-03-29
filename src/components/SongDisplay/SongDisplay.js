@@ -19,6 +19,12 @@ const SongDisplay = ({displayType, displaySongs, setDisplaySongs, currentSong, s
     const [menuOpen, setMenuOpen] = useState("");
     return (
         <div id="main-panel">
+            <button id="song-display-header">
+                <span className="header-span-title">Title</span>
+                <span className="header-span-artist">Artist</span>
+                <span className="header-span-album">Album</span>
+                <span className="header-span-length">Length</span>
+            </button>
             <div id="song-display">
                 {(displayType==="playlist")
                     ?  displaySongs.map((song) => (

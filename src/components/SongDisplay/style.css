@@ -8,10 +8,44 @@
     max-height: calc(100% - 40px);
 }
 
+#song-display-header {
+    display: flex;
+    align-items: center;
+    width: calc(0.95 * (100% - 10px));
+    max-width: calc(0.95 * (100% - 10px));
+    height: 20px;
+    max-height: 20px;
+    border: none;
+}
+
+.header-span-title {
+    padding-left: 5px;
+    width: 35%;
+    max-width: 35%;
+    text-align: left;
+}
+
+.header-span-artist {
+    width: 25%;
+    text-align: left;
+}
+
+.header-span-album {
+    width: 25%;
+    text-align: left;
+}
+
+.header-span-length {
+    flex-direction: row-reverse;
+    width: 15%;
+    padding-right: 5px;
+    text-align: right;
+}
+
 #song-display {
     position: absolute;
     width: 100%;
-    top: 0px;
+    top: 20px;
     bottom: 60px;
     overflow-y: scroll;
 }
