@@ -83,7 +83,7 @@ const SearchbarSong = ({title, artist, album, length, currentSong, setCurrentSon
     return (
         <>
             <div className="song-row">
-                <button className={(isPlaying()) ? "song-row-playbutton-playing" : "song-row-playbutton-notplaying"}
+                <button className={(isPlaying()) ? "song-row-playbutton playing" : "song-row-playbutton notplaying"}
                     onClick={playSong}>
                     <span className="song-span-title">{title}</span>
                     <span className="song-span-artist">{artist}</span>
@@ -92,8 +92,8 @@ const SearchbarSong = ({title, artist, album, length, currentSong, setCurrentSon
                 </button>
                 <button 
                     className={(menuOpen === `${title}${artist}${album}${length}`) 
-                        ? "add-button-adding" 
-                        : "add-button-notadding"} 
+                        ? "add-button adding" 
+                        : "add-button notadding"} 
                     onClick={addSong}>+</button>
             </div>
             <div className={(menuOpen === `${title}${artist}${album}${length}`) ? "playlist-list-wrapper" : "hidden"}>

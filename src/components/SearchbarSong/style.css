@@ -4,27 +4,26 @@
     flex-direction: row;
 }
 
-.add-button-notadding {
+.add-button {
     width: 5%;
     max-width: 5%;
     min-width: 5%;
+    border: none;
+}
+
+.notadding {
     background: #3B4252;
-    border: none;
 }
 
-.add-button-notadding:hover {
+.notadding:hover {
     background: #A3BE8C;
 }
 
-.add-button-adding {
-    width: 5%;
-    max-width: 5%;
-    min-width: 5%;
+.adding {
     background: #A3BE8C;
-    border: none;
 }
 
-.add-button-adding:hover {
+.adding:hover {
     background: #97af81;
 }
 
@@ -32,9 +31,7 @@
     display: none;
 }
 
-/* These elements change when a song is playing */
-/* CSS for not playing */
-.song-row-playbutton-notplaying {
+.song-row-playbutton {
     display: flex;
     align-items: center;
     width: 95%;
@@ -42,24 +39,14 @@
     min-height: 40px;
     height: 40px;
     max-height: 40px;
-    background: #3B4252;
     border: none;
 }
 
-.song-row-playbutton-notplaying:hover {
-    background: #333947;
-}
-
-.song-row-playbutton-notplaying:hover span {
-    background: #333947;
-}
-
-.song-row-playbutton-notplaying span {
+.song-row-playbutton span {
     display: inline-block;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    background: #3B4252;
 }
 
 .song-span-title {
@@ -86,57 +73,39 @@
     text-align: right;
 }
 
-/* CSS for playing */
-.song-row-playbutton-playing {
-    display: flex;
-    align-items: center;
-    width: 95%;
-    max-width: 95%;
-    min-height: 40px;
-    height: 40px;
-    max-height: 40px;
-    background: #8FBCBB;
-    border: none;
+/* These elements change when a song is playing */
+/* CSS for when song is not playing */
+.notplaying {
+    background: #3B4252;
 }
 
-.song-row-playbutton-playing:hover {
-    background: #74a6a6;
+.notplaying:hover {
+    background: #333947;
 }
 
-.song-row-playbutton-playing:hover span {
-    background: #74a6a6;
+.notplaying span {
+    background: #3B4252;
 }
 
-.song-row-playbutton-playing span {
-    display: inline-block;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+.notplaying:hover span {
+    background: #333947;
+}
+
+/* CSS for when song is playing */
+.playing {
     background: #8FBCBB;
 }
 
-.song-span-title-playing {
-    padding-left: 5px;
-    width: 35%;
-    max-width: 35%;
-    text-align: left;
+.playing:hover {
+    background: #74a6a6;
 }
 
-.song-span-artist-playing {
-    width: 25%;
-    text-align: left;
+.playing span {
+    background: #8FBCBB;
 }
 
-.song-span-album-playing {
-    width: 25%;
-    text-align: left;
-}
-
-.song-span-length-playing {
-    flex-direction: row-reverse;
-    width: 15%;
-    padding-right: 5px;
-    text-align: right;
+.playing:hover span {
+    background: #74a6a6;
 }
 
 /* CSS for the list of playlists that display when a user clicks the add song button */
