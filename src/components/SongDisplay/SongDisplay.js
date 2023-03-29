@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import PlaylistSong from "../PlaylistSong";
 import SearchbarSong from "../SearchbarSong";
 import "./style.css";
@@ -15,6 +16,7 @@ import "./style.css";
  * @returns The section of the webpage dedicated to displaying songs.
  */
 const SongDisplay = ({displayType, displaySongs, setDisplaySongs, currentSong, setCurrentSong}) => {
+    const [menuOpen, setMenuOpen] = useState("");
     return (
         <div id="main-panel">
             <div id="song-display">
@@ -41,6 +43,8 @@ const SongDisplay = ({displayType, displaySongs, setDisplaySongs, currentSong, s
                             length={song.length}
                             currentSong={currentSong}
                             setCurrentSong={setCurrentSong}
+                            menuOpen={menuOpen}
+                            setMenuOpen={setMenuOpen}
                         />
                     ))
                 }
