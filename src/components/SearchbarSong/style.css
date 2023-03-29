@@ -140,12 +140,34 @@
 }
 
 /* CSS for the list of playlists that display when a user clicks the add song button */
-.playlist-list {
+.playlist-list-wrapper {
     position: absolute;
-    line-height: 1px;
-    max-height: 120px;
+    right: 0px;
     width: 200px;
     max-width: 200px;
+}
+
+.playlist-list-header {
+    position: absolute;
+    top: 0px;
+    height: 20px;
+    width: 100%;
+    max-width: 100%;
+    font-size: 12px;
+    border-style: solid;
+    border-bottom: none;
+    border-color: #434C5E;
+    border-width: 2px;
+    background: #3B4252;
+}
+
+.playlist-list {
+    position: absolute;
+    top: 20px;
+    line-height: 1px;
+    max-height: 120px;
+    width: 100%;
+    max-width: 100%;
     right: 0px;
     border-style: solid;
     border-color: #434C5E;

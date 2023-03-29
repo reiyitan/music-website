@@ -96,17 +96,20 @@ const SearchbarSong = ({title, artist, album, length, currentSong, setCurrentSon
                         : "add-button-notadding"} 
                     onClick={addSong}>+</button>
             </div>
-            <div className={(menuOpen === `${title}${artist}${album}${length}`) ? "playlist-list" : "hidden"}>
-                {playlists.map((playlistTitle) => (
-                    <Playlist
-                        key={playlistTitle}
-                        playlistTitle={playlistTitle} 
-                        songTitle={title}
-                        songArtist={artist}
-                        songAlbum={album}
-                        songLength={length}
-                    />
-                ))}
+            <div className={(menuOpen === `${title}${artist}${album}${length}`) ? "playlist-list-wrapper" : "hidden"}>
+                <div className="playlist-list-header">Choose a playlist to add to:</div>
+                <div className="playlist-list">
+                    {playlists.map((playlistTitle) => (
+                        <Playlist
+                            key={playlistTitle}
+                            playlistTitle={playlistTitle} 
+                            songTitle={title}
+                            songArtist={artist}
+                            songAlbum={album}
+                            songLength={length}
+                        />
+                    ))}
+                </div>
             </div>
         </>
     );
