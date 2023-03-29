@@ -1,36 +1,30 @@
-.playlist-button-notshowing {
+.playlist-button {
     top: 0px;
-    background: #3B4252;
     border: none;
     width: 75%;
     max-width: 75%;
     left: 0px;
     right: 0px;
     height: 40px;
+    text-align: left;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
 }
 
-.playlist-button-notshowing:hover {
+.notshowing {
+    background: #3B4252;
+}
+
+.notshowing:hover {
     background: #333947;
 }
 
-.playlist-button-showing {
-    top: 0px;
+.showing {
     background: #8FBCBB;
-    border: none;
-    width: 75%;
-    max-width: 75%;
-    left: 0px;
-    right: 0px;
-    height: 40px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
 }
 
-.playlist-button-showing:hover {
+.showing:hover {
     background: #74a6a6;
 }
 
