@@ -50,7 +50,7 @@
 #filler {
     position: absolute;
     background-color: #434C5E;
-    left: calc(0.95 * (100% - 10px));
+    left: calc(0.95 * (100% - 10.2px));
     top: 0px;
     width: calc(5% + 10px);
     height: 20px;
