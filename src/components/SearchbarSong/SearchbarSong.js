@@ -36,7 +36,7 @@ const Playlist = ({playlistTitle, songTitle, songArtist, songAlbum, songLength})
  * @return One of the search results to be displayed. 
  */
 const SearchbarSong = ({title, artist, album, length, currentSong, setCurrentSong,
-    menuOpen, setMenuOpen}) => {
+    openID, setOpenID}) => {
     const [playlists, setPlaylists] = useState([]);
 
     /**
@@ -44,12 +44,12 @@ const SearchbarSong = ({title, artist, album, length, currentSong, setCurrentSon
      * to add it to a playlist. 
      */
     const addSong = () => {
-        if (menuOpen === `${title}${artist}${album}${length}`) {
-            setMenuOpen("");
+        if (openID === `${title}${artist}${album}${length}`) {
+            setOpenID("");
             return
         }
         setPlaylists(loadPlaylists("user goes here"));
-        setMenuOpen(`${title}${artist}${album}${length}`);
+        setOpenID(`${title}${artist}${album}${length}`);
     }
 
     /**
@@ -91,12 +91,12 @@ const SearchbarSong = ({title, artist, album, length, currentSong, setCurrentSon
                     <span className="song-span-length">{length}</span>
                 </button>
                 <button 
-                    className={(menuOpen === `${title}${artist}${album}${length}`) 
+                    className={(openID === `${title}${artist}${album}${length}`) 
                         ? "add-button adding" 
                         : "add-button notadding"} 
                     onClick={addSong}>+</button>
             </div>
-            <div className={(menuOpen === `${title}${artist}${album}${length}`) ? "playlist-list-wrapper" : "hidden"}>
+            <div className={(openID === `${title}${artist}${album}${length}`) ? "playlist-list-wrapper" : "hidden"}>
                 <div className="playlist-list-header">Choose a playlist to add to:</div>
                 <div className="playlist-list">
                     {playlists.map((playlistTitle) => (

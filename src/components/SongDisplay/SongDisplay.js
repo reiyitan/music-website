@@ -16,7 +16,7 @@ import "./style.css";
  * @returns The section of the webpage dedicated to displaying songs.
  */
 const SongDisplay = ({displayType, displaySongs, setDisplaySongs, currentSong, setCurrentSong}) => {
-    const [menuOpen, setMenuOpen] = useState("");
+    const [openID, setOpenID] = useState("");
     return (
         <div id="main-panel">
             <button id="song-display-header">
@@ -49,8 +49,8 @@ const SongDisplay = ({displayType, displaySongs, setDisplaySongs, currentSong, s
                             length={song.length}
                             currentSong={currentSong}
                             setCurrentSong={setCurrentSong}
-                            menuOpen={menuOpen}
-                            setMenuOpen={setMenuOpen}
+                            openID={openID}
+                            setOpenID={setOpenID}
                         />
                     ))
                 }
