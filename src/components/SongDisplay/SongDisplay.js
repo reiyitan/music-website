@@ -25,6 +25,7 @@ const SongDisplay = ({displayType, displaySongs, setDisplaySongs, currentSong, s
                 <span className="header-span-album">Album</span>
                 <span className="header-span-length">Length</span>
             </button>
+            <div id="filler"></div>
             <div id="song-display">
                 {(displayType==="playlist")
                     ?  displaySongs.map((song) => (
