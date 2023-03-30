@@ -49,7 +49,10 @@ const SongDisplay = ({displayType, displaySongs, setDisplaySongs, currentSong, s
                             length={song.length}
                             currentSong={currentSong}
                             setCurrentSong={setCurrentSong}
-                            openID={openID}
+                            popupShowing={(openID===`${song.title}${song.artist}${song.album}${song.length}`)
+                                            ? true
+                                            : false
+                            }
                             setOpenID={setOpenID}
                         />
                     ))

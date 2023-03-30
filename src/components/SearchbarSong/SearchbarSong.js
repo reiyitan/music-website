@@ -1,5 +1,5 @@
 import React from "react"; 
-import { useState } from "react";
+import { useState, memo } from "react";
 import { loadPlaylists } from "../functions";
 import "./style.css";
 
@@ -32,11 +32,14 @@ const Playlist = ({playlistTitle, songTitle, songArtist, songAlbum, songLength})
  * @param length - The length of the Searchbar song. 
  * @param currentSong - The current song being played by the web app.
  * @param setCurrentSong - Used to set the current song being played by the web app. 
+ * @param popupShowing - Either true or false. True if add to playlist popup should show. 
+ * @param setOpenID - Used to change the state in SongDisplay to let the component know what popup is showing. 
  * 
  * @return One of the search results to be displayed. 
  */
-const SearchbarSong = ({title, artist, album, length, currentSong, setCurrentSong,
-    openID, setOpenID}) => {
+const SearchbarSong = memo(function SearchbarSong({title, artist, album, length, currentSong, setCurrentSong,
+    popupShowing, setOpenID}) {
+    console.log("rerender");
     const [playlists, setPlaylists] = useState([]);
 
     /**
@@ -44,7 +47,7 @@ const SearchbarSong = ({title, artist, album, length, currentSong, setCurrentSon
      * to add it to a playlist. 
      */
     const addSong = () => {
-        if (openID === `${title}${artist}${album}${length}`) {
+        if (popupShowing) {
             setOpenID("");
             return
         }
@@ -91,12 +94,12 @@ const SearchbarSong = ({title, artist, album, length, currentSong, setCurrentSon
                     <span className="song-span-length">{length}</span>
                 </button>
                 <button 
-                    className={(openID === `${title}${artist}${album}${length}`) 
+                    className={(popupShowing) 
                         ? "add-button adding" 
                         : "add-button notadding"} 
                     onClick={addSong}>+</button>
             </div>
-            <div className={(openID === `${title}${artist}${album}${length}`) ? "playlist-list-wrapper" : "hidden"}>
+            <div className={(popupShowing) ? "playlist-list-wrapper" : "hidden"}>
                 <div className="playlist-list-header">Choose a playlist to add to:</div>
                 <div className="playlist-list">
                     {playlists.map((playlistTitle) => (
@@ -113,5 +116,6 @@ const SearchbarSong = ({title, artist, album, length, currentSong, setCurrentSon
             </div>
         </>
     );
-}
+})
+
 export default SearchbarSong; 
