@@ -39,7 +39,6 @@ const Playlist = ({playlistTitle, songTitle, songArtist, songAlbum, songLength})
  */
 const SearchbarSong = memo(function SearchbarSong({title, artist, album, length, currentSong, setCurrentSong,
     popupShowing, setOpenID}) {
-    console.log("rerender");
     const [playlists, setPlaylists] = useState([]);
 
     /**
