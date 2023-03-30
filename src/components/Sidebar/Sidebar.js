@@ -35,7 +35,7 @@ const Sidebar = ({setHeader, setDisplaySongs, displayType, setDisplayType}) => {
         if (playlistName === "") {
             console.log("no empty playlist name allowed");
         }
-        else if (playlists.find((playlist) => playlist.playlistName === playlistName) !== undefined) {
+        else if (playlists.find((playlist) => playlist === playlistName) !== undefined) {
             //TODO add code saying you cannot have duplicate names
             console.log("no duplicates allowed");
         }
