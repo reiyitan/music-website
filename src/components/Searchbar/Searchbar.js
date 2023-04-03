@@ -22,7 +22,9 @@ const Searchbar = ({setDisplaySongs, setHeader, setDisplayType}) => {
             const title = song.title.toLowerCase();
             const artist = song.artist.toLowerCase();
             const album = song.album.toLowerCase(); 
-            return title.includes(query) || artist.includes(query) || album.includes(query);
+            return title.includes(query.toLowerCase()) 
+                || artist.includes(query.toLowerCase()) 
+                || album.includes(query.toLowerCase());
         });
         setDisplayType("search");
         setDisplaySongs(result);
