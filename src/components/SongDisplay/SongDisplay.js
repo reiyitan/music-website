@@ -28,7 +28,7 @@ const SongDisplay = ({displayType, displaySongs, setDisplaySongs, currentSong, s
             <div id="filler"></div>
             <div id="song-display">
                 {(displayType==="playlist")
-                    ?  displaySongs.map((song) => (
+                    ? displaySongs.map((song) => (
                         <PlaylistSong
                             key={`${song.title}${song.artist}${song.album}${song.length}`}
                             title={song.title}
