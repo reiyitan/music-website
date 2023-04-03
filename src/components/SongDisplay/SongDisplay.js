@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import PlaylistSong from "../PlaylistSong";
-import SearchbarSong from "../SearchbarSong";
+import SearchbarSongs from "../SearchbarSongs";
 import "./style.css";
 
 /**
@@ -41,22 +41,13 @@ const SongDisplay = ({displayType, displaySongs, setDisplaySongs, currentSong, s
                             setCurrentSong={setCurrentSong}
                         />
                     ))
-                    : displaySongs.map((song) => (
-                        <SearchbarSong
-                            key={`${song.title}${song.artist}${song.album}${song.length}`}
-                            title={song.title}
-                            artist={song.artist}
-                            album={song.album}
-                            length={song.length}
-                            currentSong={currentSong}
-                            setCurrentSong={setCurrentSong}
-                            popupShowing={(openID===`${song.title}${song.artist}${song.album}${song.length}`)
-                                            ? true
-                                            : false
-                            }
-                            setOpenID={setOpenID}
-                        />
-                    ))
+                    : <SearchbarSongs 
+                          displaySongs={displaySongs}
+                          currentSong={currentSong}
+                          setCurrentSong={setCurrentSong}
+                          openID={openID}
+                          setOpenID={setOpenID}
+                      />
                 }
             </div>
         </div>
