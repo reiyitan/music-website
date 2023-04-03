@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import PlaylistSong from "../PlaylistSong";
+import PlaylistSongs from "../PlaylistSongs";
 import SearchbarSongs from "../SearchbarSongs";
 import "./style.css";
 
@@ -28,19 +28,12 @@ const SongDisplay = ({displayType, displaySongs, setDisplaySongs, currentSong, s
             <div id="filler"></div>
             <div id="song-display">
                 {(displayType==="playlist")
-                    ? displaySongs.map((song) => (
-                        <PlaylistSong
-                            key={`${song.title}${song.artist}${song.album}${song.length}`}
-                            title={song.title}
-                            artist={song.artist}
-                            album={song.album}
-                            length={song.length}
-                            displaySongs={displaySongs}
-                            setDisplaySongs={setDisplaySongs}
-                            currentSong={currentSong}
-                            setCurrentSong={setCurrentSong}
-                        />
-                    ))
+                    ? <PlaylistSongs
+                          displaySongs={displaySongs}
+                          setDisplaySongs={setDisplaySongs}
+                          currentSong={currentSong}
+                          setCurrentSong={setCurrentSong}
+                    />
                     : <SearchbarSongs 
                           displaySongs={displaySongs}
                           currentSong={currentSong}
