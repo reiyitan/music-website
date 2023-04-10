@@ -1,6 +1,7 @@
 import React from "react"; 
 import { useState, memo } from "react";
 import { loadPlaylists } from "../functions";
+import { createPlayback } from "../functions";
 import "./style.css";
 
 /**
@@ -105,6 +106,7 @@ const SearchbarSong = memo(function SearchbarSong({title, artist, album, length,
             "album": album,
             "length": length
         });
+        createPlayback();
     }
 
     return (

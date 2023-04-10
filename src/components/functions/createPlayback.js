@@ -1,8 +1,12 @@
-import {Howl, Howler} from "howler"; 
+import { Howl } from "howler"; 
 
 export default function createPlayback() {
     const playback = new Howl({
-        src: ["../../songs/Chimera.flac"]
+        src: ["/songs/Icronic.mp3"],
+        volume: 0.01,
+        onload: () => {
+            playback.play();
+        }
     });
     return playback;
 }
