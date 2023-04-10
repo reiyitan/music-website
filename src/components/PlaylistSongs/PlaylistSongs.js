@@ -79,7 +79,7 @@ const PlaylistSong = ({title, artist, album, length, displaySongs, setDisplaySon
  * @param currentSong - The ID of the song that is currently playing. 
  * @param setCurrentSong - Update currentSong. 
  * 
- * @returns The component that maps each song in displaySongs to  PlaylistSong. 
+ * @returns The component that maps each song in displaySongs to PlaylistSong. 
  */
 const PlaylistSongs = ({displaySongs, setDisplaySongs, currentSong, setCurrentSong}) => {
     return (
