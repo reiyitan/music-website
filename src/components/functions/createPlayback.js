@@ -1,8 +1,8 @@
 import { Howl } from "howler"; 
 
-export default function createPlayback() {
+export default function createPlayback(title, artist, album, length) {
     const playback = new Howl({
-        src: ["/songs/Icronic.mp3"],
+        src: ["/songs/ABC.flac"],
         volume: 0.01,
         onload: () => {
             playback.play();
