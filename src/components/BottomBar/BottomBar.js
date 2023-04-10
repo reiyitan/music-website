@@ -8,27 +8,37 @@ import { useState } from "react";
  * @param currentSong - Information for the song that is currently playing. Part of index.js state.
  * @param setCurrentSong - Used to update state of currentSong.
  */
-const BottomBar = ({currentSong, setCurrentSong}) => {
-    const [buttonState, setButtonState] = useState("play-button pp-button");
+const BottomBar = ({currentSong, setCurrentSong, playbackRef, pauseSong, 
+    songIsPlaying, setSongIsPlaying}) => {
 
     /**
      * Sets the pp-button to display the pause icon and plays the chosen .mp3. 
      */
     const handlePlay = () => {
-        setButtonState("pause-button pp-button");
+        if (playbackRef.current) {
+            setSongIsPlaying(true);
+            playbackRef.current.play();
+        }
     }
 
     /**
      * Sets the pp-button to display the play icon and plays the chosen .mp3.
      */
     const handlePause = () => {
-        setButtonState("play-button pp-button");
+        setSongIsPlaying(false);
+        pauseSong();
     }
+
     return (
         <div id="bottom-bar">
             <span className="bottom-bar-title">{currentSong.title}</span>
             <span className="bottom-bar-artist">{currentSong.artist}</span>
-            <button className={buttonState} onClick={(buttonState==="play-button pp-button") ? handlePlay : handlePause}></button>
+            <button 
+                className={(songIsPlaying) ? "pause-button pp-button" : "play-button pp-button"}
+                onClick={(songIsPlaying)
+                    ? handlePause
+                    : handlePlay}>
+            </button>
         </div>
     )
 }

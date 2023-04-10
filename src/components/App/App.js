@@ -1,6 +1,6 @@
 import React from "react"; 
 import "./style.css"; 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Header from "../Header"; 
 import Searchbar from "../Searchbar";
 import Sidebar from "../Sidebar"; 
@@ -28,9 +28,13 @@ const App = () => {
         });
     }
     const [currentSong, setCurrentSong] = useState("");
-    const [controls, setControls] = useState({
-        isPlaying: false
-    });
+    const [songIsPlaying, setSongIsPlaying] = useState(false);
+    const playbackRef = useRef(null);
+    const pauseSong = () => {
+        if (playbackRef.current) {
+            playbackRef.current.pause();
+        }
+    }
 
     return (
         <>
@@ -54,13 +58,18 @@ const App = () => {
                 setDisplaySongs={setDisplaySongs}
                 currentSong={currentSong}
                 setCurrentSong={setCurrentSong}
-                controls={controls}
-                setControls={setControls}
                 handleDelete={handleDelete}
+                playbackRef={playbackRef}
+                pauseSong={pauseSong}
+                setSongIsPlaying={setSongIsPlaying}
             />
             <BottomBar
                 currentSong={currentSong}
                 setCurrentSong={setCurrentSong}
+                playbackRef={playbackRef}
+                pauseSong={pauseSong}
+                songIsPlaying={songIsPlaying}
+                setSongIsPlaying={setSongIsPlaying}
             />
         </>
     );

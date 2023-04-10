@@ -74,13 +74,12 @@ const propsAreEqual = (prevProps, nextProps) => {
  * @param currentSong - The current song being played by the web app.
  * @param setCurrentSong - Used to set the current song being played by the web app. 
  * @param popupShowing - Either true or false. True if add to playlist popup should show. 
- * @param setOpenID - Used to change the state in SongDisplay to let the component know what popup is showing. 
+ * @param setOpenID - Used to change the state in SongDisplay to let the component know what popup is showing.  
  * 
  * @return One of the search results to be displayed. 
  */
 const SearchbarSong = memo(function SearchbarSong({title, artist, album, length, currentSong, setCurrentSong,
-    popupShowing, setOpenID}) {
-    console.log("rerender");
+    popupShowing, setOpenID, playbackRef, pauseSong, setSongIsPlaying}) {
     const [playlists, setPlaylists] = useState([]);
     /**
      * When the + button is clicked on a song, the user is prompted
@@ -97,7 +96,6 @@ const SearchbarSong = memo(function SearchbarSong({title, artist, album, length,
 
     /**
      * Plays the current song. 
-     * @todo actually play the song
      */
     const playSong = () => {
         setCurrentSong({
@@ -106,7 +104,12 @@ const SearchbarSong = memo(function SearchbarSong({title, artist, album, length,
             "album": album,
             "length": length
         });
-        createPlayback();
+        setSongIsPlaying(true);
+        if (playbackRef.current) {
+            playbackRef.current.unload();
+        }
+        playbackRef.current = createPlayback(title, artist, album, length);
+
     }
 
     return (
@@ -155,7 +158,8 @@ const SearchbarSong = memo(function SearchbarSong({title, artist, album, length,
  * @param openID - The ID of the SearchbarSong that has its add to playlist menu open. 
  * @param setOpenID - Update what SearchbarSong is currently open by changing openID.
  */
-const SearchbarSongs = ({displaySongs, currentSong, setCurrentSong, openID, setOpenID}) => {
+const SearchbarSongs = ({displaySongs, currentSong, setCurrentSong, openID, setOpenID,
+    playbackRef, pauseSong, setSongIsPlaying}) => {
     return (
         displaySongs.map((song) => (
             <SearchbarSong
@@ -171,6 +175,9 @@ const SearchbarSongs = ({displaySongs, currentSong, setCurrentSong, openID, setO
                                 : false
                 }
                 setOpenID={setOpenID}
+                playbackRef={playbackRef}
+                pauseSong={pauseSong}
+                setSongIsPlaying={setSongIsPlaying}
             />
         ))
     ); 
