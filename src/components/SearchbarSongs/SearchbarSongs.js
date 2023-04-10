@@ -24,6 +24,46 @@ const Playlist = ({playlistTitle, songTitle, songArtist, songAlbum, songLength})
 }
 
 /**
+    * Determines if the current song being played is the same as the 
+    * song represented by a SearchbarSong component. 
+    * 
+    * @returns True if the songs are the same, false otherwise.
+    */
+const isPlaying = (currentSong, title, artist, album, length) => {
+    return (
+        currentSong.title === title
+        && currentSong.artist === artist
+        && currentSong.album === album
+        && currentSong.length === length
+    );
+}
+
+/**
+ * Determines when a component should not be rerendered.
+ * 
+ * @param prevProps - The props from the previous render of this component. 
+ * @param nextProps - The props from the next render of this component. 
+ * @returns true if this component should NOT be rerendered. false if this component SHOULD be rerendered.
+ */
+const propsAreEqual = (prevProps, nextProps) => {
+    if (prevProps.popupShowing !== nextProps.popupShowing) {
+        return false;
+    }
+    const wasPlaying = isPlaying(prevProps.currentSong, prevProps.title,
+        prevProps.artist, prevProps.album, prevProps.length); 
+    const willPlay = isPlaying(nextProps.currentSong, nextProps.title, 
+        nextProps.artist, nextProps.album, nextProps.length);
+
+    if (wasPlaying && !willPlay) {
+        return false;
+    }
+    if (!wasPlaying && willPlay) {
+        return false;
+    }
+    return true;
+}
+
+/**
  * A component that represents a single song when a user uses the searchbar. 
  * 
  * @param title - The title of the Searchbar Song. 
@@ -39,8 +79,8 @@ const Playlist = ({playlistTitle, songTitle, songArtist, songAlbum, songLength})
  */
 const SearchbarSong = memo(function SearchbarSong({title, artist, album, length, currentSong, setCurrentSong,
     popupShowing, setOpenID}) {
+    console.log("rerender");
     const [playlists, setPlaylists] = useState([]);
-
     /**
      * When the + button is clicked on a song, the user is prompted
      * to add it to a playlist. 
@@ -67,25 +107,12 @@ const SearchbarSong = memo(function SearchbarSong({title, artist, album, length,
         });
     }
 
-    /**
-     * Determines if the current song being played is the same as the 
-     * song represented by this component. 
-     * 
-     * @returns True if the songs are the same, false otherwise.
-     */
-    const isPlaying = () => {
-        return (
-            currentSong.title === title
-            && currentSong.artist === artist
-            && currentSong.album === album
-            && currentSong.length === length
-        );
-    }
-
     return (
         <>
             <div className="song-row">
-                <button className={(isPlaying()) ? "song-row-playbutton playing" : "song-row-playbutton notplaying"}
+                <button className={(isPlaying(currentSong, title, artist, album, length)) 
+                        ? "song-row-playbutton playing"
+                        : "song-row-playbutton notplaying"}
                     onClick={playSong}>
                     <span className="song-span-title">{title}</span>
                     <span className="song-span-artist">{artist}</span>
@@ -115,7 +142,7 @@ const SearchbarSong = memo(function SearchbarSong({title, artist, album, length,
             </div>
         </>
     );
-})
+}, propsAreEqual);
 
 /**
  * Component containing all SearchbarSong components. 
