@@ -16,7 +16,21 @@ const App = () => {
     const [header, setHeader] = useState("");
     const [displayType, setDisplayType] = useState("");
     const [displaySongs, setDisplaySongs] = useState([]);
+    const handleDelete = (target) => {
+        setDisplaySongs((prevDisplaySongs) => {
+            return prevDisplaySongs.filter((song) => {
+                return !(song.title === target.title
+                    && song.artist === target.artist
+                    && song.album === target.album
+                    && song.length === target.length
+                )
+            });
+        });
+    }
     const [currentSong, setCurrentSong] = useState("");
+    const [controls, setControls] = useState({
+        isPlaying: false
+    });
 
     return (
         <>
@@ -40,6 +54,9 @@ const App = () => {
                 setDisplaySongs={setDisplaySongs}
                 currentSong={currentSong}
                 setCurrentSong={setCurrentSong}
+                controls={controls}
+                setControls={setControls}
+                handleDelete={handleDelete}
             />
             <BottomBar
                 currentSong={currentSong}

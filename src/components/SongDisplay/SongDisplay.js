@@ -11,11 +11,15 @@ import "./style.css";
  * @param displaySongs - The list of songs to be displayed.
  * @param setDisplaySongs - Used to update state when a song is removed or added to the playlist through the SongDisplay.
  * @param currentSong - The current song that is playing.
- * @param setCurrentSong - Used to update the current song that is playing. 
+ * @param setCurrentSong - Used to update the current song that is playing.
+ * @param controls - Used to control audio playback. 
+ * @param setControls - Used to update the state of the controls.
+ * @param handleDelete - Used to delete a song from a playlist. 
  * 
  * @returns The section of the webpage dedicated to displaying songs.
  */
-const SongDisplay = ({displayType, displaySongs, setDisplaySongs, currentSong, setCurrentSong}) => {
+const SongDisplay = ({displayType, displaySongs, setDisplaySongs, currentSong, 
+    setCurrentSong, controls, setControls, handleDelete}) => {
     const [openID, setOpenID] = useState("");
     return (
         <div id="main-panel">
@@ -33,6 +37,7 @@ const SongDisplay = ({displayType, displaySongs, setDisplaySongs, currentSong, s
                           setDisplaySongs={setDisplaySongs}
                           currentSong={currentSong}
                           setCurrentSong={setCurrentSong}
+                          handleDelete={handleDelete}
                     />
                     : <SearchbarSongs 
                           displaySongs={displaySongs}
@@ -40,6 +45,7 @@ const SongDisplay = ({displayType, displaySongs, setDisplaySongs, currentSong, s
                           setCurrentSong={setCurrentSong}
                           openID={openID}
                           setOpenID={setOpenID}
+                          controls={controls}
                       />
                 }
             </div>
