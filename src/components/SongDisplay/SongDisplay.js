@@ -36,6 +36,9 @@ const SongDisplay = ({displayType, displaySongs, setDisplaySongs, currentSong,
                           currentSong={currentSong}
                           setCurrentSong={setCurrentSong}
                           handleDelete={handleDelete}
+                          playbackRef={playbackRef}
+                          pauseSong={pauseSong}
+                          setSongIsPlaying={setSongIsPlaying}
                     />
                     : <SearchbarSongs 
                           displaySongs={displaySongs}
