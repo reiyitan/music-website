@@ -61,6 +61,7 @@ const App = () => {
                 handleDelete={handleDelete}
                 playbackRef={playbackRef}
                 pauseSong={pauseSong}
+                songIsPlaying={songIsPlaying}
                 setSongIsPlaying={setSongIsPlaying}
             />
             <BottomBar

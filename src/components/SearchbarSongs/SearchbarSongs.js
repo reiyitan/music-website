@@ -30,12 +30,13 @@ const Playlist = ({playlistTitle, songTitle, songArtist, songAlbum, songLength})
     * 
     * @returns True if the songs are the same, false otherwise.
     */
-const isPlaying = (currentSong, title, artist, album, length) => {
+const isPlaying = (currentSong, title, artist, album, length, songIsPlaying) => {
     return (
         currentSong.title === title
         && currentSong.artist === artist
         && currentSong.album === album
         && currentSong.length === length
+        && songIsPlaying
     );
 }
 
@@ -51,9 +52,9 @@ const propsAreEqual = (prevProps, nextProps) => {
         return false;
     }
     const wasPlaying = isPlaying(prevProps.currentSong, prevProps.title,
-        prevProps.artist, prevProps.album, prevProps.length); 
+        prevProps.artist, prevProps.album, prevProps.length, prevProps.songIsPlaying); 
     const willPlay = isPlaying(nextProps.currentSong, nextProps.title, 
-        nextProps.artist, nextProps.album, nextProps.length);
+        nextProps.artist, nextProps.album, nextProps.length, nextProps.songIsPlaying);
 
     if (wasPlaying && !willPlay) {
         return false;
@@ -79,7 +80,7 @@ const propsAreEqual = (prevProps, nextProps) => {
  * @return One of the search results to be displayed. 
  */
 const SearchbarSong = memo(function SearchbarSong({title, artist, album, length, currentSong, setCurrentSong,
-    popupShowing, setOpenID, playbackRef, pauseSong, setSongIsPlaying}) {
+    popupShowing, setOpenID, playbackRef, pauseSong, songIsPlaying, setSongIsPlaying}) {
     const [playlists, setPlaylists] = useState([]);
     /**
      * When the + button is clicked on a song, the user is prompted
@@ -109,16 +110,26 @@ const SearchbarSong = memo(function SearchbarSong({title, artist, album, length,
             playbackRef.current.unload();
         }
         playbackRef.current = createPlayback(title, artist, album, length);
+    }
 
+    /**
+     * Pauses a song component if it is already playing and it is clicked again.
+     */
+    const handlePause = () => {
+        pauseSong(); 
+        setSongIsPlaying(false);
     }
 
     return (
         <>
             <div className="song-row">
-                <button className={(isPlaying(currentSong, title, artist, album, length)) 
+                <button className={(isPlaying(currentSong, title, artist, album, length, songIsPlaying)) 
                         ? "song-row-playbutton playing"
                         : "song-row-playbutton notplaying"}
-                    onClick={playSong}>
+                    onClick={(isPlaying(currentSong, title, artist, album, length, songIsPlaying))
+                        ? handlePause
+                        : playSong
+                    }>
                     <span className="song-span-title">{title}</span>
                     <span className="song-span-artist">{artist}</span>
                     <span className="song-span-album">{album}</span>
@@ -159,7 +170,7 @@ const SearchbarSong = memo(function SearchbarSong({title, artist, album, length,
  * @param setOpenID - Update what SearchbarSong is currently open by changing openID.
  */
 const SearchbarSongs = ({displaySongs, currentSong, setCurrentSong, openID, setOpenID,
-    playbackRef, pauseSong, setSongIsPlaying}) => {
+    playbackRef, pauseSong, songIsPlaying, setSongIsPlaying}) => {
     return (
         displaySongs.map((song) => (
             <SearchbarSong
@@ -177,6 +188,7 @@ const SearchbarSongs = ({displaySongs, currentSong, setCurrentSong, openID, setO
                 setOpenID={setOpenID}
                 playbackRef={playbackRef}
                 pauseSong={pauseSong}
+                songIsPlaying={songIsPlaying}
                 setSongIsPlaying={setSongIsPlaying}
             />
         ))

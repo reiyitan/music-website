@@ -17,7 +17,7 @@ import "./style.css";
  * @returns The section of the webpage dedicated to displaying songs.
  */
 const SongDisplay = ({displayType, displaySongs, setDisplaySongs, currentSong, 
-    setCurrentSong, handleDelete, playbackRef, pauseSong, setSongIsPlaying}) => {
+    setCurrentSong, handleDelete, playbackRef, pauseSong, songIsPlaying, setSongIsPlaying}) => {
     const [openID, setOpenID] = useState("");
     return (
         <div id="main-panel">
@@ -38,6 +38,7 @@ const SongDisplay = ({displayType, displaySongs, setDisplaySongs, currentSong,
                           handleDelete={handleDelete}
                           playbackRef={playbackRef}
                           pauseSong={pauseSong}
+                          songIsPlaying={songIsPlaying}
                           setSongIsPlaying={setSongIsPlaying}
                     />
                     : <SearchbarSongs 
@@ -48,6 +49,7 @@ const SongDisplay = ({displayType, displaySongs, setDisplaySongs, currentSong,
                           setOpenID={setOpenID}
                           playbackRef={playbackRef}
                           pauseSong={pauseSong}
+                          songIsPlaying={songIsPlaying}
                           setSongIsPlaying={setSongIsPlaying}
                       />
                 }

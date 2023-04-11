@@ -9,12 +9,13 @@ import "./style.css";
     * 
     * @returns True if the songs are the same, false otherwise.
     */
-const isPlaying = (currentSong, title, artist, album, length) => {
+const isPlaying = (currentSong, title, artist, album, length, songIsPlaying) => {
     return (
         currentSong.title === title
         && currentSong.artist === artist
         && currentSong.album === album
         && currentSong.length === length
+        && songIsPlaying
     );
 }
 
@@ -27,9 +28,9 @@ const isPlaying = (currentSong, title, artist, album, length) => {
  */
 const propsAreEqual = (prevProps, nextProps) => {
     const wasPlaying = isPlaying(prevProps.currentSong, prevProps.title,
-        prevProps.artist, prevProps.album, prevProps.length); 
+        prevProps.artist, prevProps.album, prevProps.length, prevProps.songIsPlaying); 
     const willPlay = isPlaying(nextProps.currentSong, nextProps.title, 
-        nextProps.artist, nextProps.album, nextProps.length);
+        nextProps.artist, nextProps.album, nextProps.length, nextProps.songIsPlaying);
 
     if (wasPlaying && !willPlay) {
         return false;
@@ -52,7 +53,7 @@ const propsAreEqual = (prevProps, nextProps) => {
  * @returns A component that represents one row of the playlist displayed on the main panel.
  */
 const PlaylistSong = memo(function({title, artist, album, length, currentSong, 
-    setCurrentSong, handleDelete, playbackRef, pauseSong, setSongIsPlaying}) {
+    setCurrentSong, handleDelete, playbackRef, pauseSong, songIsPlaying, setSongIsPlaying}) {
 
     /**
      * Plays the current song. 
@@ -73,6 +74,14 @@ const PlaylistSong = memo(function({title, artist, album, length, currentSong,
     }
 
     /**
+     * Pauses a song component if it is already playing and it is clicked again.
+     */
+    const handlePause = () => {
+        pauseSong();
+        setSongIsPlaying(false);
+    }
+
+    /**
      * Handles deletion of a song from a playlist.
      * Calls handleDelete defined in App.js.
      */
@@ -87,10 +96,13 @@ const PlaylistSong = memo(function({title, artist, album, length, currentSong,
 
     return (
         <div className="song-row">
-            <button className={(isPlaying(currentSong, title, artist, album, length)) 
+            <button className={(isPlaying(currentSong, title, artist, album, length, songIsPlaying)) 
                     ? "song-row-playbutton playing" 
                     : "song-row-playbutton notplaying"}
-                onClick={playSong}>
+                onClick={(isPlaying(currentSong, title, artist, album, length, songIsPlaying))
+                    ? handlePause
+                    : playSong
+                }>
                 <span className="song-span-title">{title}</span>
                 <span className="song-span-artist">{artist}</span>
                 <span className="song-span-album">{album}</span>
@@ -112,7 +124,7 @@ const PlaylistSong = memo(function({title, artist, album, length, currentSong,
  * @returns The component that maps each song in displaySongs to PlaylistSong. 
  */
 const PlaylistSongs = ({displaySongs, currentSong, setCurrentSong, handleDelete,
-    playbackRef, pauseSong, setSongIsPlaying}) => {
+    playbackRef, pauseSong, songIsPlaying, setSongIsPlaying}) => {
     return (
         displaySongs.map((song) => (
             <PlaylistSong
@@ -126,6 +138,7 @@ const PlaylistSongs = ({displaySongs, currentSong, setCurrentSong, handleDelete,
                 handleDelete={handleDelete}
                 playbackRef={playbackRef}
                 pauseSong={pauseSong}
+                songIsPlaying={songIsPlaying}
                 setSongIsPlaying={setSongIsPlaying}
             />
         ))
