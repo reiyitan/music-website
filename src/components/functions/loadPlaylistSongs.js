@@ -9,6 +9,17 @@
  */
 export default function loadPlaylistSongs(user, playlistName) {
     //TODO: actually get the songs from the backend
+    if (playlistName === "kevin") {
+        return [
+            {"title": "Cipher", "artist": "Kevin Macleod", "album": "N/A", "length": "length"},
+            {"title": "The Builder", "artist": "Kevin Macleod", "album": "N/A", "length": "length"},
+            {"title": "Sneaky Snitch", "artist": "Kevin Macleod", "album": "N/A", "length": "length"},
+            {"title": "Sneaky Adventure", "artist": "Kevin Macleod", "album": "N/A", "length": "length"},
+            {"title": "Monkeys Spinning Monkeys", "artist": "Kevin Macleod", "album": "N/A", "length": "length"},
+            {"title": "Investigations", "artist": "Kevin Macleod", "album": "N/A", "length": "length"},
+        ]
+    }
+
     if (playlistName === "a") {
         return (
             [
