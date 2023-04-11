@@ -1,5 +1,6 @@
 import React from "react";
 import { memo } from "react";
+import { createPlayback } from "../functions";
 import "./style.css";
 
 /**
@@ -51,7 +52,7 @@ const propsAreEqual = (prevProps, nextProps) => {
  * @returns A component that represents one row of the playlist displayed on the main panel.
  */
 const PlaylistSong = memo(function({title, artist, album, length, currentSong, 
-    setCurrentSong, handleDelete}) {
+    setCurrentSong, handleDelete, playbackRef, pauseSong, setSongIsPlaying}) {
 
     /**
      * Plays the current song. 
@@ -64,6 +65,11 @@ const PlaylistSong = memo(function({title, artist, album, length, currentSong,
             "album": album,
             "length": length
         });
+        setSongIsPlaying(true);
+        if (playbackRef.current) {
+            playbackRef.current.unload();
+        }
+        playbackRef.current = createPlayback(title, artist, album, length);
     }
 
     /**
@@ -105,7 +111,8 @@ const PlaylistSong = memo(function({title, artist, album, length, currentSong,
  * 
  * @returns The component that maps each song in displaySongs to PlaylistSong. 
  */
-const PlaylistSongs = ({displaySongs, currentSong, setCurrentSong, handleDelete}) => {
+const PlaylistSongs = ({displaySongs, currentSong, setCurrentSong, handleDelete,
+    playbackRef, pauseSong, setSongIsPlaying}) => {
     return (
         displaySongs.map((song) => (
             <PlaylistSong
@@ -117,6 +124,9 @@ const PlaylistSongs = ({displaySongs, currentSong, setCurrentSong, handleDelete}
                 currentSong={currentSong}
                 setCurrentSong={setCurrentSong}
                 handleDelete={handleDelete}
+                playbackRef={playbackRef}
+                pauseSong={pauseSong}
+                setSongIsPlaying={setSongIsPlaying}
             />
         ))
     );
