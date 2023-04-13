@@ -10,7 +10,7 @@ export default function createPlayback(title, artist, album, length) {
     }
     const playback = new Howl({
         src: [path],
-        volume: 0.05,
+        volume: 0.1,
         onload: () => {
             playback.play();
         }
