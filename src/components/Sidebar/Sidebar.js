@@ -15,7 +15,12 @@ import "./style.css";
  * 
  * @returns The Sidebar component.
  */
-const Sidebar = ({setHeader, setDisplaySongs, displayType, setDisplayType}) => {
+const Sidebar = ({
+    setHeader, 
+    setDisplaySongs, 
+    displayType, 
+    setDisplayType
+}) => {
     const [playlists, setPlaylists] = useState(loadPlaylists("user goes here")); 
     const [addPlaylistButtonStyle, setAddPlaylistButtonStyle] = useState("add-playlist-button");
     const [playlistNameInputStyle, setPlaylistNameInputStyle] = useState("hidden");
