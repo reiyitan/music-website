@@ -29,15 +29,42 @@ const BottomBar = ({currentSong, setCurrentSong, playbackRef, pauseSong,
         pauseSong();
     }
 
+    /**
+     * Either plays the current song from its beginning or plays the previous song. 
+     * The rewind button will play the previous song if less than 5 seconds of the current 
+     * song have elapsed. 
+     */
+    const handleRewind = () => {
+
+    }
+
+    /**
+     * Skips the current song and plays the next song. 
+     */
+    const handleForward = () => {
+
+    }
+
     return (
         <div id="bottom-bar">
             <span className="bottom-bar-title">{currentSong.title}</span>
             <span className="bottom-bar-artist">{currentSong.artist}</span>
             <button 
-                className={(songIsPlaying) ? "pause-button pp-button" : "play-button pp-button"}
+                className={"button rewind-forward rw-button"}
+                onClick={handleRewind}
+            >
+            </button>
+            <button 
+                className={(songIsPlaying) ? "button pause-play pause-button" : "button pause-play play-button"}
                 onClick={(songIsPlaying)
                     ? handlePause
-                    : handlePlay}>
+                    : handlePlay}
+            >
+            </button>
+            <button 
+                className={"button rewind-forward ff-button"}
+                onClick={handleForward}
+            >
             </button>
         </div>
     )

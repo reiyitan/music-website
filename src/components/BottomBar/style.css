@@ -29,19 +29,22 @@
     font-size: 14px;
 }
 
-.pp-button {
+.button {
     position: absolute;
     display: block;
     border: none;
+    border-radius: 50%;
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.pause-play {
     top: 30%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 35px;
     height: 35px;
-    border-radius: 50%;
-    background-size: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
 }
 
 .play-button {
@@ -58,4 +61,30 @@
 
 .pause-button:hover {
     background-image: url("../../icons/pausebutton-icon-hover.png");
+}
+
+.rewind-forward {
+    top: 15%;
+    width: 25px;
+    height: 25px;
+}
+
+.rw-button {
+    left: 45%;
+    background-image: url("../../icons/rwbutton.png");
+}
+
+.rw-button:hover {
+    left: 45%;
+    background-image: url("../../icons/rwbutton-hover.png");
+}
+
+.ff-button {
+    right: 45%;
+    background-image: url("../../icons/ffbutton.png");
+}   
+
+.ff-button:hover {
+    right: 45%;
+    background-image: url("../../icons/ffbutton-hover.png");
 }
