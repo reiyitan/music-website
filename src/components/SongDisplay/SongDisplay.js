@@ -13,11 +13,29 @@ import "./style.css";
  * @param currentSong - The current song that is playing.
  * @param setCurrentSong - Used to update the current song that is playing.
  * @param handleDelete - Used to delete a song from a playlist. 
+ * @param playbackRef - A reference to the current Howl that is playing.
+ * @param pauseSong - A function that handles pausing the current Howl. 
+ * @param songIsPlaying - True if a song if currently playing. False otherwise. 
+ * @param setSongIsPlaying - Sets whether or not a song is playing. 
+ * @param queue - The queue of songs to be played.
+ * @param setQueue - Sets the song queue. 
  * 
  * @returns The section of the webpage dedicated to displaying songs.
  */
-const SongDisplay = ({displayType, displaySongs, setDisplaySongs, currentSong, 
-    setCurrentSong, handleDelete, playbackRef, pauseSong, songIsPlaying, setSongIsPlaying}) => {
+const SongDisplay = ({
+    displayType,
+    displaySongs,
+    setDisplaySongs, 
+    currentSong, 
+    setCurrentSong, 
+    handleDelete, 
+    playbackRef, 
+    pauseSong, 
+    songIsPlaying, 
+    setSongIsPlaying,
+    queue, 
+    setQueue
+}) => {
     const [openID, setOpenID] = useState("");
     return (
         <div id="main-panel">
