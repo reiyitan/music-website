@@ -1,7 +1,6 @@
 import React from "react"; 
 import { useState, memo } from "react";
-import { loadPlaylists } from "../functions";
-import { createPlayback } from "../functions";
+import { loadPlaylists, createPlayback, isPlaying } from "../functions";
 import "./style.css";
 
 /**
@@ -34,28 +33,6 @@ const Playlist = ({
                     onClick={handleClick}>{playlistTitle}</button>
         </>
     )
-}
-
-/**
-    * Determines if the current song being played is the same as the 
-    * song represented by a SearchbarSong component. 
-    * 
-    * @param currentSong - A JSON representing the current song. 
-    * @param title - The title of the song to be compared.
-    * @param artist - The artist of the song to be compared. 
-    * @param length - The length of the song to be compared. 
-    * @param songIsPlaying - True of a song is currently playing. False otherwise. 
-    * 
-    * @returns True if the songs are the same, false otherwise.
-    */
-const isPlaying = (currentSong, title, artist, album, length, songIsPlaying) => {
-    return (
-        currentSong.title === title
-        && currentSong.artist === artist
-        && currentSong.album === album
-        && currentSong.length === length
-        && songIsPlaying
-    );
 }
 
 /**
