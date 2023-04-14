@@ -11,7 +11,11 @@ import "./style.css";
  * 
  * @returns The searchbar component. 
  */
-const Searchbar = ({setDisplaySongs, setHeader, setDisplayType}) => {
+const Searchbar = ({
+    setDisplaySongs, 
+    setHeader, 
+    setDisplayType
+}) => {
     const handleSearch = (e) => {
         e.preventDefault();
         const query = e.target.query.value;
