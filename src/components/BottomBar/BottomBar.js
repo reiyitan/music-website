@@ -7,9 +7,19 @@ import { useState } from "react";
  * 
  * @param currentSong - Information for the song that is currently playing. Part of index.js state.
  * @param setCurrentSong - Used to update state of currentSong.
+ * @param playbackRef - A reference to the current Howl. 
+ * @param pauseSong - Function that handles pausing the current song. 
+ * @param songIsPlaying - True if a song is currently playing, false otherwise. 
+ * @param setSongIsPlaying - Sets the state of songIsPlaying.
  */
-const BottomBar = ({currentSong, setCurrentSong, playbackRef, pauseSong, 
-    songIsPlaying, setSongIsPlaying}) => {
+const BottomBar = ({
+    currentSong, 
+    setCurrentSong, 
+    playbackRef, 
+    pauseSong, 
+    songIsPlaying, 
+    setSongIsPlaying
+}) => {
 
     /**
      * Sets the pp-button to display the pause icon and plays the chosen .mp3. 
