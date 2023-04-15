@@ -16,6 +16,19 @@ const App = () => {
     const [header, setHeader] = useState("");
     const [displayType, setDisplayType] = useState("");
     const [displaySongs, setDisplaySongs] = useState([]);
+    const [currentSong, setCurrentSong] = useState("");
+    const [currPlaylistPlaying, setCurrPlaylistPlaying] = useState("");
+    const [currPlaylistDisplaying, setCurrPlaylistDisplaying] = useState("");
+    const [songIsPlaying, setSongIsPlaying] = useState(false);
+    const playbackRef = useRef(null);
+    const [history, setHistory] = useState([]); 
+    const [queue, setQueue] = useState([]);
+
+    /**
+     * Deletes a song from a playlist.
+     * 
+     * @param target - The song to be deleted as a JSON. 
+     */
     const handleDelete = (target) => {
         setDisplaySongs((prevDisplaySongs) => {
             return prevDisplaySongs.filter((song) => {
@@ -27,10 +40,12 @@ const App = () => {
             });
         });
     }
-    const [currentSong, setCurrentSong] = useState("");
-    const [songIsPlaying, setSongIsPlaying] = useState(false);
-    const playbackRef = useRef(null);
+
+    /**
+     * Pauses the current Howl.
+     */
     const pauseSong = () => {
+        setSongIsPlaying(false);
         if (playbackRef.current) {
             playbackRef.current.pause();
         }
@@ -50,6 +65,8 @@ const App = () => {
                 setCurrentSong={setCurrentSong}
                 displayType={displayType}
                 setDisplayType={setDisplayType}
+                currPlaylistDisplaying={currPlaylistDisplaying}
+                setCurrPlaylistDisplaying={setCurrPlaylistDisplaying}
             />
             <Header title={header} />
             <SongDisplay
@@ -58,19 +75,32 @@ const App = () => {
                 setDisplaySongs={setDisplaySongs}
                 currentSong={currentSong}
                 setCurrentSong={setCurrentSong}
+                currPlaylistPlaying={currPlaylistPlaying}
+                setCurrPlaylistPlaying={setCurrPlaylistPlaying}
+                currPlaylistDisplaying={currPlaylistDisplaying}
                 handleDelete={handleDelete}
                 playbackRef={playbackRef}
                 pauseSong={pauseSong}
                 songIsPlaying={songIsPlaying}
                 setSongIsPlaying={setSongIsPlaying}
+                history={history}
+                setHistory={setHistory}
+                queue={queue}
+                setQueue={setQueue}
             />
             <BottomBar
                 currentSong={currentSong}
                 setCurrentSong={setCurrentSong}
+                currPlaylistPlaying={currPlaylistPlaying}
+                setCurrPlaylistPlaying={setCurrPlaylistPlaying}
                 playbackRef={playbackRef}
                 pauseSong={pauseSong}
                 songIsPlaying={songIsPlaying}
                 setSongIsPlaying={setSongIsPlaying}
+                history={history}
+                setHistory={setHistory}
+                queue={queue}
+                setQueue={setQueue}
             />
         </>
     );

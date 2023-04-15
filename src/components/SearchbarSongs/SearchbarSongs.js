@@ -116,11 +116,10 @@ const SearchbarSong = memo(function SearchbarSong({
             "album": album,
             "length": length
         });
-        setSongIsPlaying(true);
         if (playbackRef.current) {
             playbackRef.current.unload();
         }
-        playbackRef.current = createPlayback(title, artist, album, length);
+        playbackRef.current = createPlayback(title, artist, album, length, setSongIsPlaying);
     }
 
     /**

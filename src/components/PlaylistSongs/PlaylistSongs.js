@@ -34,12 +34,18 @@ const propsAreEqual = (prevProps, nextProps) => {
  * @param length - The length of the song.
  * @param currentSong - A JSON representing the current song that is playing. 
  * @param setCurrentSong - Updates state of currentSong. 
+ * @param currPlaylistPlaying - The current playlist that is playing.
+ * @param setCurrPlaylistPlaying - Sets state of currentPlaylistPlaying.
  * @param handleDelete - Handles deleting a song from a playlist.
  * @param playbackRef - A reference to the current Howl.
  * @param pauseSong - A function that handles pausing the song. 
  * @param songIsPlaying - True if a song is playing, false otherwise. 
  * @param setSongIsPlaying - Update state of songIsPlaying. 
  * @param handleDelete - Function for deleting a song from a playlist.
+ * @param history - A list of the songs that were previously played.
+ * @param setHistory - Sets state of history.
+ * @param queue - A list of the songs to be played.
+ * @param setQueue - Sets state of queue.
  * 
  * @returns A component that represents one row of the playlist displayed on the main panel.
  */
@@ -50,16 +56,23 @@ const PlaylistSong = memo(function({
     length, 
     currentSong, 
     setCurrentSong, 
+    currPlaylistPlaying,
+    setCurrPlaylistPlaying,
     handleDelete, 
     playbackRef, 
     pauseSong, 
     songIsPlaying, 
-    setSongIsPlaying
+    setSongIsPlaying,
+    history,
+    setHistory,
+    queue,
+    setQueue
 }) {
 
     /**
      * Plays the current song. 
-     * @todo actually play the song
+     * Also updates the song queue if currentPlaylist differs from
+     * the playlist that this PlaylistSong belongs to.
      */
     const playSong = () => {
         setCurrentSong({
@@ -68,11 +81,10 @@ const PlaylistSong = memo(function({
             "album": album,
             "length": length
         });
-        setSongIsPlaying(true);
         if (playbackRef.current) {
             playbackRef.current.unload();
         }
-        playbackRef.current = createPlayback(title, artist, album, length);
+        playbackRef.current = createPlayback(title, artist, album, length, setSongIsPlaying);
     }
 
     /**
@@ -80,7 +92,6 @@ const PlaylistSong = memo(function({
      */
     const handlePause = () => {
         pauseSong();
-        setSongIsPlaying(false);
     }
 
     /**
@@ -121,6 +132,8 @@ const PlaylistSong = memo(function({
  * @param displaySongs - The list of songs to be displayed. 
  * @param currentSong - The ID of the song that is currently playing. 
  * @param setCurrentSong - Update currentSong. 
+ * @param currPlaylistPlaying - The current playlist that is playing.
+ * @param setCurrPlaylistPlaying - Sets the state of currPlaylistPlaying.
  * @param handleDelete - Function that handles deleting a song from a playlist. 
  * @param playbackRef - A reference to the current Howl. 
  * @param pauseSong - Function that handles pausing the current song. 
@@ -133,6 +146,8 @@ const PlaylistSongs = ({
     displaySongs, 
     currentSong, 
     setCurrentSong, 
+    currPlaylistPlaying,
+    setCurrPlaylistPlaying,
     handleDelete,
     playbackRef, 
     pauseSong, 
@@ -149,6 +164,8 @@ const PlaylistSongs = ({
                 length={song.length}
                 currentSong={currentSong}
                 setCurrentSong={setCurrentSong}
+                currPlaylistPlaying={currPlaylistPlaying}
+                setCurrPlaylistPlaying={setCurrPlaylistPlaying}
                 handleDelete={handleDelete}
                 playbackRef={playbackRef}
                 pauseSong={pauseSong}
