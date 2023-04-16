@@ -15,13 +15,15 @@ import "./style.css";
  */
 const Searchbar = ({
     setHeader, 
-    setDisplayType
+    setDisplayType,
+    setOpenID
 }) => {
     const {
         setDisplaySongs,
     } = useContext(Context);
     const handleSearch = (e) => {
         e.preventDefault();
+        setOpenID("");
         const query = e.target.query.value;
         if (query === "") return;
         setHeader(`Search results for "${query}"`)

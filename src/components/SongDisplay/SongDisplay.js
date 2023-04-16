@@ -27,15 +27,13 @@ import "./style.css";
 const SongDisplay = ({
     displayType,
     displaySongs,
-    currPlaylistPlaying,
-    setCurrPlaylistPlaying,
-    currPlaylistDisplaying,
     songIsPlaying, 
+    openID,
+    setOpenID
 }) => {
     const { 
         currentSong, 
     } = useContext(Context);
-    const [openID, setOpenID] = useState("");
     return (
         <div id="main-panel">
             <button id="song-display-header">

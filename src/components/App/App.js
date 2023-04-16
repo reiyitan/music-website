@@ -20,6 +20,7 @@ const App = () => {
     const [displayType, setDisplayType] = useState("");
     const [displaySongs, setDisplaySongs] = useState([]);
     const [currentSong, setCurrentSong] = useState("");
+    const [openID, setOpenID] = useState("");
     const [currPlaylistPlaying, setCurrPlaylistPlaying] = useState("");
     const [currPlaylistDisplaying, setCurrPlaylistDisplaying] = useState("");
     const [songIsPlaying, setSongIsPlaying] = useState(false);
@@ -94,6 +95,7 @@ const App = () => {
             <Searchbar 
                 setHeader={setHeader}
                 setDisplayType={setDisplayType}
+                setOpenID={setOpenID}
             />
             <Sidebar 
                 setHeader={setHeader} 
@@ -105,10 +107,13 @@ const App = () => {
             <SongDisplay
                 displayType={displayType}
                 displaySongs={displaySongs}
-                playbackRef={playbackRef}
                 songIsPlaying={songIsPlaying}
+                openID={openID}
+                setOpenID={setOpenID}
             />
             <BottomBar
+                currPlaylistPlaying={currPlaylistPlaying}
+                setCurrPlaylistPlaying={setCurrPlaylistPlaying}
                 playbackRef={playbackRef}
                 songIsPlaying={songIsPlaying}
             />
