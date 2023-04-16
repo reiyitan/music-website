@@ -99,7 +99,8 @@ const App = () => {
                 historyRef,
                 setHistory,
                 setCurrentSong,
-                playbackRef
+                playbackRef,
+                setCurrPlaylistPlaying
             );
         }
         if (currPlaylistPlaying !== currPlaylistDisplaying
@@ -111,7 +112,7 @@ const App = () => {
                         && song.artist === artist
                         && song.album === album
                         && song.length === length)
-                )
+                ).reverse()
             )
         }
     }

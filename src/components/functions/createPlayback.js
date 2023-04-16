@@ -12,7 +12,8 @@ export default function createPlayback(
     historyRef,
     setHistory,
     setCurrentSong,
-    playbackRef
+    playbackRef,
+    setCurrPlaylistPlaying
 ) {
     let path;
     if (title === "test1") {
@@ -45,9 +46,11 @@ export default function createPlayback(
             playback.unload();
             if (queueRef.current.length === 0) {
                 setSongIsPlaying(false);
+                setCurrPlaylistPlaying("");
+                setCurrentSong("");
                 return;
             }
-            const newQueue = [...queueRef.current].slice().reverse();
+            const newQueue = queueRef.current;
             const nextSong = newQueue.pop();
             setCurrentSong(nextSong);
             setQueue(newQueue);
@@ -63,7 +66,8 @@ export default function createPlayback(
                 historyRef,
                 setHistory,
                 setCurrentSong,
-                playbackRef
+                playbackRef,
+                setCurrPlaylistPlaying
             );
         }
     });
