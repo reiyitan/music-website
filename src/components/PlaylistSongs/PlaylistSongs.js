@@ -13,7 +13,6 @@ import "./style.css";
  * @param length - The length of the song.
  * @param currentSong - An object representing the current song that is playing. 
  * @param setCurrentSong - Updates state of currentSong. 
- * @param currPlaylistPlaying - The current playlist that is playing.
  * @param setCurrPlaylistPlaying - Sets state of currentPlaylistPlaying.
  * @param currPlaylistDisplaying - The current playlist that is displaying. 
  *     (the playlist that this PlaylistSong belongs to)
@@ -47,14 +46,11 @@ const PlaylistSong = function({
         handleDelete,
         pauseSong,
         playSong,
-        currPlaylistPlaying,
         setCurrPlaylistPlaying,
         currPlaylistDisplaying
     } = useContext(Context);
     /**
      * Plays the current song. 
-     * Also updates the song queue if currentPlaylist differs from
-     * the playlist that this PlaylistSong belongs to.
      */
     const handlePlay = () => {
         setCurrentSong({
@@ -63,6 +59,7 @@ const PlaylistSong = function({
             "album": album,
             "length": length
         });
+        setCurrPlaylistPlaying(currPlaylistDisplaying);
         playSong(title, artist, album, length);
     }
 

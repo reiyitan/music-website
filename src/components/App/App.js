@@ -1,7 +1,7 @@
 import React from "react"; 
 import "./style.css"; 
-import { useState, useRef, createContext } from "react";
-import { createPlayback } from "../functions";
+import { useState, useRef, useEffect, createContext } from "react";
+import { createPlayback, loadPlaylistSongs } from "../functions";
 import Header from "../Header"; 
 import Searchbar from "../Searchbar";
 import Sidebar from "../Sidebar"; 
@@ -26,8 +26,14 @@ const App = () => {
     const [songIsPlaying, setSongIsPlaying] = useState(false);
     const playbackRef = useRef(null);
     const [queue, setQueue] = useState([]);
-    const [history, setHistory] = useState([]); 
+    const queueRef = useRef(queue);
+    useEffect(() => {queueRef.current = [...queue];}, [queue]);
+    const [history, setHistory] = useState([]);
+    const historyRef = useRef(history);
+    useEffect(() => {historyRef.current = [...history];}, [history]);
     const [shuffle, setShuffle] = useState(false);
+    const shuffleRef = useRef(shuffle);
+    useEffect(() => {shuffleRef.current = shuffle;}, [shuffle]);
     const [loop, setLoop] = useState(false);
 
     /**
@@ -35,44 +41,80 @@ const App = () => {
      * 
      * @param target - The song to be deleted. 
      */
-        const handleDelete = (target) => {
-            setDisplaySongs((prevDisplaySongs) => {
-                return prevDisplaySongs.filter((song) => {
-                    return !(song.title === target.title
-                        && song.artist === target.artist
-                        && song.album === target.album
-                        && song.length === target.length
-                    )
-                });
+    const handleDelete = (target) => {
+        setDisplaySongs((prevDisplaySongs) => {
+            return prevDisplaySongs.filter((song) => {
+                return !(song.title === target.title
+                    && song.artist === target.artist
+                    && song.album === target.album
+                    && song.length === target.length
+                )
             });
+        });
+    }
+
+    /**
+    * Pauses the current Howl.
+    */
+    const pauseSong = () => {
+        setSongIsPlaying(false);
+        if (playbackRef.current) {
+            playbackRef.current.pause();
         }
+    }
     
-        /**
-         * Pauses the current Howl.
-         */
-        const pauseSong = () => {
-            setSongIsPlaying(false);
-            if (playbackRef.current) {
-                playbackRef.current.pause();
-            }
+    /**
+    * Creates a Howl from currentSong.
+    * If the requested song is equal to the current song resume the current song,
+    * otherwise load the requested song.
+    * If the currPlaylistDisplaying and currPlaylistPlaying are the same, then don't change the queue,
+    * otherwise update the queue.
+    * 
+    * @param title - The title of the song to be played.
+    * @param artist - The artist of the song to be played.
+    * @param album - The album of the song to be played.
+    * @param length - The length of the song to be played.
+    */
+    const playSong = (title, artist, album, length) => {
+        if (playbackRef.current
+            && currentSong.title === title
+            && currentSong.artist === artist
+            && currentSong.album === album 
+            && currentSong.length === length
+        ) {
+            setSongIsPlaying(true);
+            playbackRef.current.play();
         }
-    
-        /**
-         * Creates a Howl from currentSong.
-         * currentSong's onload() plays the audio once mounted.
-         */
-        const playSong = (title, artist, album, length) => {
-            if (playbackRef.current) {
-                playbackRef.current.unload();
-            }
+        else {
+            if (playbackRef.current) playbackRef.current.unload();
             playbackRef.current = createPlayback(
                 title,
                 artist,
                 album,
                 length,
-                setSongIsPlaying
+                setSongIsPlaying,
+                shuffleRef,
+                queueRef,
+                setQueue,
+                historyRef,
+                setHistory,
+                setCurrentSong,
+                playbackRef
             );
         }
+        if (currPlaylistPlaying !== currPlaylistDisplaying
+                && displayType === "playlist") {
+            setQueue(
+                loadPlaylistSongs("user id here", currPlaylistDisplaying).filter(
+                    (song) => 
+                        !(song.title === title
+                        && song.artist === artist
+                        && song.album === album
+                        && song.length === length)
+                )
+            )
+        }
+    }
 
     const context = {
         setDisplaySongs,
@@ -89,7 +131,8 @@ const App = () => {
         currPlaylistDisplaying,
         setCurrPlaylistDisplaying,
         currPlaylistPlaying,
-        setCurrPlaylistPlaying
+        setCurrPlaylistPlaying,
+        shuffleRef
     };
 
     return (

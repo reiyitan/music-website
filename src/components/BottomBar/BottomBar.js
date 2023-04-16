@@ -27,7 +27,7 @@ const BottomBar = ({
     shuffle,
     setShuffle,
     loop,
-    setLoop
+    setLoop,
 }) => {
     const {
         currentSong,
@@ -38,6 +38,7 @@ const BottomBar = ({
         history,
         setHistory,
         pauseSong,
+        shuffleRef
     } = useContext(Context);
 
     /**
@@ -91,7 +92,8 @@ const BottomBar = ({
                 className={(songIsPlaying) ? "button pause-play pause" : "button pause-play play"}
                 onClick={(songIsPlaying)
                     ? handlePause
-                    : handlePlay}
+                    : handlePlay
+                }
             >
             </button>
             <button 
