@@ -35,6 +35,8 @@ const App = () => {
     const shuffleRef = useRef(shuffle);
     useEffect(() => {shuffleRef.current = shuffle;}, [shuffle]);
     const [loop, setLoop] = useState(false);
+    const loopRef = useRef(loop);
+    useEffect(() => {loopRef.current = loop;}, [loop]);
 
     /**
      * Deletes a song from a playlist.
@@ -94,6 +96,7 @@ const App = () => {
                 length,
                 setSongIsPlaying,
                 shuffleRef,
+                loopRef,
                 queueRef,
                 setQueue,
                 historyRef,
@@ -133,7 +136,6 @@ const App = () => {
         setCurrPlaylistDisplaying,
         currPlaylistPlaying,
         setCurrPlaylistPlaying,
-        shuffleRef
     };
 
     return (

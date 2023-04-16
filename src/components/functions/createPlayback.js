@@ -1,5 +1,13 @@
 import { Howl } from "howler"; 
 
+function populateQueue(queueRef, setQueue, setCurrentSong) {
+    const newQueue = queueRef.current.slice();
+    const nextSong = newQueue.pop();
+    setQueue(newQueue);
+    setCurrentSong(nextSong);
+    return nextSong;
+}
+
 export default function createPlayback(
     title,
     artist, 
@@ -7,6 +15,7 @@ export default function createPlayback(
     length, 
     setSongIsPlaying,
     shuffleRef,
+    loopRef,
     queueRef,
     setQueue,
     historyRef,
@@ -44,16 +53,13 @@ export default function createPlayback(
         },
         onend: () => {
             playback.unload();
-            if (queueRef.current.length === 0) {
+            if (queueRef.current.length === 0 && !loopRef.current) {
                 setSongIsPlaying(false);
                 setCurrPlaylistPlaying("");
                 setCurrentSong("");
                 return;
             }
-            const newQueue = queueRef.current;
-            const nextSong = newQueue.pop();
-            setCurrentSong(nextSong);
-            setQueue(newQueue);
+            const nextSong = populateQueue(queueRef, setQueue, setCurrentSong);
             createPlayback(
                 nextSong.title,
                 nextSong.artist,
@@ -61,6 +67,7 @@ export default function createPlayback(
                 nextSong.length,
                 setSongIsPlaying,
                 shuffleRef,
+                loopRef,
                 queueRef,
                 setQueue,
                 historyRef,
