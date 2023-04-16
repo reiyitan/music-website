@@ -27,6 +27,8 @@ const App = () => {
     const playbackRef = useRef(null);
     const [queue, setQueue] = useState([]);
     const [history, setHistory] = useState([]); 
+    const [shuffle, setShuffle] = useState(false);
+    const [loop, setLoop] = useState(false);
 
     /**
      * Deletes a song from a playlist.
@@ -116,6 +118,10 @@ const App = () => {
                 setCurrPlaylistPlaying={setCurrPlaylistPlaying}
                 playbackRef={playbackRef}
                 songIsPlaying={songIsPlaying}
+                shuffle={shuffle}
+                setShuffle={setShuffle}
+                loop={loop}
+                setLoop={setLoop}
             />
         </Context.Provider>
     );
