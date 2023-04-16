@@ -19,12 +19,11 @@ const Sidebar = ({
     setHeader, 
     setDisplaySongs, 
     displayType, 
-    setDisplayType
+    setDisplayType,
 }) => {
     const [playlists, setPlaylists] = useState(loadPlaylists("user goes here")); 
     const [addPlaylistButtonStyle, setAddPlaylistButtonStyle] = useState("add-playlist-button");
     const [playlistNameInputStyle, setPlaylistNameInputStyle] = useState("hidden");
-    const [currPlaylistDisplaying, setCurrPlaylistDisplaying] = useState("");
     const showNameForm = () => {
         setAddPlaylistButtonStyle("hidden");
         setPlaylistNameInputStyle("playlist-name-input");
@@ -67,8 +66,6 @@ const Sidebar = ({
                         playlists={playlists}
                         setPlaylists={setPlaylists}
                         setHeader={setHeader}
-                        currPlaylistDisplaying={currPlaylistDisplaying}
-                        setCurrPlaylistDisplaying={setCurrPlaylistDisplaying}
                         displayType={displayType}
                         setDisplayType={setDisplayType}
                         setDisplaySongs={setDisplaySongs}

@@ -1,5 +1,7 @@
 import React from "react"; 
+import { Context } from "../App/App";
 import { loadPlaylistSongs } from "../functions";
+import { useContext } from "react";
 import "./style.css";
 
 /**
@@ -22,12 +24,14 @@ const SidebarPlaylist = ({
     playlists, 
     setPlaylists, 
     setHeader, 
-    currPlaylistDisplaying, 
-    setCurrPlaylistDisplaying, 
     displayType, 
     setDisplayType, 
     setDisplaySongs
 }) => {
+    const {
+        currPlaylistDisplaying,
+        setCurrPlaylistDisplaying
+    } = useContext(Context);
     const handleDelete = () => {
         const newList = playlists.filter((playlist) => playlist !== playlistName);
         setPlaylists(newList);

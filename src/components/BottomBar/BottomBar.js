@@ -1,26 +1,40 @@
 import React from "react";
+import { Context } from "../App/App";
+import { useContext } from "react";
 import "./style.css";
-import { useState } from "react";
 
 /**
  * Component for the bottom bar of the webpage.
  * 
  * @param currentSong - Information for the song that is currently playing. Part of index.js state.
  * @param setCurrentSong - Used to update state of currentSong.
+ * @param currPlaylistPlaying - The current playlist being listened to.
+ * @param setCurrPlaylistPlaying - Set state of currPlaylistPlaying.
  * @param playbackRef - A reference to the current Howl. 
  * @param pauseSong - Function that handles pausing the current song. 
  * @param songIsPlaying - True if a song is currently playing, false otherwise. 
  * @param setSongIsPlaying - Sets the state of songIsPlaying.
+ * @param history - A list of songs that were previously played.
+ * @param setHistory - Set state of history.
+ * @param queue - The queue of songs to be played.
+ * @param setQueue - Sets the song queue. 
  */
 const BottomBar = ({
-    currentSong, 
-    setCurrentSong, 
+    currPlaylistPlaying,
+    setCurrPlaylistPlaying,
     playbackRef, 
-    pauseSong, 
     songIsPlaying, 
-    setSongIsPlaying
 }) => {
-
+    const {
+        currentSong,
+        setCurrentSong,
+        setSongIsPlaying,
+        queue,
+        setQueue,
+        history,
+        setHistory,
+        pauseSong,
+    } = useContext(Context);
     /**
      * Sets the pp-button to display the pause icon and plays the chosen .mp3. 
      */
@@ -35,7 +49,6 @@ const BottomBar = ({
      * Sets the pp-button to display the play icon and plays the chosen .mp3.
      */
     const handlePause = () => {
-        setSongIsPlaying(false);
         pauseSong();
     }
 
@@ -49,7 +62,7 @@ const BottomBar = ({
     }
 
     /**
-     * Skips the current song and plays the next song. 
+     * Skips the current song and plays the next song in the queue. 
      */
     const handleForward = () => {
 

@@ -1,5 +1,6 @@
 import React from "react";
-import { useState } from "react";
+import { Context } from "../App/App";
+import { useState, useContext } from "react";
 import PlaylistSongs from "../PlaylistSongs";
 import SearchbarSongs from "../SearchbarSongs";
 import "./style.css";
@@ -9,33 +10,31 @@ import "./style.css";
  * 
  * @param displayType - Used to distinguish whether the component should display PlaylistSongs or SearchbarSongs.
  * @param displaySongs - The list of songs to be displayed.
- * @param setDisplaySongs - Used to update state when a song is removed or added to the playlist through the SongDisplay.
  * @param currentSong - The current song that is playing.
  * @param setCurrentSong - Used to update the current song that is playing.
+ * @param currPlaylistPlaying - The current playlist that is playing. 
+ * @param setCurrPlaylistPlaying - Update state of currPlaylistPlaying.
+ * @param currPlaylistDisplaying - The current playlist being displayed.
  * @param handleDelete - Used to delete a song from a playlist. 
- * @param playbackRef - A reference to the current Howl that is playing.
  * @param pauseSong - A function that handles pausing the current Howl. 
  * @param songIsPlaying - True if a song if currently playing. False otherwise. 
  * @param setSongIsPlaying - Sets whether or not a song is playing. 
- * @param queue - The queue of songs to be played.
- * @param setQueue - Sets the song queue. 
+ * @param history - A list of songs that were previously played.
+ * @param setHistory - Set state of history.
  * 
  * @returns The section of the webpage dedicated to displaying songs.
  */
 const SongDisplay = ({
     displayType,
     displaySongs,
-    setDisplaySongs, 
-    currentSong, 
-    setCurrentSong, 
-    handleDelete, 
-    playbackRef, 
-    pauseSong, 
+    currPlaylistPlaying,
+    setCurrPlaylistPlaying,
+    currPlaylistDisplaying,
     songIsPlaying, 
-    setSongIsPlaying,
-    queue, 
-    setQueue
 }) => {
+    const { 
+        currentSong, 
+    } = useContext(Context);
     const [openID, setOpenID] = useState("");
     return (
         <div id="main-panel">
@@ -50,26 +49,16 @@ const SongDisplay = ({
                 {(displayType==="playlist")
                     ? <PlaylistSongs
                           displaySongs={displaySongs}
-                          setDisplaySongs={setDisplaySongs}
                           currentSong={currentSong}
-                          setCurrentSong={setCurrentSong}
-                          handleDelete={handleDelete}
-                          playbackRef={playbackRef}
-                          pauseSong={pauseSong}
                           songIsPlaying={songIsPlaying}
-                          setSongIsPlaying={setSongIsPlaying}
                     />
                     : <SearchbarSongs 
                           displaySongs={displaySongs}
                           currentSong={currentSong}
-                          setCurrentSong={setCurrentSong}
                           openID={openID}
                           setOpenID={setOpenID}
-                          playbackRef={playbackRef}
-                          pauseSong={pauseSong}
                           songIsPlaying={songIsPlaying}
-                          setSongIsPlaying={setSongIsPlaying}
-                      />
+                    />
                 }
             </div>
         </div>

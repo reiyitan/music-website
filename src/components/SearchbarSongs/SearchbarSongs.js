@@ -1,5 +1,6 @@
 import React from "react"; 
-import { useState, memo } from "react";
+import { Context } from "../App/App";
+import { memo, useState, useContext } from "react";
 import { loadPlaylists, createPlayback, isPlaying } from "../functions";
 import "./style.css";
 
@@ -67,14 +68,12 @@ const propsAreEqual = (prevProps, nextProps) => {
  * @param artist - The artist of the Searchbar song. 
  * @param album - The album of the Searchbar song. 
  * @param length - The length of the Searchbar song. 
- * @param currentSong - The current song being played by the web app.
- * @param setCurrentSong - Used to set the current song being played by the web app. 
+ * @param currentSong - The current song that is playing.
+ * @param setCurrentSong - Sets the value of currentSong.
  * @param popupShowing - Either true or false. True if add to playlist popup should show. 
  * @param setOpenID - Used to change the state in SongDisplay to let the component know what popup is showing. 
- * @playbackRef - A reference to the current Howl.
  * @param pauseSong - A function that handles pausing a song. 
  * @param songIsPlaying - True if a song is currently playing. False otherwise. 
- * @param setSongIsPlaying - Updates the state of songIsPlaying. 
  * 
  * @return One of the search results to be displayed. 
  */
@@ -83,15 +82,16 @@ const SearchbarSong = memo(function SearchbarSong({
     artist, 
     album, 
     length, 
-    currentSong, 
-    setCurrentSong,
+    currentSong,
     popupShowing, 
     setOpenID, 
-    playbackRef, 
-    pauseSong, 
     songIsPlaying, 
-    setSongIsPlaying
 }) {
+    const {
+        setCurrentSong,
+        pauseSong,
+        playSong
+    } = useContext(Context);
     const [playlists, setPlaylists] = useState([]);
     /**
      * When the + button is clicked on a song, the user is prompted
@@ -109,25 +109,14 @@ const SearchbarSong = memo(function SearchbarSong({
     /**
      * Plays the current song. 
      */
-    const playSong = () => {
+    const handlePlay = () => {
         setCurrentSong({
             "title": title,
             "artist": artist,
             "album": album,
             "length": length
         });
-        if (playbackRef.current) {
-            playbackRef.current.unload();
-        }
-        playbackRef.current = createPlayback(title, artist, album, length, setSongIsPlaying);
-    }
-
-    /**
-     * Pauses a song component if it is already playing and it is clicked again.
-     */
-    const handlePause = () => {
-        pauseSong(); 
-        setSongIsPlaying(false);
+        playSong(title, artist, album, length);
     }
 
     return (
@@ -137,8 +126,8 @@ const SearchbarSong = memo(function SearchbarSong({
                         ? "song-row-playbutton playing"
                         : "song-row-playbutton notplaying"}
                     onClick={(isPlaying(currentSong, title, artist, album, length, songIsPlaying))
-                        ? handlePause
-                        : playSong
+                        ? pauseSong
+                        : handlePlay
                     }>
                     <span className="song-span-title">{title}</span>
                     <span className="song-span-artist">{artist}</span>
@@ -178,21 +167,14 @@ const SearchbarSong = memo(function SearchbarSong({
  * @param setCurrentSong - Update what song is currently playing. 
  * @param openID - The ID of the SearchbarSong that has its add to playlist menu open. 
  * @param setOpenID - Update what SearchbarSong is currently open by changing openID.
- * @playbackRef - A reference to the current Howl. 
- * @pauseSong - A function that handles pausing the current song. 
- * @songIsPlaying - True if a song is playing, false otherwise. 
- * @setSongIsPlaying - Update songIsPlaying. 
+ * @param songIsPlaying - True if a song is playing, false otherwise. 
  */
 const SearchbarSongs = ({
     displaySongs, 
-    currentSong, 
-    setCurrentSong, 
+    currentSong,
     openID, 
     setOpenID,
-    playbackRef, 
-    pauseSong, 
     songIsPlaying, 
-    setSongIsPlaying
 }) => {
     return (
         displaySongs.map((song) => (
@@ -203,16 +185,12 @@ const SearchbarSongs = ({
                 album={song.album}
                 length={song.length}
                 currentSong={currentSong}
-                setCurrentSong={setCurrentSong}
                 popupShowing={(openID===`${song.title}${song.artist}${song.album}${song.length}`)
                                 ? true
                                 : false
                 }
                 setOpenID={setOpenID}
-                playbackRef={playbackRef}
-                pauseSong={pauseSong}
                 songIsPlaying={songIsPlaying}
-                setSongIsPlaying={setSongIsPlaying}
             />
         ))
     ); 

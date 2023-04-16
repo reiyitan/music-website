@@ -1,4 +1,6 @@
 import React from "react";
+import { Context } from "../App/App";
+import { useContext } from "react"
 import { loadAllSongs } from "../functions";
 import "./style.css";
 
@@ -12,10 +14,12 @@ import "./style.css";
  * @returns The searchbar component. 
  */
 const Searchbar = ({
-    setDisplaySongs, 
     setHeader, 
     setDisplayType
 }) => {
+    const {
+        setDisplaySongs,
+    } = useContext(Context);
     const handleSearch = (e) => {
         e.preventDefault();
         const query = e.target.query.value;
