@@ -1,30 +1,8 @@
 import React from "react";
 import { Context } from "../App/App";
-import { memo, useContext } from "react";
+import { useContext } from "react";
 import { isPlaying } from "../functions";
 import "./style.css";
-
-/**
- * Determines when a component should not be rerendered.
- * 
- * @param prevProps - The props from the previous render of this component. 
- * @param nextProps - The props from the next render of this component. 
- * @returns true if this component should NOT be rerendered. false if this component SHOULD be rerendered.
- */
-const propsAreEqual = (prevProps, nextProps) => {
-    const wasPlaying = isPlaying(prevProps.currentSong, prevProps.title,
-        prevProps.artist, prevProps.album, prevProps.length, prevProps.songIsPlaying); 
-    const willPlay = isPlaying(nextProps.currentSong, nextProps.title, 
-        nextProps.artist, nextProps.album, nextProps.length, nextProps.songIsPlaying);
-
-    if (wasPlaying && !willPlay) {
-        return false;
-    }
-    if (!wasPlaying && willPlay) {
-        return false;
-    }
-    return true;
-}
 
 /**
  * A component for displaying song information in the main panel. 
@@ -51,7 +29,7 @@ const propsAreEqual = (prevProps, nextProps) => {
  * 
  * @returns A component that represents one row of the playlist displayed on the main panel.
  */
-const PlaylistSong = memo(function({
+const PlaylistSong = function({
     title, 
     artist, 
     album, 
@@ -118,7 +96,7 @@ const PlaylistSong = memo(function({
             <button className="song-row-deletebutton" onClick={deleteSong}>-</button>
         </div>
     );
-}, propsAreEqual);
+}
 
 /**
  * Component that maps each song in displaySongs to a PlaylistSong component. 

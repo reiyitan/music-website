@@ -1,7 +1,7 @@
 import React from "react"; 
 import { Context } from "../App/App";
-import { memo, useState, useContext } from "react";
-import { loadPlaylists, createPlayback, isPlaying } from "../functions";
+import { useState, useContext } from "react";
+import { loadPlaylists, isPlaying } from "../functions";
 import "./style.css";
 
 /**
@@ -31,34 +31,11 @@ const Playlist = ({
         <>
             <button 
                 className="playlist-select-button"
-                    onClick={handleClick}>{playlistTitle}</button>
+                onClick={handleClick}>
+                {playlistTitle}
+            </button>
         </>
     )
-}
-
-/**
- * Determines when a component should not be rerendered.
- * 
- * @param prevProps - The props from the previous render of this component. 
- * @param nextProps - The props from the next render of this component. 
- * @returns true if this component should NOT be rerendered. false if this component SHOULD be rerendered.
- */
-const propsAreEqual = (prevProps, nextProps) => {
-    if (prevProps.popupShowing !== nextProps.popupShowing) {
-        return false;
-    }
-    const wasPlaying = isPlaying(prevProps.currentSong, prevProps.title,
-        prevProps.artist, prevProps.album, prevProps.length, prevProps.songIsPlaying); 
-    const willPlay = isPlaying(nextProps.currentSong, nextProps.title, 
-        nextProps.artist, nextProps.album, nextProps.length, nextProps.songIsPlaying);
-
-    if (wasPlaying && !willPlay) {
-        return false;
-    }
-    if (!wasPlaying && willPlay) {
-        return false;
-    }
-    return true;
 }
 
 /**
@@ -77,14 +54,14 @@ const propsAreEqual = (prevProps, nextProps) => {
  * 
  * @return One of the search results to be displayed. 
  */
-const SearchbarSong = memo(function SearchbarSong({
+const SearchbarSong = function SearchbarSong({
     title, 
     artist, 
     album, 
     length, 
+    setOpenID,
     currentSong,
     popupShowing, 
-    setOpenID, 
     songIsPlaying, 
 }) {
     const {
@@ -157,7 +134,7 @@ const SearchbarSong = memo(function SearchbarSong({
             </div>
         </>
     );
-}, propsAreEqual);
+}
 
 /**
  * Component containing all SearchbarSong components. 
@@ -172,7 +149,7 @@ const SearchbarSong = memo(function SearchbarSong({
 const SearchbarSongs = ({
     displaySongs, 
     currentSong,
-    openID, 
+    openID,
     setOpenID,
     songIsPlaying, 
 }) => {
