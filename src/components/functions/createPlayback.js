@@ -47,7 +47,7 @@ export default function createPlayback(
                 setSongIsPlaying(false);
                 return;
             }
-            const newQueue = [...queueRef.current];
+            const newQueue = [...queueRef.current].slice().reverse();
             const nextSong = newQueue.pop();
             setCurrentSong(nextSong);
             setQueue(newQueue);
