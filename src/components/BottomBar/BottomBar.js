@@ -24,6 +24,10 @@ const BottomBar = ({
     setCurrPlaylistPlaying,
     playbackRef, 
     songIsPlaying, 
+    shuffle,
+    setShuffle,
+    loop,
+    setLoop
 }) => {
     const {
         currentSong,
@@ -35,6 +39,7 @@ const BottomBar = ({
         setHistory,
         pauseSong,
     } = useContext(Context);
+
     /**
      * Sets the pp-button to display the pause icon and plays the chosen .mp3. 
      */
@@ -73,20 +78,30 @@ const BottomBar = ({
             <span className="bottom-bar-title">{currentSong.title}</span>
             <span className="bottom-bar-artist">{currentSong.artist}</span>
             <button 
-                className={"button rewind-forward rw-button"}
+                className={(shuffle) ? "button small shuffle shuffle-on" : "button small shuffle shuffle-off"}
+                onClick={() => setShuffle(!shuffle)}
+            >
+            </button>
+            <button 
+                className={"button small rw"}
                 onClick={handleRewind}
             >
             </button>
             <button 
-                className={(songIsPlaying) ? "button pause-play pause-button" : "button pause-play play-button"}
+                className={(songIsPlaying) ? "button pause-play pause" : "button pause-play play"}
                 onClick={(songIsPlaying)
                     ? handlePause
                     : handlePlay}
             >
             </button>
             <button 
-                className={"button rewind-forward ff-button"}
+                className={"button small ff"}
                 onClick={handleForward}
+            >
+            </button>
+            <button 
+                className={(loop) ? "button small loop loop-on" : "button small loop loop-off"}
+                onClick={() => setLoop(!loop)}
             >
             </button>
         </div>
