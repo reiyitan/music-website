@@ -16,7 +16,7 @@ const Context = createContext();
  * @returns The main component.
  */
 const App = () => {
-    const [header, setHeader] = useState("");
+    const [header, setHeader] = useState("work in progress");
     const [displayType, setDisplayType] = useState("");
     const [displaySongs, setDisplaySongs] = useState([]);
     const [currentSong, setCurrentSong] = useState("");
