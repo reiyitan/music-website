@@ -62,6 +62,8 @@ const BottomBar = ({
      * song have elapsed. 
      */
     const handleRewind = () => {
+        if (!playbackRef.current) return;
+        if (playbackRef.current.seek() >= 5 || historyRef.current.length === 0) playbackRef.current.seek(0);
 
     }
 
@@ -69,7 +71,11 @@ const BottomBar = ({
      * Skips the current song and plays the next song in the queue. 
      */
     const handleForward = () => {
-        if (playbackRef.current) playbackRef.current.unload(); 
+        if (playbackRef.current) {
+            playbackRef.current.unload(); 
+            historyRef.current.push(currentSong);
+        }
+        console.log(historyRef.current);
         let nextSong;
         if (queueRef.current.length > 0) nextSong = queueRef.current.pop();
         else if (loop && currPlaylistPlaying) {

@@ -9,22 +9,16 @@ import "./style.css";
  * Represents a playlist. Clicking on a Playlist adds a song to it from the Searchbar. 
  * 
  * @param playlistTitle - The title of this playlist.
- * @param songTitle - The title of the song to be added.
- * @param songArtist - The artist of the song to be added.
- * @param songAlbum - The album of the song to be added.
- * @param songLength - The length of the song to be added. 
+ * @param song - The song to be added to the playlist.
  * 
  * @returns The component to be displayed in the add-to-playlist menu.
  */
 const Playlist = ({
     playlistTitle, 
-    songTitle, 
-    songArtist, 
-    songAlbum, 
-    songLength
+    song
 }) => {
     const handleClick = () => {
-        console.log(`TODO: add ${songTitle} by ${songArtist} to ${playlistTitle}`);
+        console.log(`TODO: add ${song.title} by ${song.artist} to ${playlistTitle}`);
     }
 
     return (
@@ -54,16 +48,13 @@ const Playlist = ({
  * 
  * @return One of the search results to be displayed. 
  */
-const SearchbarSong = function SearchbarSong({
-    title, 
-    artist, 
-    album, 
-    length, 
+const SearchbarSong = ({
+    song,
     setOpenID,
     currentSong,
     popupShowing, 
-    songIsPlaying, 
-}) {
+    songIsPlaying
+}) => {
     const {
         setCurrentSong,
         pauseSong,
@@ -81,7 +72,7 @@ const SearchbarSong = function SearchbarSong({
             return
         }
         setPlaylists(loadPlaylists("user goes here"));
-        setOpenID(`${title}${artist}${album}${length}`);
+        setOpenID(`${song.title}${song.artist}${song.album}${song.length}`);
     }
 
     /**
@@ -89,29 +80,24 @@ const SearchbarSong = function SearchbarSong({
      */
     const handlePlay = () => {
         queueRef.current = [];
-        setCurrentSong({
-            "title": title,
-            "artist": artist,
-            "album": album,
-            "length": length
-        });
-        playSong(title, artist, album, length);
+        setCurrentSong(song);
+        playSong(song);
     }
 
     return (
         <>
             <div className="song-row">
-                <button className={(isPlaying(currentSong, title, artist, album, length, songIsPlaying)) 
+                <button className={(isPlaying(currentSong, song, songIsPlaying)) 
                         ? "song-row-playbutton playing"
                         : "song-row-playbutton notplaying"}
-                    onClick={(isPlaying(currentSong, title, artist, album, length, songIsPlaying))
+                    onClick={(isPlaying(currentSong, song, songIsPlaying))
                         ? pauseSong
                         : handlePlay
                     }>
-                    <span className="song-span-title">{title}</span>
-                    <span className="song-span-artist">{artist}</span>
-                    <span className="song-span-album">{album}</span>
-                    <span className="song-span-length">{length}</span>
+                    <span className="song-span-title">{song.title}</span>
+                    <span className="song-span-artist">{song.artist}</span>
+                    <span className="song-span-album">{song.album}</span>
+                    <span className="song-span-length">{song.length}</span>
                 </button>
                 <button 
                     className={(popupShowing) 
@@ -126,10 +112,7 @@ const SearchbarSong = function SearchbarSong({
                         <Playlist
                             key={playlistTitle}
                             playlistTitle={playlistTitle} 
-                            songTitle={title}
-                            songArtist={artist}
-                            songAlbum={album}
-                            songLength={length}
+                            song={song}
                         />
                     ))}
                 </div>
@@ -159,10 +142,7 @@ const SearchbarSongs = ({
         displaySongs.map((song) => (
             <SearchbarSong
                 key={`${song.title}${song.artist}${song.album}${song.length}`}
-                title={song.title}
-                artist={song.artist}
-                album={song.album}
-                length={song.length}
+                song={song}
                 currentSong={currentSong}
                 popupShowing={(openID===`${song.title}${song.artist}${song.album}${song.length}`)
                                 ? true

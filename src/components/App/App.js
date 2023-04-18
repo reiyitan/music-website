@@ -73,13 +73,13 @@ const App = () => {
     * @param album - The album of the song to be played.
     * @param length - The length of the song to be played.
     */
-    const playSong = (title, artist, album, length) => {
+    const playSong = (song) => {
         //the requested song is already playing. 
         if (playbackRef.current
-            && currentSong.title === title
-            && currentSong.artist === artist
-            && currentSong.album === album 
-            && currentSong.length === length
+            && currentSong.title === song.title
+            && currentSong.artist === song.artist
+            && currentSong.album === song.album 
+            && currentSong.length === song.length
         ) {
             setSongIsPlaying(true);
             playbackRef.current.play();
@@ -88,10 +88,7 @@ const App = () => {
         else {
             if (playbackRef.current) playbackRef.current.unload();
             playbackRef.current = createPlayback(
-                title,
-                artist,
-                album,
-                length,
+                song,
                 setSongIsPlaying,
                 shuffleRef,
                 loopRef,
@@ -108,10 +105,7 @@ const App = () => {
             queueRef.current = slicePlaylist(
                 "user goes here",
                 currPlaylistDisplaying,
-                title,
-                artist,
-                album,
-                length
+                song
             ).reverse()
         }
     }

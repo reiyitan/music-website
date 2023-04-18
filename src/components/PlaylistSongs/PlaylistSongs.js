@@ -45,14 +45,15 @@ const PlaylistSong = function({
      * Plays the current song. 
      */
     const handlePlay = () => {
-        setCurrentSong({
+        const song = {
             "title": title,
             "artist": artist,
             "album": album,
             "length": length
-        });
+        };
+        setCurrentSong(song);
         setCurrPlaylistPlaying(currPlaylistDisplaying);
-        playSong(title, artist, album, length);
+        playSong(song);
     }
 
     /**
