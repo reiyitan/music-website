@@ -35,10 +35,7 @@ const Playlist = ({
 /**
  * A component that represents a single song when a user uses the searchbar. 
  * 
- * @param title - The title of the Searchbar Song. 
- * @param artist - The artist of the Searchbar song. 
- * @param album - The album of the Searchbar song. 
- * @param length - The length of the Searchbar song. 
+ * @param song - An object containing this song's information.
  * @param currentSong - The current song that is playing.
  * @param setCurrentSong - Sets the value of currentSong.
  * @param popupShowing - Either true or false. True if add to playlist popup should show. 

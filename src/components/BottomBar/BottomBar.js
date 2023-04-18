@@ -75,7 +75,6 @@ const BottomBar = ({
             playbackRef.current.unload(); 
             historyRef.current.push(currentSong);
         }
-        console.log(historyRef.current);
         let nextSong;
         if (queueRef.current.length > 0) nextSong = queueRef.current.pop();
         else if (loop && currPlaylistPlaying) {
@@ -89,10 +88,7 @@ const BottomBar = ({
             return;
         }
         playbackRef.current = createPlayback(
-            nextSong.title,
-            nextSong.artist,
-            nextSong.album,
-            nextSong.length,
+            nextSong,
             setSongIsPlaying,
             shuffleRef,
             loopRef,

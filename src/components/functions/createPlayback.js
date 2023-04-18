@@ -63,6 +63,7 @@ export default function createPlayback(
         onend: () => {
             playback.unload();
             historyRef.current.push(song);
+            console.log(historyRef.current);
             if ((queueRef.current.length === 0 && !loopRef.current) || displayType === "search") {
                 stopPlayback(setSongIsPlaying, setCurrPlaylistPlaying, setCurrentSong, playbackRef);
                 return;
