@@ -1,7 +1,7 @@
 import React from "react";
 import { Context } from "../App/App";
 import { useContext } from "react";
-import { createPlayback, loadPlaylistSongs } from "../functions";
+import { createPlayback, loadPlaylistSongs, songsAreEqual } from "../functions";
 import "./style.css";
 
 /**
@@ -73,8 +73,14 @@ const BottomBar = ({
     const handleForward = () => {
         if (playbackRef.current) {
             playbackRef.current.unload(); 
+        }
+        if (playbackRef.current
+            && historyRef.current.length > 0
+            && !songsAreEqual(historyRef.current[historyRef.current.length - 1], currentSong)
+        ) {
             historyRef.current.push(currentSong);
         }
+
         let nextSong;
         if (queueRef.current.length > 0) nextSong = queueRef.current.pop();
         else if (loop && currPlaylistPlaying) {

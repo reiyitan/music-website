@@ -4,3 +4,4 @@ export { default as loadAllSongs } from "./loadAllSongs";
 export { default as createPlayback } from "./createPlayback";
 export { default as isPlaying } from "./isPlaying";
 export { default as slicePlaylist } from "./slicePlaylist";
+export { default as songsAreEqual } from "./songsAreEqual";

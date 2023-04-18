@@ -1,4 +1,5 @@
 import { default as loadPlaylistSongs } from "./loadPlaylistSongs";
+import { default as songsAreEqual } from "./songsAreEqual";
 /**
  * Takes a playlist and searches the playlist in order for a song. 
  * Once the song is found, the function returns the rest of the songs
@@ -18,12 +19,7 @@ export default function slicePlaylist(
     let playlist = loadPlaylistSongs(user, playlistName);
     for (let i = 0; i < playlist.length; i++) {
         let currSong = playlist[i]; 
-        if (
-            currSong.title === song.title
-            && currSong.artist === song.artist 
-            && currSong.album === song.album
-            && currSong.length === song.length
-        ) {
+        if (songsAreEqual(currSong, song)) {
             return playlist.slice(i + 1);
         }
     }
