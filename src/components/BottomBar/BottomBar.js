@@ -1,7 +1,7 @@
 import React from "react";
 import { Context } from "../App/App";
 import { useContext } from "react";
-import { createPlayback, loadPlaylistSongs, songsAreEqual } from "../functions";
+import { createPlayback, loadPlaylistSongs } from "../functions";
 import "./style.css";
 
 /**
@@ -36,7 +36,7 @@ const BottomBar = ({
         setCurrentSong,
         setSongIsPlaying,
         pauseSong,
-        shuffleRef,
+        shuffleRef
     } = useContext(Context);
 
     /**
@@ -62,9 +62,28 @@ const BottomBar = ({
      * song have elapsed. 
      */
     const handleRewind = () => {
-        if (!playbackRef.current) return;
-        if (playbackRef.current.seek() >= 5 || historyRef.current.length === 0) playbackRef.current.seek(0);
-
+        if (!playbackRef.current && historyRef.current.length === 0) return;
+        if (playbackRef.current 
+            && (playbackRef.current.seek() >= 5 
+            || historyRef.current.length === 0)
+        ) playbackRef.current.seek(0);
+        else {
+            queueRef.current.push(currentSong); 
+            const previousSong = historyRef.current.pop(); 
+            createPlayback(
+                previousSong,
+                setSongIsPlaying,
+                shuffleRef,
+                loopRef,
+                queueRef,
+                historyRef,
+                setCurrentSong,
+                playbackRef,
+                displayType,
+                currPlaylistPlayingRef,
+                setCurrPlaylistPlaying
+            );
+        }
     }
 
     /**
@@ -73,16 +92,12 @@ const BottomBar = ({
     const handleForward = () => {
         if (playbackRef.current) {
             playbackRef.current.unload(); 
-        }
-        if (playbackRef.current
-            && historyRef.current.length > 0
-            && !songsAreEqual(historyRef.current[historyRef.current.length - 1], currentSong)
-        ) {
             historyRef.current.push(currentSong);
         }
-
         let nextSong;
-        if (queueRef.current.length > 0) nextSong = queueRef.current.pop();
+        if (queueRef.current.length > 0) {
+            nextSong = queueRef.current.pop();
+        }
         else if (loop && currPlaylistPlaying) {
             queueRef.current = loadPlaylistSongs("user goes here", currPlaylistPlaying).reverse();
             nextSong = queueRef.current.pop();
@@ -93,7 +108,7 @@ const BottomBar = ({
             playbackRef.current = null;
             return;
         }
-        playbackRef.current = createPlayback(
+        createPlayback(
             nextSong,
             setSongIsPlaying,
             shuffleRef,

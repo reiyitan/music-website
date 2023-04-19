@@ -1,5 +1,6 @@
 import { Howl } from "howler"; 
 import { default as loadPlaylistSongs } from "./loadPlaylistSongs";
+import { songsAreEqual } from "../functions";
 
 function stopPlayback(
     setSongIsPlaying, 
@@ -51,6 +52,7 @@ export default function createPlayback(
     else {
         path = `../../songs/${song.title}.mp3`;
     }
+    if (playbackRef.current) playbackRef.current.unload();
     const playback = new Howl({
         src: [path],
         volume: 0.2,
@@ -62,8 +64,10 @@ export default function createPlayback(
         },
         onend: () => {
             playback.unload();
-            historyRef.current.push(song);
-            console.log(historyRef.current);
+            if (
+                historyRef.current.length === 0
+                || !songsAreEqual(historyRef.current[historyRef.current.length - 1], song)
+            ) historyRef.current.push(song);
             if ((queueRef.current.length === 0 && !loopRef.current) || displayType === "search") {
                 stopPlayback(setSongIsPlaying, setCurrPlaylistPlaying, setCurrentSong, playbackRef);
                 return;

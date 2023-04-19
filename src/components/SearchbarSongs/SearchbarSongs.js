@@ -1,7 +1,7 @@
 import React from "react"; 
 import { Context } from "../App/App";
 import { useState, useContext } from "react";
-import { loadPlaylists, isPlaying } from "../functions";
+import { loadPlaylists, isPlaying, songsAreEqual } from "../functions";
 import "./style.css";
 
 /**
@@ -56,7 +56,8 @@ const SearchbarSong = ({
         setCurrentSong,
         pauseSong,
         playSong,
-        queueRef
+        queueRef,
+        historyRef,
     } = useContext(Context);
     const [playlists, setPlaylists] = useState([]);
     /**
@@ -76,6 +77,11 @@ const SearchbarSong = ({
      * Plays the current song. 
      */
     const handlePlay = () => {
+        if (
+            (historyRef.current.length === 0
+            || !songsAreEqual(historyRef.current[historyRef.current.length - 1], song))
+            && currentSong !== ""
+        ) historyRef.current.push(currentSong);
         queueRef.current = [];
         setCurrentSong(song);
         playSong(song);

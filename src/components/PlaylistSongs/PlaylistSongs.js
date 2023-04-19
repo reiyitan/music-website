@@ -1,7 +1,7 @@
 import React from "react";
 import { Context } from "../App/App";
 import { useContext } from "react";
-import { isPlaying } from "../functions";
+import { isPlaying, songsAreEqual } from "../functions";
 import "./style.css";
 
 /**
@@ -28,17 +28,22 @@ const PlaylistSong = function({
 }) {
     const {
         setCurrentSong,
-        setSongIsPlaying,
         handleDelete,
         pauseSong,
         playSong,
         setCurrPlaylistPlaying,
-        currPlaylistDisplaying
+        currPlaylistDisplaying,
+        historyRef
     } = useContext(Context);
     /**
      * Plays the current song. 
      */
     const handlePlay = () => {
+        if (
+            (historyRef.current.length === 0
+            || !songsAreEqual(historyRef.current[historyRef.current.length - 1], song))
+            && currentSong !== ""
+        ) historyRef.current.push(currentSong);
         setCurrentSong(song);
         setCurrPlaylistPlaying(currPlaylistDisplaying);
         playSong(song);

@@ -1,7 +1,7 @@
 import React from "react"; 
 import "./style.css"; 
 import { useState, useRef, useEffect, createContext } from "react";
-import { createPlayback, slicePlaylist } from "../functions";
+import { createPlayback, slicePlaylist, songsAreEqual } from "../functions";
 import Header from "../Header"; 
 import Searchbar from "../Searchbar";
 import Sidebar from "../Sidebar"; 
@@ -75,12 +75,7 @@ const App = () => {
     */
     const playSong = (song) => {
         //the requested song is already playing. 
-        if (playbackRef.current
-            && currentSong.title === song.title
-            && currentSong.artist === song.artist
-            && currentSong.album === song.album 
-            && currentSong.length === song.length
-        ) {
+        if (playbackRef.current && songsAreEqual(currentSong, song)) {
             setSongIsPlaying(true);
             playbackRef.current.play();
         }
@@ -122,7 +117,9 @@ const App = () => {
         setCurrPlaylistDisplaying,
         currPlaylistPlaying,
         setCurrPlaylistPlaying,
-        queueRef
+        historyRef,
+        queueRef,
+        playbackRef
     };
 
     return (
