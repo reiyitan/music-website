@@ -29,7 +29,8 @@ const BottomBar = ({
     queueRef,
     historyRef,
     displayType,
-    currPlaylistPlayingRef
+    currPlaylistPlayingRef,
+    currentSongRef
 }) => {
     const {
         currentSong,
@@ -77,6 +78,7 @@ const BottomBar = ({
                 loopRef,
                 queueRef,
                 historyRef,
+                currentSongRef,
                 setCurrentSong,
                 playbackRef,
                 displayType,
@@ -115,6 +117,7 @@ const BottomBar = ({
             loopRef,
             queueRef,
             historyRef,
+            currentSongRef,
             setCurrentSong,
             playbackRef,
             displayType,
@@ -123,13 +126,27 @@ const BottomBar = ({
         );
     }
 
+    const handleShuffle = () => {
+        let newQueue = loadPlaylistSongs("user goes here", currPlaylistPlaying);
+        //playlist should be shuffled
+        if (!shuffle) {
+
+        }
+        //playlist should not be shuffled
+        //load playlist then play from currentSong
+        else {
+
+        }
+        setShuffle(!shuffle);
+    }
+
     return (
         <div id="bottom-bar">
             <span className="bottom-bar-title">{currentSong.title}</span>
             <span className="bottom-bar-artist">{currentSong.artist}</span>
             <button 
                 className={(shuffle) ? "button small shuffle shuffle-on" : "button small shuffle shuffle-off"}
-                onClick={() => setShuffle(!shuffle)}
+                onClick={handleShuffle}
             >
             </button>
             <button 

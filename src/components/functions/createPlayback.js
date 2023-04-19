@@ -21,6 +21,7 @@ export default function createPlayback(
     loopRef,
     queueRef,
     historyRef,
+    currentSongRef,
     setCurrentSong,
     playbackRef,
     displayType,
@@ -53,13 +54,14 @@ export default function createPlayback(
         path = `../../songs/${song.title}.mp3`;
     }
     if (playbackRef.current) playbackRef.current.unload();
+    setCurrentSong(song);
     const playback = new Howl({
         src: [path],
         volume: 0.2,
         onload: () => {
+            if (!songsAreEqual(song, currentSongRef.current)) return;
             playback.play();
             setSongIsPlaying(true);
-            setCurrentSong(song);
             playbackRef.current = playback;
         },
         onend: () => {
@@ -84,6 +86,7 @@ export default function createPlayback(
                 loopRef,
                 queueRef,
                 historyRef,
+                currentSongRef,
                 setCurrentSong,
                 playbackRef,
                 displayType,

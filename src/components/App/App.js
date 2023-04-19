@@ -20,6 +20,8 @@ const App = () => {
     const [displayType, setDisplayType] = useState("");
     const [displaySongs, setDisplaySongs] = useState([]);
     const [currentSong, setCurrentSong] = useState("");
+    const currentSongRef = useRef(currentSong);
+    useEffect(() => {currentSongRef.current = currentSong;}, [currentSong]);
     const [openID, setOpenID] = useState("");
     const [currPlaylistDisplaying, setCurrPlaylistDisplaying] = useState("");
     const [songIsPlaying, setSongIsPlaying] = useState(false);
@@ -44,11 +46,7 @@ const App = () => {
     const handleDelete = (target) => {
         setDisplaySongs((prevDisplaySongs) => {
             return prevDisplaySongs.filter((song) => {
-                return !(song.title === target.title
-                    && song.artist === target.artist
-                    && song.album === target.album
-                    && song.length === target.length
-                )
+                return !songsAreEqual(song, target)
             });
         });
     }
@@ -94,6 +92,7 @@ const App = () => {
                 loopRef,
                 queueRef,
                 historyRef,
+                currentSongRef,
                 setCurrentSong,
                 playbackRef,
                 displayType,
@@ -162,6 +161,7 @@ const App = () => {
                 historyRef={historyRef}
                 displayType={displayType}
                 currPlaylistPlayingRef={currPlaylistPlayingRef}
+                currentSongRef={currentSongRef}
             />
         </Context.Provider>
     );
