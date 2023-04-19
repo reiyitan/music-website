@@ -27,26 +27,18 @@ const PlaylistSong = function({
     songIsPlaying, 
 }) {
     const {
-        setCurrentSong,
         handleDelete,
         pauseSong,
         playSong,
         setCurrPlaylistPlaying,
-        currPlaylistDisplaying,
-        historyRef
+        currPlaylistDisplaying
     } = useContext(Context);
     /**
      * Plays the current song. 
      */
     const handlePlay = () => {
-        if (
-            (historyRef.current.length === 0
-            || !songsAreEqual(historyRef.current[historyRef.current.length - 1], song))
-            && currentSong !== ""
-        ) historyRef.current.push(currentSong);
-        setCurrentSong(song);
-        setCurrPlaylistPlaying(currPlaylistDisplaying);
         playSong(song);
+        setCurrPlaylistPlaying(currPlaylistDisplaying);
     }
 
     /**

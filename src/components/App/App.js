@@ -74,6 +74,11 @@ const App = () => {
     * @param length - The length of the song to be played.
     */
     const playSong = (song) => {
+        if (
+            (historyRef.current.length === 0
+            || !songsAreEqual(historyRef.current[historyRef.current.length - 1], song))
+            && currentSong !== ""
+        ) historyRef.current.push(currentSong);
         //the requested song is already playing. 
         if (playbackRef.current && songsAreEqual(currentSong, song)) {
             setSongIsPlaying(true);
