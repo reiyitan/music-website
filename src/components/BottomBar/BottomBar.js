@@ -29,7 +29,6 @@ const BottomBar = ({
     loop,
     setLoop,
     loopRef,
-    queueRef,
     historyRef,
     displayType,
     currPlaylistPlayingRef,
@@ -40,7 +39,8 @@ const BottomBar = ({
         setCurrentSong,
         setSongIsPlaying,
         pauseSong,
-        shuffleRef
+        shuffleRef,
+        queueRef
     } = useContext(Context);
 
     /**
@@ -169,14 +169,7 @@ const BottomBar = ({
                 }
             >
             </button>
-            <input
-                type="range"
-                className="slider seek"
-                name="seek"
-                min="0"
-                max={(playbackRef.current !== null) ? playbackRef.current.duration() : 0}
-            >
-            </input>
+
             <button 
                 className={"button small ff"}
                 onClick={handleForward}
