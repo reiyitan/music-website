@@ -1,7 +1,10 @@
 import React from "react";
 import { Context } from "../App/App";
-import { useContext } from "react";
-import { createPlayback, loadPlaylistSongs } from "../functions";
+import { useContext, useEffect } from "react";
+import { 
+    createPlayback, 
+    createQueue
+ } from "../functions";
 import "./style.css";
 
 /**
@@ -101,7 +104,7 @@ const BottomBar = ({
             nextSong = queueRef.current.pop();
         }
         else if (loop && currPlaylistPlaying) {
-            queueRef.current = loadPlaylistSongs("user goes here", currPlaylistPlaying).reverse();
+            createQueue(currPlaylistPlaying, shuffle, queueRef, currentSong);
             nextSong = queueRef.current.pop();
         }
         else {
@@ -127,18 +130,16 @@ const BottomBar = ({
     }
 
     const handleShuffle = () => {
-        let newQueue = loadPlaylistSongs("user goes here", currPlaylistPlaying);
-        //playlist should be shuffled
-        if (!shuffle) {
-
+        if (displayType === "search") {
+            return;
         }
-        //playlist should not be shuffled
-        //load playlist then play from currentSong
-        else {
-
-        }
-        setShuffle(!shuffle);
+        createQueue(currPlaylistPlaying, shuffle, queueRef, currentSong);
     }
+
+    useEffect(() => {
+        handleShuffle();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [shuffle]);
 
     return (
         <div id="bottom-bar">
@@ -146,7 +147,7 @@ const BottomBar = ({
             <span className="bottom-bar-artist">{currentSong.artist}</span>
             <button 
                 className={(shuffle) ? "button small shuffle shuffle-on" : "button small shuffle shuffle-off"}
-                onClick={handleShuffle}
+                onClick={() => setShuffle(!shuffle)}
             >
             </button>
             <button 

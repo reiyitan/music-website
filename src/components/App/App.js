@@ -1,7 +1,7 @@
 import React from "react"; 
 import "./style.css"; 
 import { useState, useRef, useEffect, createContext } from "react";
-import { createPlayback, slicePlaylist, songsAreEqual } from "../functions";
+import { createPlayback, slicePlaylist, songsAreEqual, shuffleArray } from "../functions";
 import Header from "../Header"; 
 import Searchbar from "../Searchbar";
 import Sidebar from "../Sidebar"; 
@@ -106,6 +106,7 @@ const App = () => {
                 currPlaylistDisplaying,
                 song
             ).reverse()
+            if (shuffle) shuffleArray(queueRef.current);
         }
     }
 

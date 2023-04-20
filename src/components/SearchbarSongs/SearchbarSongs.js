@@ -1,7 +1,7 @@
 import React from "react"; 
 import { Context } from "../App/App";
 import { useState, useContext } from "react";
-import { loadPlaylists, isPlaying, songsAreEqual } from "../functions";
+import { loadPlaylists, isPlaying } from "../functions";
 import "./style.css";
 
 /**

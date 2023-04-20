@@ -1,6 +1,5 @@
 import { Howl } from "howler"; 
-import { default as loadPlaylistSongs } from "./loadPlaylistSongs";
-import { songsAreEqual } from "../functions";
+import { songsAreEqual, createQueue } from "../functions";
 
 function stopPlayback(
     setSongIsPlaying, 
@@ -75,7 +74,8 @@ export default function createPlayback(
                 return;
             }
             else if (queueRef.current.length === 0 && loopRef.current) {
-                queueRef.current = loadPlaylistSongs("user id here", currPlaylistPlayingRef.current).reverse();
+                createQueue(currPlaylistPlayingRef.current, !shuffleRef.current,
+                    queueRef, currentSongRef.current);
             }
             const nextSong = queueRef.current.pop(); 
             setCurrentSong(nextSong);

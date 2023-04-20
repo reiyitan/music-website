@@ -19,8 +19,9 @@ export default function slicePlaylist(
     let playlist = loadPlaylistSongs(user, playlistName);
     for (let i = 0; i < playlist.length; i++) {
         let currSong = playlist[i]; 
-        if (songsAreEqual(currSong, song)) {
+        if (songsAreEqual(currSong, song) && i !== playlist.length - 1) {
             return playlist.slice(i + 1);
         }
     }
+    return playlist;
 }
