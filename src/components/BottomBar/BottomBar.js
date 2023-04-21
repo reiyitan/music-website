@@ -105,7 +105,7 @@ const BottomBar = ({
             nextSong = queueRef.current.pop();
         }
         else if (loop && currPlaylistPlaying) {
-            queueRef.current = createQueue(currPlaylistPlaying, shuffle, queueRef, currentSong, loopRef);
+            queueRef.current = createQueue(currPlaylistPlaying, shuffle, currentSong, loopRef);
             if (queueRef.current.length === 0) {
                 setCurrentSong("");
                 setSongIsPlaying(false);
