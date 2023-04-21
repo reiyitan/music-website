@@ -17,27 +17,26 @@ const Seekbar = () => {
     useEffect(() => {
         const seekUpdater = setInterval(() => {
             if (playbackRef.current) {
-                setValues([Math.round(playbackRef.current.seek())]);
+                setValues([Math.round(playbackRef.current.seek() * 100) / 100]);
             }
-        }, 1000/30);
+        }, 1000/60);
 
         return () => clearInterval(seekUpdater);
     }, [playbackRef]);
 
     const handleSeek = (position) => {
-        setValues([position]);
-        if (playbackRef.current) playbackRef.current.seek(position);
+        if (!playbackRef.current) return; 
+        setValues([Math.round([position] * 100) / 100]);
+        playbackRef.current.seek(position);
     }
 
     return (
         <Range 
             values={values}
             min={0}
-            max={(playbackRef.current) ? Math.round(playbackRef.current.duration()) : 1}
-            step={1}
+            max={(playbackRef.current) ? Math.round(playbackRef.current.duration() * 100) / 100 : 1}
+            step={0.01}
             onChange={(values) => handleSeek(values[0])}
-            onDragStart={() => {if (playbackRef.current) playbackRef.current.pause();}}
-            onDragEnd={() => {if (playbackRef.current) playbackRef.current.play();}}
             renderTrack={({props, children}) => (
                 <div
                     {...props}
