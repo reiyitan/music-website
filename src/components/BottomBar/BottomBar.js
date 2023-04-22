@@ -1,6 +1,6 @@
 import React from "react";
 import { Context } from "../App/App";
-import Seekbar from "../Seekbar";
+import SeekBar from "../SeekBar";
 import { useContext, useEffect } from "react";
 import { 
     createPlayback, 
@@ -27,6 +27,7 @@ import "./style.css";
  * @param displayType - Either "playlist" or "search". 
  * @param currPlaylistPlayingRef - A reference to currPlaylistPlaying to be passed into createPlayback.
  * @param currentSongRef - A reference to currentSong to be passed into createPlayback.
+ * @param volumeRef - Reference to the current volume. Between 0 and 1. 
  * 
  * CONTEXT
  * @param currentSong - The currentSong that is playing. A JavaScript object with title, artist, album, length.
@@ -51,7 +52,8 @@ const BottomBar = ({
     historyRef,
     displayType,
     currPlaylistPlayingRef,
-    currentSongRef
+    currentSongRef,
+    volumeRef
 }) => {
     const {
         currentSong,
@@ -107,7 +109,8 @@ const BottomBar = ({
                 displayType,
                 currPlaylistPlayingRef,
                 setCurrPlaylistPlaying,
-                songShouldLoad
+                songShouldLoad,
+                volumeRef
             );
         }
     }
@@ -155,7 +158,8 @@ const BottomBar = ({
             displayType,
             currPlaylistPlayingRef,
             setCurrPlaylistPlaying,
-            songShouldLoad
+            songShouldLoad,
+            volumeRef
         );
     }
 
@@ -201,7 +205,7 @@ const BottomBar = ({
                 onClick={() => setLoop(!loop)}
             >
             </button>
-            <Seekbar />
+            <SeekBar />
         </div>
     )
 }
