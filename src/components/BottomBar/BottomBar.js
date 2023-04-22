@@ -11,14 +11,32 @@ import "./style.css";
 /**
  * Component for the bottom bar of the webpage.
  * 
+ * PROPS
  * @param currentSong - Information for the song that is currently playing. Part of index.js state.
  * @param setCurrentSong - Used to update state of currentSong.
  * @param currPlaylistPlaying - The current playlist being listened to.
  * @param setCurrPlaylistPlaying - Set state of currPlaylistPlaying.
  * @param playbackRef - A reference to the current Howl. 
- * @param pauseSong - Function that handles pausing the current song. 
  * @param songIsPlaying - True if a song is currently playing, false otherwise. 
+ * @param shuffle - True if the current playlist should be shuffled, false otherwise.
+ * @param setShuffle - Update state of shuffle.
+ * @param loop - True if the current playlist should be looped, false otherwise.
+ * @param setLoop - Updates state of loop.
+ * @param loopRef - A reference to loop to be passed into createPlayback. (provides most recent loop value)
+ * @param historyRef - A list of the previous song objects that have been played.
+ * @param displayType - Either "playlist" or "search". 
+ * @param currPlaylistPlayingRef - A reference to currPlaylistPlaying to be passed into createPlayback.
+ * @param currentSongRef - A reference to currentSong to be passed into createPlayback.
+ * 
+ * CONTEXT
+ * @param currentSong - The currentSong that is playing. A JavaScript object with title, artist, album, length.
+ * @param setCurrentSong - Set the state of currentSong. 
  * @param setSongIsPlaying - Sets the state of songIsPlaying.
+ * @param pauseSong - Callback function for pausing the current Howl. 
+ * @param shuffleRef - Reference to shuffle to be passed into createPlayback.
+ * @param queueRef - A list of songs to be played.
+ * @param songShouldLoad - Used in createPlayback to determine if a song can load without causing
+ *                         two Howls to play at the same time.
  */
 const BottomBar = ({
     currPlaylistPlaying,

@@ -12,8 +12,6 @@ const Context = createContext();
 
 /**
  * Wrapper component for the website.
- * 
- * @returns The main component.
  */
 const App = () => {
     const [header, setHeader] = useState("work in progress");
