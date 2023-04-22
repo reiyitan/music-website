@@ -1,6 +1,7 @@
 import React from "react";
 import { Context } from "../App/App";
-import { useContext } from "react"
+import SearchbarForm from "../SearchbarForm";
+import { useContext, useState } from "react"
 import { loadAllSongs } from "../functions";
 import "./style.css";
 
@@ -23,6 +24,8 @@ const Searchbar = ({
         setCurrPlaylistPlaying
     } = useContext(Context);
     
+    const [showForm, setShowForm] = useState(false); 
+
     const handleSearch = (e) => {
         e.preventDefault();
         setCurrPlaylistPlaying(null);
@@ -43,16 +46,17 @@ const Searchbar = ({
         setDisplaySongs(result);
     }
     return (
-        <div id="searchbar-div">
-            <form onSubmit={handleSearch}>
-                <input 
-                    id="searchbar-input" 
-                    type="text" 
-                    placeholder="Find something to listen to"
-                    name="query"
-                 />
-            </form>
-        </div>
+        <>
+            <button
+                className={(showForm) ? "hidden" : "search-button"}
+                onClick={() => setShowForm(!showForm)}
+            >Search</button>
+            <SearchbarForm
+                showForm={showForm} 
+                setShowForm={setShowForm}
+                handleSearch={handleSearch}
+            />
+        </>
     );
 }
 
