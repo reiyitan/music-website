@@ -1,6 +1,7 @@
 import React from "react";
 import { Context } from "../App/App";
 import SeekBar from "../SeekBar";
+import VolumeBar from "../VolumeBar";
 import { useContext, useEffect } from "react";
 import { 
     createPlayback, 
@@ -206,6 +207,10 @@ const BottomBar = ({
             >
             </button>
             <SeekBar />
+            <VolumeBar 
+                volumeRef={volumeRef}
+                playbackRef={playbackRef}
+            />
         </div>
     )
 }
