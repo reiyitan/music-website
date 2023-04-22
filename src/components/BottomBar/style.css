@@ -12,8 +12,8 @@
     white-space: nowrap;
     text-overflow: ellipsis;
     background-color: #5E81AC;
-    width: 300px;
-    max-width: 300px;
+    width: 20%;
+    max-width: 20%;
 }
 
 .bottom-bar-title {
