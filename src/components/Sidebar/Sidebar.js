@@ -21,13 +21,8 @@ const Sidebar = ({
     displayType, 
     setDisplayType,
 }) => {
-    const [playlists, setPlaylists] = useState(loadPlaylists("user goes here")); 
-    const [addPlaylistButtonStyle, setAddPlaylistButtonStyle] = useState("add-playlist-button");
-    const [playlistNameInputStyle, setPlaylistNameInputStyle] = useState("hidden");
-    const showNameForm = () => {
-        setAddPlaylistButtonStyle("hidden");
-        setPlaylistNameInputStyle("playlist-name-input");
-    }
+    const [playlists, setPlaylists] = useState(loadPlaylists("user goes here"));
+    const [showForm, setShowForm] = useState(false); 
 
     /**
      * Adds a new empty playlist to this component's list of playlists. 
@@ -47,17 +42,20 @@ const Sidebar = ({
             //TODO add this playlist to the backend as an empty playlist
             setPlaylists([...playlists, playlistName]);
         }
-        setAddPlaylistButtonStyle("add-playlist-button");
-        setPlaylistNameInputStyle("hidden");
+        setShowForm(false);
     }
 
     return (
         <div id="sidebar">
             <PlaylistNameForm 
-                playlistNameInputStyle={playlistNameInputStyle} 
+                showForm={showForm}
+                setShowForm={setShowForm}
                 onFormSubmit={handleSubmit}
             />
-            <button onClick={showNameForm} className={addPlaylistButtonStyle}>+ Add a playlist</button>
+            <button 
+                onClick={() => setShowForm(true)} 
+                className={(showForm) ? "hidden" : "add-playlist-button"}
+            >+ Add a playlist</button>
             <div id="sidebar-playlists">
                 {playlists.slice().reverse().map((playlistName) => (
                     <SidebarPlaylist 

@@ -7,19 +7,6 @@
     background: #434C5E;
 }
 
-.add-playlist-button {
-    position: absolute;
-    top: 0px;
-    background: #434C5E;
-    border: none;
-    width: 200px;
-    height: 40px;
-}
-
-.add-playlist-button:hover {
-    background: #3a414d;
-}
-
 .playlist-name-input {
     position: absolute;
     left: 5px;
