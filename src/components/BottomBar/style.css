@@ -19,14 +19,14 @@
 .bottom-bar-title {
     position: absolute;
     left: 5px;
-    top: 10px;
+    top: 25%;
 }
 
 .bottom-bar-artist {
     position: absolute;
     left: 5px;
-    bottom: 10px;
-    font-size: 14px;
+    bottom: 25%;
+    font-size: 11px;
 }
 
 .button {
