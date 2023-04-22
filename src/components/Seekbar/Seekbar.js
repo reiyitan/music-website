@@ -15,7 +15,7 @@ const Seekbar = () => {
         playbackRef
     } = useContext(Context);
     const [values, setValues] = useState([0]);
-    const [timestamp, setTimestamp] = useState("00:00"); 
+    const [timestamp, setTimestamp] = useState("0:00"); 
 
     //set thumb position to 0 if there is no song playing
     useEffect(() => {
@@ -39,7 +39,7 @@ const Seekbar = () => {
                 setTimestamp(playbackRef.current.seek());
             }
             else {
-                setTimestamp("00:00");
+                setTimestamp("0:00");
             }
         }, 1000/60);
         return () => clearInterval(timestampUpdater);
@@ -48,6 +48,7 @@ const Seekbar = () => {
     const formatTime = (duration) => {
         const minutes = Math.floor(duration / 60);
         const seconds = Math.floor(duration % 60);
+        if (minutes === -1) return "0:00";
         return `${minutes}:${seconds.toString().padStart(2, '0')}`;
     }
 
@@ -62,7 +63,7 @@ const Seekbar = () => {
             <div id="timestamp">
                 {(playbackRef.current) 
                     ? formatTime(timestamp)
-                    : "00:00"
+                    : "0:00"
                 }
             </div>
             <Range 
@@ -101,7 +102,7 @@ const Seekbar = () => {
             <div id="remaining">
                 {(playbackRef.current) 
                     ? formatTime(playbackRef.current.duration() - timestamp)
-                    : "00:00"
+                    : "0:00"
                 }
             </div>
         </>
