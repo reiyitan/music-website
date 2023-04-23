@@ -11,8 +11,25 @@
     text-align: left;
 }
 
-#form-button:hover {
+#form-button:hover,
+#form-button:hover span {
     background: #3a414d;
+}
+
+#title-span {
+    position: absolute; 
+    left: 27.5px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #434C5E;
+}
+
+#form-div {
+    position: absolute;
+    width: 200px;
+    max-width: 200px; 
+    height: 40px;
+    background-color: #434C5E;
 }
 
 #form-input {
@@ -37,10 +54,10 @@
     vertical-align: middle;
 }
 
-#form-div {
+img {
     position: absolute;
-    width: 200px;
-    max-width: 200px; 
-    height: 40px;
-    background-color: #434C5E;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 15px;
+    width: 15px;
 }

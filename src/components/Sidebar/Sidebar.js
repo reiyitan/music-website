@@ -54,6 +54,8 @@ const Sidebar = ({
                     left: "0px",
                     top: "0px"
                 }}
+                image="/icons/add/add.png"
+                imageHover="/icons/add/add-hover.png"
             />
             <div id="sidebar-playlists">
                 {playlists.slice().reverse().map((playlistName) => (

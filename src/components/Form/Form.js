@@ -13,21 +13,25 @@ import "./style.css";
  * @param placeholder - The default text to display within the input field. 
  * @param handleSubmit - Callback function to be executed on form submission.
  * @param position - CSS for positioning the component.
+ * @param image - The URL to the image to be displayed on the button. 
+ * @param imageHover - The URL to the image to be displayed when the button is hovered.
  */
 const Form = ({
     title,
     placeholder,
     handleSubmit,
-    position
+    position,
+    image,
+    imageHover
 }) => {
     const [showForm, setShowForm] = useState(false); 
     const inputRef = useRef(null);
     const [value, setValue] = useState("");
+    const [isHovering, setIsHovering] = useState(false);
     const style = {
         left: position.left,
         top: position.top
     };
-
     //update text within the input field
     const handleChange = (e) => {
         setValue(e.target.value);
@@ -62,7 +66,15 @@ const Form = ({
                 id={(showForm) ? "hidden" : "form-button"}
                 onClick={() => setShowForm(!showForm)}
                 style={style}
-            >{title}</button>
+                onMouseEnter={() => setIsHovering(true)}
+                onMouseLeave={() =>setIsHovering(false)}
+            >
+                <img 
+                    src={(isHovering) ? imageHover : image}
+                    alt="">
+                </img>
+                <span id="title-span">{title}</span>
+            </button>
             <div 
                 id={(showForm) ? "form-div" : "hidden"}
                 style={style}
