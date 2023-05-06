@@ -8,6 +8,7 @@ import {
     createQueue
  } from "../functions";
 import "./style.css";
+import { PlayIcon, PauseIcon, BackwardIcon, ForwardIcon, ArrowPathIcon} from "@heroicons/react/24/solid";
 
 /**
  * Component for the bottom bar of the webpage.
@@ -178,34 +179,44 @@ const BottomBar = ({
         <div id="bottom-bar">
             <span className="bottom-bar-title">{(currentSong) ? currentSong.title : ""}</span>
             <span className="bottom-bar-artist">{(currentSong) ? currentSong.artist : ""}</span>
+
             <button 
                 className={(shuffle) ? "button small shuffle shuffle-on" : "button small shuffle shuffle-off"}
                 onClick={() => setShuffle(!shuffle)}
             >
             </button>
+
             <button 
                 className={"button small rw"}
                 onClick={handleRewind}
             >
             </button>
+
             <button 
-                className={(songIsPlaying) ? "button pause-play pause" : "button pause-play play"}
+                className="button pause-play"
                 onClick={(songIsPlaying)
                     ? handlePause
                     : handlePlay
                 }
             >
+                {songIsPlaying
+                    ? <PauseIcon className="pause-icon" />
+                    : <PlayIcon className="play-icon" />
+                }
             </button>
+
             <button 
                 className={"button small ff"}
                 onClick={handleForward}
             >
             </button>
+
             <button 
                 className={(loop) ? "button small loop loop-on" : "button small loop loop-off"}
                 onClick={() => setLoop(!loop)}
             >
             </button>
+
             <SeekBar />
             <VolumeBar 
                 volumeRef={volumeRef}

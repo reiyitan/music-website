@@ -31,12 +31,12 @@
 
 .button {
     position: absolute;
-    display: inline-block;
     border: none;
     border-radius: 50%;
-    background-size: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #434C5E;
 }
 
 .pause-play {
@@ -47,20 +47,25 @@
     height: 35px;
 }
 
-.play {
-    background-image: url("/public/icons/play/play.png");
+.pause-play:hover {
+    background-color: #3d4350;
 }
 
-.play:hover {
-    background-image: url("/public/icons/play/play-hover.png");
+.pause-play:hover .play-icon .pause-icon {
+    fill: #b3b5b7;
 }
 
-.pause {
-    background-image: url("/public/icons/pause/pause.png");
+.play-icon {
+    fill: #ECEFF4;
+    background-color: transparent;
+    transform: translateX(0.75px);
+    width: 20px;
+    height: 20px;
 }
 
-.pause:hover {
-    background-image: url("/public/icons/pause/pause-hover.png");
+.pause-icon {
+    fill: #ECEFF4;
+    background-color: transparent; 
 }
 
 .small {
