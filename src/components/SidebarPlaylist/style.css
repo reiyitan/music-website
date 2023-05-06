@@ -1,8 +1,7 @@
 .playlist-button {
     top: 0px;
     border: none;
-    width: 75%;
-    max-width: 75%;
+    width: calc(100% - 40px);
     left: 0px;
     right: 0px;
     height: 40px;
@@ -32,8 +31,7 @@
     top: 0px;
     background: #3B4252;
     border: none;
-    width: 25%;
-    max-width: 25%;
+    width: 40px;
     left: 0px;
     right: 0px;
     height: 40px;

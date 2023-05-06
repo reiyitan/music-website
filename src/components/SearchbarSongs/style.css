@@ -5,9 +5,7 @@
 }
 
 .add-button {
-    width: 5%;
-    max-width: 5%;
-    min-width: 5%;
+    width: 40px;
     border: none;
 }
 
@@ -34,11 +32,8 @@
 .song-row-playbutton {
     display: flex;
     align-items: center;
-    width: 95%;
-    max-width: 95%;
-    min-height: 40px;
+    width: calc(100% - 40px);
     height: 40px;
-    max-height: 40px;
     border: none;
 }
 
@@ -111,7 +106,7 @@
 /* CSS for the list of playlists that display when a user clicks the add song button */
 .playlist-list-wrapper {
     position: absolute;
-    right: calc(5%);
+    right: 40px;
     transform: translateY(-40px);
     width: 400px;
     max-width: 400px;
