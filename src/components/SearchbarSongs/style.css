@@ -111,15 +111,20 @@
 /* CSS for the list of playlists that display when a user clicks the add song button */
 .playlist-list-wrapper {
     position: absolute;
-    right: 0px;
-    width: 200px;
-    max-width: 200px;
+    right: calc(5%);
+    transform: translateY(-40px);
+    width: 400px;
+    max-width: 400px;
+    height: 200px;
+    max-height: 200px;
+    border-radius: 5px;
+    box-shadow: 5px 5px 5px rgb(0, 0, 0, 0.5);
 }
 
 .playlist-list-header {
     position: absolute;
     top: 0px;
-    height: 20px;
+    height: 10%;
     width: 100%;
     max-width: 100%;
     font-size: 12px;
@@ -130,13 +135,15 @@
     background: #3B4252;
     display: flex;
     align-items: center;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 }
 
 .playlist-list {
     position: absolute;
     top: 20px;
     line-height: 1px;
-    max-height: 120px;
+    max-height: 90%;
     width: 100%;
     max-width: 100%;
     right: 0px;
@@ -144,12 +151,14 @@
     border-color: #434C5E;
     border-width: 2px;
     overflow-y: scroll;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 
 .playlist-select-button {
     background: #3B4252;
-    width: 186px;
-    max-width: 186px;
+    width: 100%;
+    max-width: 100%;
     border: none;
     padding: 0px;
     margin: 0px;
