@@ -109,9 +109,7 @@
     right: 40px;
     transform: translateY(-40px);
     width: 400px;
-    max-width: 400px;
     height: 200px;
-    max-height: 200px;
     border-radius: 5px;
     box-shadow: 5px 5px 5px rgb(0, 0, 0, 0.5);
 }
@@ -121,7 +119,6 @@
     top: 0px;
     height: 10%;
     width: 100%;
-    max-width: 100%;
     font-size: 12px;
     border-style: solid;
     border-bottom: none;
@@ -138,9 +135,8 @@
     position: absolute;
     top: 20px;
     line-height: 1px;
-    max-height: 90%;
+    height: 90%;
     width: 100%;
-    max-width: 100%;
     right: 0px;
     border-style: solid;
     border-color: #434C5E;
