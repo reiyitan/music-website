@@ -3,12 +3,16 @@ import { Context } from "../App/App";
 import SeekBar from "../SeekBar";
 import VolumeBar from "../VolumeBar";
 import { useContext, useEffect } from "react";
-import { 
-    createPlayback, 
-    createQueue
- } from "../functions";
+import { createPlayback, createQueue } from "../functions";
 import "./style.css";
-import { PlayIcon, PauseIcon, BackwardIcon, ForwardIcon, ArrowPathIcon} from "@heroicons/react/24/solid";
+import { PlayIcon, PauseIcon } from "@heroicons/react/24/solid";
+import { 
+    BackwardIcon, 
+    ForwardIcon, 
+    ArrowPathIcon,
+    SpeakerWaveIcon,
+    SpeakerXMarkIcon
+} from "@heroicons/react/20/solid";
 
 /**
  * Component for the bottom bar of the webpage.
@@ -29,7 +33,8 @@ import { PlayIcon, PauseIcon, BackwardIcon, ForwardIcon, ArrowPathIcon} from "@h
  * @param displayType - Either "playlist" or "search". 
  * @param currPlaylistPlayingRef - A reference to currPlaylistPlaying to be passed into createPlayback.
  * @param currentSongRef - A reference to currentSong to be passed into createPlayback.
- * @param volumeRef - Reference to the current volume. Between 0 and 1. 
+ * @param volume - Reference to the current volume. Between 0 and 1.
+ * @param setVolume - Sets the state of volume. 
  * 
  * CONTEXT
  * @param currentSong - The currentSong that is playing. A JavaScript object with title, artist, album, length.
@@ -55,7 +60,8 @@ const BottomBar = ({
     displayType,
     currPlaylistPlayingRef,
     currentSongRef,
-    volumeRef
+    volume,
+    setVolume
 }) => {
     const {
         currentSong,
@@ -112,7 +118,7 @@ const BottomBar = ({
                 currPlaylistPlayingRef,
                 setCurrPlaylistPlaying,
                 songShouldLoad,
-                volumeRef
+                volume
             );
         }
     }
@@ -161,7 +167,7 @@ const BottomBar = ({
             currPlaylistPlayingRef,
             setCurrPlaylistPlaying,
             songShouldLoad,
-            volumeRef
+            volume
         );
     }
 
@@ -190,6 +196,7 @@ const BottomBar = ({
                 className={"button small rw"}
                 onClick={handleRewind}
             >
+                <BackwardIcon className="icon rw-icon" />
             </button>
 
             <button 
@@ -200,8 +207,8 @@ const BottomBar = ({
                 }
             >
                 {songIsPlaying
-                    ? <PauseIcon className="pause-icon" />
-                    : <PlayIcon className="play-icon" />
+                    ? <PauseIcon className="icon pause-icon" />
+                    : <PlayIcon className="icon play-icon" />
                 }
             </button>
 
@@ -209,17 +216,26 @@ const BottomBar = ({
                 className={"button small ff"}
                 onClick={handleForward}
             >
+                <ForwardIcon className="icon ff-icon" />
             </button>
 
             <button 
-                className={(loop) ? "button small loop loop-on" : "button small loop loop-off"}
+                className={loop ? "button small loop loop-on" : "button small loop loop-off"}
                 onClick={() => setLoop(!loop)}
             >
+                <ArrowPathIcon className="icon" />
             </button>
 
+            <div id="volume-icon-div">
+                {volume === 0
+                    ? <SpeakerXMarkIcon className="volume-icon" />
+                    : <SpeakerWaveIcon className="volume-icon" />
+                }
+            </div>
             <SeekBar />
             <VolumeBar 
-                volumeRef={volumeRef}
+                volume={volume}
+                setVolume={setVolume}
                 playbackRef={playbackRef}
             />
         </div>

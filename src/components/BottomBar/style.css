@@ -47,25 +47,31 @@
     height: 35px;
 }
 
-.pause-play:hover {
+.pause-play:hover,
+.rw:hover,
+.ff:hover,
+.loop:hover,
+.shuffle:hover {
     background-color: #3d4350;
 }
 
-.pause-play:hover .play-icon .pause-icon {
-    fill: #b3b5b7;
-}
-
 .play-icon {
-    fill: #ECEFF4;
-    background-color: transparent;
     transform: translateX(0.75px);
     width: 20px;
     height: 20px;
 }
 
-.pause-icon {
+.icon {
     fill: #ECEFF4;
     background-color: transparent; 
+}
+
+.pause-play:hover .icon,
+.pause-play:hover .icon,
+.rw:hover .icon,
+.ff:hover .icon,
+.loop:hover .icon {
+    fill: #b3b5b7;
 }
 
 .small {
@@ -77,14 +83,9 @@
 .shuffle {
     left: 50%;
     transform: translateX(calc(-50% - 95px));
-}
-
-.shuffle-on {
-    background-image: url("/public/icons/shuffle/shuffle-on.png");
-}
-
-.shuffle-on:hover {
-    background-image: url("/public/icons/shuffle/shuffle-on-hover.png");
+    background-size: 75%;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .shuffle-off {
@@ -95,24 +96,32 @@
     background-image: url("/public/icons/shuffle/shuffle-off-hover.png");
 }
 
+.shuffle-on {
+    background-image: url("/public/icons/shuffle/shuffle-on.png");
+    background-color: #8FBCBB;
+}
+
+.shuffle-on:hover {
+    background-image: url("/public/icons/shuffle/shuffle-on-hover.png");
+    background-color: #74a6a6;
+}
+
 .rw {
     left: 50%;
     transform: translateX(calc(-50% - 50px));
-    background-image: url("/public/icons/rw/rw.png");
 }
 
-.rw:hover {
-    background-image: url("/public/icons/rw/rw-hover.png");
+.rw-icon {
+    transform: translateX(-0.5px);
 }
 
 .ff {
     left: 50%;
     transform: translateX(calc(-50% + 50px));
-    background-image: url("/public/icons/ff/ff.png");
 }   
 
-.ff:hover {
-    background-image: url("/public/icons/ff/ff-hover.png");
+.ff-icon {
+    transform: translateX(0.5px);
 }
 
 .loop {
@@ -121,17 +130,24 @@
 }
 
 .loop-on {
-    background-image: url("/public/icons/loop/loop-on.png");
+    background-color: #8FBCBB;
 }
 
 .loop-on:hover {
-    background-image: url("/public/icons/loop/loop-on-hover.png");
+    background-color: #74a6a6;
 }
 
-.loop-off {
-    background-image: url("/public/icons/loop/loop-off.png");
+#volume-icon-div {
+    position: absolute;
+    right: calc(10% + 45px);
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    background-color: #5E81AC;
 }
 
-.loop-off:hover {
-    background-image: url("/public/icons/loop/loop-off-hover.png");
+.volume-icon {
+    fill: #ECEFF4;
+    background-color: transparent;
 }
