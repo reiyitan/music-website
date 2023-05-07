@@ -103,7 +103,7 @@ const SearchbarSong = ({
             <div className={(popupShowing) ? "playlist-list-wrapper" : "hidden"}>
                 <div className="playlist-list-header">Choose a playlist to add to:</div>
                 <div className="playlist-list">
-                    {playlists.reverse().map((playlistTitle) => (
+                    {playlists.map((playlistTitle) => (
                         <Playlist
                             key={playlistTitle}
                             playlistTitle={playlistTitle} 

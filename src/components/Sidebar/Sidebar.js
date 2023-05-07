@@ -57,7 +57,7 @@ const Sidebar = ({
                 icon="add"
             />
             <div id="sidebar-playlists">
-                {playlists.slice().reverse().map((playlistName) => (
+                {playlists.slice().map((playlistName) => (
                     <SidebarPlaylist 
                         key={playlistName} 
                         playlistName={playlistName}
