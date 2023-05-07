@@ -63,7 +63,7 @@
 
 .icon {
     fill: #ECEFF4;
-    background-color: transparent; 
+    background: transparent;
 }
 
 .pause-play:hover .icon,
@@ -144,10 +144,10 @@
     transform: translateY(-50%);
     width: 20px;
     height: 20px;
-    background-color: #5E81AC;
+    background: transparent;
 }
 
 .volume-icon {
     fill: #ECEFF4;
-    background-color: transparent;
+    background: transparent;
 }
