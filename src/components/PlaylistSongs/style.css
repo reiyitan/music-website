@@ -1,20 +1,21 @@
 /* Base CSS. These attributes remain unchanged regardless of whether or not the song is playing. */
-.song-row {
+.playlist-song-row {
+    width: 100%;
     display: flex;
     flex-direction: row;
 }
 
-.song-row-deletebutton {
+.playlist-song-row-deletebutton {
     width: 40px;
     background: #3B4252;
     border: none;
 }
 
-.song-row-deletebutton:hover {
+.playlist-song-row-deletebutton:hover {
     background: #BF616A;
 }
 
-.song-row-playbutton {
+.playlist-song-row-playbutton {
     display: flex;
     align-items: center;
     width: calc(100% - 40px);
@@ -22,7 +23,7 @@
     border: none;
 }
 
-.song-row-playbutton span {
+.playlist-song-row-playbutton span {
     display: inline-block;
     overflow: hidden;
     white-space: nowrap;
@@ -84,4 +85,10 @@
 
 .playing span {
     background: #8FBCBB;
+}
+
+.delete-song-icon {
+    background: transparent;
+    width: 10px;
+    height: 10px;
 }

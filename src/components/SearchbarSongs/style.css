@@ -1,10 +1,11 @@
 /* These elements do not change when a song is playing */
-.song-row {
+.search-song-row {
+    width: 100%;
     display: flex;
     flex-direction: row;
 }
 
-.add-button {
+.search-add-button {
     width: 40px;
     border: none;
 }
@@ -29,7 +30,7 @@
     display: none;
 }
 
-.song-row-playbutton {
+.search-song-row-playbutton {
     display: flex;
     align-items: center;
     width: calc(100% - 40px);
@@ -37,7 +38,7 @@
     border: none;
 }
 
-.song-row-playbutton span {
+.search-song-row-playbutton span {
     display: inline-block;
     overflow: hidden;
     white-space: nowrap;
@@ -162,4 +163,10 @@
 
 .playlist-select-button:hover {
     background: #333947;
+}
+
+.add-song-icon {
+    background: transparent;
+    width: 10px;
+    height: 10px;
 }
