@@ -1,5 +1,5 @@
 import React from "react"; 
-import { useState } from "react"; 
+import { useState, useEffect } from "react"; 
 import SidebarPlaylist from "../SidebarPlaylist"; 
 import Form from "../Form";
 import { loadPlaylists } from "../functions";
@@ -21,7 +21,11 @@ const Sidebar = ({
     displayType, 
     setDisplayType,
 }) => {
-    const [playlists, setPlaylists] = useState(loadPlaylists("user goes here"));
+    const [playlists, setPlaylists] = useState([]);
+    //only loads the playlists once
+    useEffect(() => {
+        setPlaylists(loadPlaylists("user goes here"));
+    }, []); 
 
     /**
      * Adds a new empty playlist to this component's list of playlists. 
@@ -57,7 +61,7 @@ const Sidebar = ({
                 icon="add"
             />
             <div id="sidebar-playlists">
-                {playlists.slice().map((playlistName) => (
+                {playlists && playlists.slice().map((playlistName) => (
                     <SidebarPlaylist 
                         key={playlistName} 
                         playlistName={playlistName}
